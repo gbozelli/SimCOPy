@@ -10,7 +10,7 @@ sys.path.insert(0, src_path)
 from qam_modulation import qam_modulation
 from deprecated.QAM_mod import QAM_mod as qam_old 
 
-@pytest.mark.parametrize("M", [4, 16, 64])
+@pytest.mark.parametrize("M", [4, 8, 16, 32])
 def test_qam_regression(M):
     num_symbols = 100
     N_bits = int(np.log2(M))
