@@ -1,37 +1,52 @@
 import numpy as np
 
-def EDFA(s_in,t,G_edfa_dB,NF_dB,lambda0=1550e-9):
-    h = 6.626e-34     # Planck's constant in J/Hz
-    c = 3e8           # Speed of light in the vacuum in m/s
-    f0 = c/lambda0    # Operation frequency in Hz
-    ts = t[1]-t[0]    # Sampling time in s
-    fs = 1/ts         # Sampling frequency in Hz
-    BW_sim = fs       # Simulation bandwidth in Hz
+def edfa(
+    input_signal: np.ndarray,
+    t: np.ndarray,
+    gain_db: float,
+    noise_figure_db: float,
+    wavelength: float = 1550e-9,
+) -> np.ndarray:
+    """
+    Simulates an Erbium-Doped Fiber Amplifier (EDFA).
+    """
+    # Physical constants
+    PLANCK_CONSTANT = 6.626e-34      # J·s
+    SPEED_OF_LIGHT = 3e8             # m/s
 
-    # Gain
-    G_edfa = 10**(G_edfa_dB/10)
-    sx = s_in[0]
-    sy = s_in[1]
-    N = len(sx)
+    optical_frequency = SPEED_OF_LIGHT / wavelength
 
-    sx = np.sqrt(G_edfa)*sx
-    sy = np.sqrt(G_edfa)*sy
+    sampling_period = t[1] - t[0]
+    sampling_frequency = 1 / sampling_period
+    simulation_bandwidth = sampling_frequency
 
-    # Noise
-    F_n = 10**(NF_dB/10)
-    n_sp = F_n/2
-    S_ASE = n_sp*h*f0*(G_edfa-1)
-    P_ASE = S_ASE*BW_sim
+    # Amplifier parameters
+    linear_gain = 10 ** (gain_db / 10)
+    noise_factor = 10 ** (noise_figure_db / 10)
+    spontaneous_emission_factor = noise_factor / 2
 
-    s_ASEx = np.sqrt(P_ASE)/2*np.random.rand(N)+1j*np.sqrt(P_ASE)/2*np.random.rand(N)
-    s_ASEy = np.sqrt(P_ASE)/2*np.random.rand(N)+1j*np.sqrt(P_ASE)/2*np.random.rand(N)
-    s_outx = sx + s_ASEx
-    s_outy = sy + s_ASEy
+    # Amplify signal
+    output_signal = np.sqrt(linear_gain) * input_signal.copy()
 
-    s = np.zeros((2,len(t)),dtype = np.complex128)
-    s[0,:] = s_outx
-    s[1,:] = s_outy
-    return s
+    # ASE noise power
+    ase_psd = (
+        spontaneous_emission_factor
+        * PLANCK_CONSTANT
+        * optical_frequency
+        * (linear_gain - 1)
+    )
 
-"""### 6.1.2 Visualization functions"""
+    ase_power = ase_psd * simulation_bandwidth
 
+    num_samples = input_signal.shape[1]
+
+    noise_std = np.sqrt(ase_power / 4)
+
+    ase_noise = noise_std * (
+        np.random.randn(2, num_samples)
+        + 1j * np.random.randn(2, num_samples)
+    )
+
+    output_signal += ase_noise
+
+    return output_signal

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from qam_modulation import qam_modulation
 from dac_nyquist import dac_nyquist
 
-def QAM_transmitter(N_sync=128,sync_seed=0,\
+def qam_transmitter(N_sync=128,sync_seed=0,\
                     inf_seed=45,\
                     N_MIMO=32,MIMO_i=0,\
                     N_inf=1024,M=16,SpS=16,RollOff=0.2,ts=1e-12,
