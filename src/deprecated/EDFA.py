@@ -8,7 +8,7 @@ def EDFA(s_in,t,G_edfa_dB,NF_dB,lambda0=1550e-9):
     fs = 1/ts         # Sampling frequency in Hz
     BW_sim = fs       # Simulation bandwidth in Hz
 
-    # Gain
+    # Gain of the EDFA in linear scale
     G_edfa = 10**(G_edfa_dB/10)
     sx = s_in[0]
     sy = s_in[1]
