@@ -1,10 +1,10 @@
 # PyCOSim RFC 0001 --- Signal, System and Component Architecture
 
 **Status:** Draft / Spike\
+**Version:** 2 --- merges the RFC 0002 addendum (axis semantics, composable `SignalSpec`, declarative constraints, sampling-grid compatibility, RNG discipline) directly into this document. There is no separate RFC 0002; this is now the single source of truth.\
 **Scope:** Architecture redesign of PyCOSim\
 **Audience:** PyCOSim developers\
-**Source of ideas:** legacy `src/deprecated/` implementations and
-`draft.py`
+**Source of ideas:** legacy `src/deprecated/` implementations, `draft.py`, and a review of the v1 draft of this RFC against `draft.py` that surfaced a concrete bug (`EDFA()` generating ASE noise from a uniform distribution instead of a Gaussian one) and several places where the v1 draft reintroduced, in its own design, the exact "shape/implicit-convention defines meaning" antipattern it set out to eliminate.
 
 ------------------------------------------------------------------------
 
@@ -43,9 +43,20 @@ The main architectural goal is:
 This RFC is intentionally a design spike. It defines concepts and
 examples before committing to a final implementation.
 
+A review pass against `draft.py` found one concrete, currently-active
+bug worth stating up front, because it motivates several decisions
+below: `EDFA()` generates ASE noise using `np.random.rand` (a uniform
+distribution) instead of `np.random.randn` (a Gaussian distribution).
+ASE noise is physically a circular complex Gaussian process, so this
+silently produces wrong noise statistics in every BER curve the script
+computes. Nothing in `draft.py` could have caught this --- there are no
+tests, and randomness comes from unseeded global `np.random` state.
+This RFC treats "would this architecture have made that bug testable"
+as a running design check, in addition to the goals in Section 2.
+
 ------------------------------------------------------------------------
 
-# 2. Design Goals
+## 2. Design Goals
 
 The new architecture should:
 
@@ -63,10 +74,13 @@ The new architecture should:
 11. Preserve the useful algorithms from the legacy implementation.
 12. Make it possible to inspect a simulation configuration before
     running it.
+13. Make stochastic components' output statistically testable
+    (seeded, reproducible, per-component random streams --- see
+    Section 49).
 
 ------------------------------------------------------------------------
 
-# 3. Non-Goals
+## 3. Non-Goals
 
 This RFC does not yet define:
 
@@ -77,13 +91,15 @@ This RFC does not yet define:
 -   performance optimization;
 -   a final serialization format;
 -   every possible modulation format;
--   every possible optical channel model.
+-   every possible optical channel model;
+-   a migration to an `xarray`-backed `Signal.data` (considered in
+    Section 11 as a possible future direction, not committed to here).
 
 Those should be designed after the core abstractions are stable.
 
 ------------------------------------------------------------------------
 
-# 4. Architectural Overview
+## 4. Architectural Overview
 
 The proposed architecture is:
 
@@ -109,6 +125,7 @@ flowchart TD
     Signal --> Domain
     Signal --> Representation
     Signal --> Polarization
+    Signal --> AxisSpec
 ```
 
 The key relationship is:
@@ -130,13 +147,11 @@ receives the system context relevant to its validation and execution.
 
 ------------------------------------------------------------------------
 
-# 5. Signal Is the Central Data Abstraction
+## 5. Signal Is the Central Data Abstraction
 
 The central object should be `Signal`.
 
 A signal represents data **plus its semantic/physical meaning**.
-
-A first conceptual API is:
 
 ``` python
 class Signal:
@@ -146,6 +161,7 @@ class Signal:
         domain,
         polarization,
         representation,
+        axes: "AxisSpec | None" = None,
         sampling=None,
         metadata=None,
     ):
@@ -153,8 +169,10 @@ class Signal:
         self.domain = domain
         self.polarization = polarization
         self.representation = representation
+        self.axes = axes or AxisSpec(axes=("time",))
         self.sampling = sampling
         self.metadata = metadata or {}
+        self.axes.validate_shape(data.shape)
 ```
 
 Example:
@@ -169,11 +187,14 @@ signal = Signal(
 ```
 
 The important point is that the array itself does not define the
-physical meaning.
+physical meaning --- and, as of this version, it does not define which
+array dimension means what, either. See Section 11 (`AxisSpec`) for why
+this matters as soon as more than one non-time axis is involved (e.g.
+polarization stacked with a WDM channel axis).
 
 ------------------------------------------------------------------------
 
-# 6. Domain
+## 6. Domain
 
 The first property of a signal is its domain.
 
@@ -227,7 +248,7 @@ uses.
 
 ------------------------------------------------------------------------
 
-# 7. Domain Is Not Representation
+## 7. Domain Is Not Representation
 
 This is one of the most important architectural rules.
 
@@ -283,7 +304,7 @@ The physical domain and polarization did not change.
 
 ------------------------------------------------------------------------
 
-# 8. Representation
+## 8. Representation
 
 Representations should be explicit.
 
@@ -318,7 +339,7 @@ Both can represent the same physical optical state.
 
 ------------------------------------------------------------------------
 
-# 9. Polarization
+## 9. Polarization
 
 Polarization is a separate property.
 
@@ -387,7 +408,7 @@ polarization = dual
 
 ------------------------------------------------------------------------
 
-# 10. Signal Shape Must Not Define Its Meaning
+## 10. Signal Shape Must Not Define Its Meaning
 
 Bad:
 
@@ -421,9 +442,99 @@ def validate_shape(signal):
 
 This prevents silent interpretation errors.
 
+This rule is not limited to polarization. Section 11 generalizes it to
+every axis of `signal.data`, because WDM (Section 28) turns out to
+reintroduce exactly this problem on a different axis if it is not
+handled the same way.
+
 ------------------------------------------------------------------------
 
-# 11. Signal Properties
+## 11. Axis Specification
+
+The rule in Section 10 --- "shape must not define meaning" --- applies
+to every dimension of `signal.data`, not only to whether the leading
+dimension is polarization. Once a second structural axis is added
+(e.g. WDM channel, see Section 28), a bare `ndarray` shape such as
+`(8, 2, 16000)` is again just a convention: nothing on `Signal` records
+that axis 0 is "channel" and axis 1 is "polarization". A component that
+receives this array has to know the convention out-of-band, which is
+the same failure mode Section 10 exists to prevent.
+
+### 11.1 Options considered
+
+**Option A --- dict-of-signals per channel.**
+Represent a multi-channel signal as `dict[int, Signal]` (channel index
+→ single-channel `Signal`), each with its own `Polarization` and
+`SamplingInfo`. No new abstraction is needed and channels may have
+independent sampling grids, but every component now needs two code
+paths (single-signal vs. dict-of-signals), pushing broadcasting logic
+into every component instead of into `Signal`.
+
+**Option B --- stacked array + explicit `AxisSpec` (recommended).**
+Keep the stacked-array representation, but make axis order a validated,
+first-class field on `Signal` instead of an implicit convention.
+
+**Option C --- full `xarray`-backed `Signal.data`.**
+Use `xarray.DataArray` with named dimensions and coordinates (e.g. real
+wavelength values as a coordinate) instead of a bare NumPy array.
+Strongest guarantees, and coordinate-aware slicing is genuinely useful
+for WDM (label channels by wavelength, not index) --- at the cost of a
+new runtime dependency, and it changes what "the data" is for every
+component that currently expects a raw `ndarray`.
+
+### 11.2 Recommendation
+
+Adopt **Option B now**; keep **Option C as an explicit future
+direction**, not a rejected idea (Section 3). Nothing in Option B
+forecloses it, since `AxisSpec` is a thin layer that could later be
+replaced by `xarray` dimension metadata without changing `Signal`'s
+public surface.
+
+``` python
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class AxisSpec:
+    """Declares what each axis of Signal.data means, in order."""
+    axes: tuple[str, ...]  # e.g. ("channel", "polarization", "time")
+
+    def index_of(self, axis_name: str) -> int:
+        return self.axes.index(axis_name)
+
+    def validate_shape(self, shape: tuple[int, ...]) -> None:
+        if len(shape) != len(self.axes):
+            raise ShapeMismatchError(
+                f"Signal declares axes {self.axes} "
+                f"but data has {len(shape)} dimensions."
+            )
+```
+
+A WDM signal becomes self-describing instead of convention-describing:
+
+``` python
+wdm_signal = Signal(
+    data=field,  # shape (8, 2, 16000)
+    domain=SignalDomain.OPTICAL,
+    polarization=Polarization.DUAL,
+    representation=SignalRepresentation.COMPLEX,
+    axes=AxisSpec(axes=("channel", "polarization", "time")),
+)
+
+wdm_signal.axes.index_of("channel")   # 0 — no more "trust me, it's axis 0"
+```
+
+Components that are channel-agnostic (e.g. `Fiber`, applying the same
+physics per channel) write `signal.axes.index_of("channel")` instead of
+hardcoding `0`. A component that changes axis order (e.g. after a
+transpose for FFT efficiency) expresses that explicitly by returning a
+`Signal` with a different `AxisSpec`, which the pipeline validator
+(Section 21) can check the same way it already checks
+`domain`/`polarization`/`representation`.
+
+------------------------------------------------------------------------
+
+## 12. Signal Properties
 
 The `Signal` class should expose useful derived information.
 
@@ -435,7 +546,7 @@ class Signal:
 
     @property
     def n_samples(self):
-        return self.data.shape[-1]
+        return self.data.shape[self.axes.index_of("time")]
 
     @property
     def is_complex(self):
@@ -478,15 +589,15 @@ are different concepts.
 
 ------------------------------------------------------------------------
 
-# 12. Sampling Metadata
+## 13. Sampling Metadata
 
 The old implementation uses parameters such as samples-per-symbol and
 roll-off.
 
 These should become explicit metadata rather than undocumented
-assumptions.
-
-Example:
+assumptions, and it should be possible to check whether two signals
+share a grid rather than assuming they do --- see Section 48 for why
+this matters as soon as a component combines two signals.
 
 ``` python
 @dataclass
@@ -494,6 +605,11 @@ class SamplingInfo:
     symbol_rate: float | None = None
     sampling_rate: float | None = None
     samples_per_symbol: int | None = None
+
+    def compatible_with(self, other: "SamplingInfo", rtol: float = 1e-9) -> bool:
+        if self.sampling_rate is None or other.sampling_rate is None:
+            return False
+        return abs(self.sampling_rate - other.sampling_rate) <= rtol * self.sampling_rate
 ```
 
 Then:
@@ -519,7 +635,7 @@ sampling_rate = symbol_rate * samples_per_symbol
 
 ------------------------------------------------------------------------
 
-# 13. Modulation Is System/Transmission Configuration
+## 14. Modulation Is System/Transmission Configuration
 
 The legacy code contains QAM-specific values such as:
 
@@ -560,7 +676,7 @@ This is preferable to scattering `M=16` throughout the pipeline.
 
 ------------------------------------------------------------------------
 
-# 14. System
+## 15. System
 
 The system describes the physical architecture being simulated.
 
@@ -598,7 +714,7 @@ This is a global context.
 
 ------------------------------------------------------------------------
 
-# 15. Why System Must Be Above Components
+## 16. Why System Must Be Above Components
 
 Consider the modulator.
 
@@ -637,7 +753,7 @@ This is the beginning of configuration propagation.
 
 ------------------------------------------------------------------------
 
-# 16. Configuration Propagation
+## 17. Configuration Propagation
 
 The intended architecture is not simply "copy the System attributes into
 every component".
@@ -677,7 +793,7 @@ This avoids duplicated configuration.
 
 ------------------------------------------------------------------------
 
-# 17. Configuration Constraints
+## 18. Configuration Constraints
 
 A system configuration should be able to forbid component
 configurations.
@@ -696,26 +812,17 @@ DCS
  └── complex optical field  REQUIRED
 ```
 
-This can be formalized as validation rules.
-
-Example:
-
-``` python
-class CoherentReceiver:
-    def validate(self, system):
-        if system.architecture != SystemArchitecture.DCS:
-            raise ConfigurationError(
-                "CoherentReceiver requires DCS."
-            )
-```
+This can be formalized as validation rules. See Section 45--47 for the
+single declarative mechanism used to express these rules.
 
 ------------------------------------------------------------------------
 
-# 18. Component Capabilities
+## 19. Component Capabilities
 
 Each component should declare what it accepts and produces.
 
-A conceptual specification:
+A conceptual specification (the full, composable version used from
+implementation onward is given in Section 46):
 
 ``` python
 @dataclass
@@ -758,7 +865,7 @@ This creates a physical type system.
 
 ------------------------------------------------------------------------
 
-# 19. Physical Type Checking
+## 20. Physical Type Checking
 
 Suppose:
 
@@ -795,7 +902,7 @@ This is much better than allowing the numerical operation to fail later.
 
 ------------------------------------------------------------------------
 
-# 20. Cascade Validation
+## 21. Cascade Validation
 
 Every component has:
 
@@ -846,7 +953,7 @@ and checks compatibility.
 
 ------------------------------------------------------------------------
 
-# 21. Cascade Example
+## 22. Cascade Example
 
 A simplified validator:
 
@@ -867,12 +974,13 @@ def validate_pipeline(pipeline, system):
         previous_output = component.output_spec
 ```
 
-This is only illustrative. The final implementation should probably use
-a richer compatibility system.
+This is only illustrative. The final implementation uses the
+`SignalSpec.accepts()` given in Section 46, which supports "accepts
+single OR dual polarization" rather than exact match only.
 
 ------------------------------------------------------------------------
 
-# 22. System Constraints + Signal Constraints
+## 23. System Constraints + Signal Constraints
 
 There are three levels of constraints:
 
@@ -907,7 +1015,7 @@ Simulation execution
 
 ------------------------------------------------------------------------
 
-# 23. IMDD Example
+## 24. IMDD Example
 
 Example configuration:
 
@@ -971,7 +1079,7 @@ pipeline = [
 
 ------------------------------------------------------------------------
 
-# 24. DCS Example
+## 25. DCS Example
 
 Example:
 
@@ -1032,7 +1140,7 @@ pipeline = [
 
 ------------------------------------------------------------------------
 
-# 25. Polarization Constraints
+## 26. Polarization Constraints
 
 Suppose:
 
@@ -1057,11 +1165,12 @@ class DualPolCoherentModulator:
 ```
 
 This is an example of a system configuration blocking another
-configuration.
+configuration. As of Section 45, this rule is expressed declaratively
+(`RequiresPolarization`) rather than as a hand-written override.
 
 ------------------------------------------------------------------------
 
-# 26. Single-Pol Components Inside a Dual-Pol System
+## 27. Single-Pol Components Inside a Dual-Pol System
 
 The architecture should not assume:
 
@@ -1097,7 +1206,7 @@ This should be explicitly defined during implementation.
 
 ------------------------------------------------------------------------
 
-# 27. WDM
+## 28. WDM
 
 WDM is a system-level capability:
 
@@ -1127,7 +1236,7 @@ channel
        └── Y
 ```
 
-A future representation could be:
+The stacked-array representation is:
 
 ``` python
 signal.data.shape
@@ -1148,12 +1257,26 @@ meaning:
 16000 samples/channel/polarization
 ```
 
-The exact memory layout is an implementation decision, not an RFC
-requirement.
+Unlike the earlier draft of this RFC, this shape is not treated as a
+convention that components must know out-of-band: it is declared via
+`AxisSpec` (Section 11) and carried on the `Signal` instance itself:
+
+``` python
+wdm_signal = Signal(
+    data=field,
+    domain=SignalDomain.OPTICAL,
+    polarization=Polarization.DUAL,
+    representation=SignalRepresentation.COMPLEX,
+    axes=AxisSpec(axes=("channel", "polarization", "time")),
+)
+```
+
+The exact memory layout is still an implementation decision, but which
+axis means what is no longer one.
 
 ------------------------------------------------------------------------
 
-# 28. Signal Conversion
+## 29. Signal Conversion
 
 A signal may change numerical representation without changing its
 physical meaning.
@@ -1198,7 +1321,7 @@ four-real-component representation.
 
 ------------------------------------------------------------------------
 
-# 29. Hopf/Quaternion/Four-Real-Component Representations
+## 30. Hopf/Quaternion/Four-Real-Component Representations
 
 The architecture should not commit to quaternions or Hopf coordinates
 now.
@@ -1230,17 +1353,27 @@ This is an important reason to separate domain from representation.
 
 ------------------------------------------------------------------------
 
-# 30. Component Context
+## 31. Component Context
 
 A component should receive a context rather than copying every
 configuration parameter.
-
-Example:
 
 ``` python
 @dataclass
 class SimulationContext:
     system: SystemConfig
+    seed: int
+
+    def __post_init__(self):
+        self._seed_sequence = np.random.SeedSequence(self.seed)
+        self._issued: dict[str, "np.random.Generator"] = {}
+
+    def rng_for(self, component_name: str) -> "np.random.Generator":
+        """Each component gets its own independent, reproducible stream."""
+        if component_name not in self._issued:
+            child_seed = self._seed_sequence.spawn(1)[0]
+            self._issued[component_name] = np.random.default_rng(child_seed)
+        return self._issued[component_name]
 ```
 
 Then:
@@ -1263,11 +1396,13 @@ self.context.system.polarization
 self.context.system.wdm
 ```
 
-without duplicating those values.
+without duplicating those values, and, for stochastic components, a
+private, reproducible random stream via `self.context.rng_for(...)`
+instead of module-level `np.random` state (see Section 49).
 
 ------------------------------------------------------------------------
 
-# 31. Components Should Have Local Parameters
+## 32. Components Should Have Local Parameters
 
 Not everything belongs to System.
 
@@ -1297,7 +1432,7 @@ This distinction is important.
 
 ------------------------------------------------------------------------
 
-# 32. Global vs Local Configuration
+## 33. Global vs Local Configuration
 
 A useful rule:
 
@@ -1333,9 +1468,16 @@ Signal:
     16 samples/symbol
 ```
 
+`Signal.metadata` (Section 5) is a free-form escape hatch and should
+stay one deliberately: anything that needs to be validated or relied
+upon by components --- axis layout, sampling grid, RNG seed --- belongs
+in a typed field (`AxisSpec`, `SamplingInfo`, `SimulationContext`), not
+in `metadata`. Otherwise `metadata` quietly becomes a second
+implicit-shape problem of the kind Section 10 exists to prevent.
+
 ------------------------------------------------------------------------
 
-# 33. Example Complete Configuration
+## 34. Example Complete Configuration
 
 A future user-facing API could look like:
 
@@ -1391,7 +1533,7 @@ can detect invalid combinations before numerical execution.
 
 ------------------------------------------------------------------------
 
-# 34. Example of an Invalid Configuration
+## 35. Example of an Invalid Configuration
 
 ``` python
 system = System(
@@ -1428,7 +1570,7 @@ Received:
 
 ------------------------------------------------------------------------
 
-# 35. Compatibility Matrix
+## 36. Compatibility Matrix
 
 A first conceptual matrix:
 
@@ -1449,7 +1591,7 @@ be reviewed before implementation.
 
 ------------------------------------------------------------------------
 
-# 36. Component Compatibility Matrix
+## 37. Component Compatibility Matrix
 
 A first draft:
 
@@ -1482,11 +1624,16 @@ A first draft:
   Demapper     symbol       digital                 N/A            N/A              ✓           ✓
   -----------------------------------------------------------------------------------------------
 
+Note that several components (`DAC`, `Fiber`, `Photodiode`) accept
+**either** single **or** dual polarization. Section 46's `SignalSpec`
+is written to express exactly this ("accepts A or B"), which the
+Section 19 sketch could not.
+
 This table should evolve as the physical model becomes more precise.
 
 ------------------------------------------------------------------------
 
-# 37. The Pipeline as a Typed Graph
+## 38. The Pipeline as a Typed Graph
 
 The pipeline can be understood as a graph:
 
@@ -1522,7 +1669,7 @@ next component input
 
 ------------------------------------------------------------------------
 
-# 38. Why This Is Better Than Raw NumPy Arrays
+## 39. Why This Is Better Than Raw NumPy Arrays
 
 Without `Signal`:
 
@@ -1556,13 +1703,14 @@ signal.domain
 signal.polarization
 signal.representation
 signal.sampling
+signal.axes
 ```
 
 This turns many hidden assumptions into explicit contracts.
 
 ------------------------------------------------------------------------
 
-# 39. Relationship to the Legacy Code
+## 40. Relationship to the Legacy Code
 
 The legacy material should not be thrown away conceptually.
 
@@ -1604,13 +1752,20 @@ output = dac.process(symbol_signal)
 ```
 
 The numerical algorithm may initially be copied/adapted from the legacy
-implementation.
+implementation, but not verbatim: the review pass found `fiber()`
+duplicated identically twice, `QAM_receiver_DP` and `DPQAM_receiver`
+each defined twice with the later definition silently shadowing the
+earlier one, and the `EDFA()` ASE-noise bug described in Section 1.
+These should be fixed --- not carried forward --- as each algorithm is
+ported behind the new interfaces, and the Gray-coding lookup tables
+(currently ~230 lines of hand-written `if/elif` branches per modulation
+order) should become a generator function rather than literal tables.
 
 The architecture should not depend on the old function signature.
 
 ------------------------------------------------------------------------
 
-# 40. Proposed Simulation Lifecycle
+## 41. Proposed Simulation Lifecycle
 
 A simulation should have explicit phases:
 
@@ -1635,7 +1790,7 @@ before numerical execution.
 
 ------------------------------------------------------------------------
 
-# 41. Example Lifecycle
+## 42. Example Lifecycle
 
 ``` python
 simulation = Simulation(
@@ -1660,7 +1815,7 @@ This also separates simulation from analysis.
 
 ------------------------------------------------------------------------
 
-# 42. Analysis Should Not Be a Signal Responsibility
+## 43. Analysis Should Not Be a Signal Responsibility
 
 Rather than:
 
@@ -1685,11 +1840,15 @@ constellation = ConstellationAnalyzer(signal)
 constellation.plot()
 ```
 
-This keeps `Signal` focused on representing data.
+This keeps `Signal` focused on representing data. It also keeps
+component functions free of the side effects found throughout
+`draft.py` (`matplotlib` calls embedded in physics functions via
+`plot_flag` arguments), which makes headless/batch execution and
+testing harder than necessary.
 
 ------------------------------------------------------------------------
 
-# 43. Proposed Core Package Structure
+## 44. Proposed Core Package Structure
 
 A possible future layout:
 
@@ -1701,6 +1860,7 @@ pycosim/
 │   ├── domain.py
 │   ├── representation.py
 │   ├── polarization.py
+│   ├── axes.py
 │   └── sampling.py
 │
 ├── system/
@@ -1737,17 +1897,55 @@ This is a proposal, not a requirement.
 
 ------------------------------------------------------------------------
 
-# 44. Suggested Base Component API
+## 45. Suggested Base Component API
 
-A minimal base class:
+There is exactly one validation mechanism, used by every component:
+a declarative `constraints` list, evaluated once by the base class.
+`Component.validate_system` is never overridden by a subclass ---
+subclasses only declare data (`constraints`, `input_spec`,
+`output_spec`). This is what makes a simulation configuration
+inspectable (Design Goal 12): the constraint list can be walked and
+rendered into an error report (Section 52) without parsing subclass
+source code, which an imperative `if`-based override cannot support.
+
+``` python
+class Constraint:
+    def check(self, system: "SystemConfig") -> None:
+        """Raise ConfigurationError if not satisfied."""
+        raise NotImplementedError
+
+
+@dataclass
+class RequiresArchitecture(Constraint):
+    architecture: "SystemArchitecture"
+
+    def check(self, system):
+        if system.architecture != self.architecture:
+            raise ConfigurationError(
+                f"{self.architecture} required, got {system.architecture}."
+            )
+
+
+@dataclass
+class RequiresPolarization(Constraint):
+    polarization: "Polarization"
+
+    def check(self, system):
+        if system.polarization != self.polarization:
+            raise ConfigurationError(
+                f"{self.polarization} required, got {system.polarization}."
+            )
+```
 
 ``` python
 class Component:
-    input_spec = None
-    output_spec = None
+    input_spec: "SignalSpec" = SignalSpec()
+    output_spec: "SignalSpec" = SignalSpec()
+    constraints: list[Constraint] = []
 
-    def validate_system(self, system):
-        pass
+    def validate_system(self, system: "SystemConfig") -> None:
+        for constraint in self.constraints:
+            constraint.check(system)
 
     def validate_input(self, signal):
         if not self.input_spec.accepts(signal):
@@ -1755,59 +1953,88 @@ class Component:
                 f"{type(self).__name__} cannot accept signal."
             )
 
-    def process(self, signal):
+    def process(self, signal, system):
         self.validate_input(signal)
-        self.validate_system(...)
+        self.validate_system(system)
         return self._process(signal)
 
     def _process(self, signal):
         raise NotImplementedError
 ```
 
-This creates a uniform execution model.
-
-------------------------------------------------------------------------
-
-# 45. Suggested SignalSpec API
+A concrete component declares only data:
 
 ``` python
-@dataclass
-class SignalSpec:
-    domain: SignalDomain | None = None
-    polarization: Polarization | None = None
-    representation: SignalRepresentation | None = None
-
-    def accepts(self, signal):
-        if self.domain is not None:
-            if signal.domain != self.domain:
-                return False
-
-        if self.polarization is not None:
-            if signal.polarization != self.polarization:
-                return False
-
-        if self.representation is not None:
-            if signal.representation != self.representation:
-                return False
-
-        return True
+class CoherentReceiver(Component):
+    constraints = [
+        RequiresArchitecture(SystemArchitecture.DCS),
+        RequiresPolarization(Polarization.DUAL),
+    ]
 ```
 
-This should later become more sophisticated.
-
-For example, a component may accept:
-
-``` text
-single OR dual polarization
-```
-
-rather than exactly one value.
+This creates a uniform execution model, and gives the error report in
+Section 52 for free --- walk `component.constraints`, render each one
+--- instead of a bespoke message per subclass.
 
 ------------------------------------------------------------------------
 
-# 46. Constraints Should Be Declarative Where Possible
+## 46. Suggested SignalSpec API
 
-Instead of putting every rule inside nested `if` statements:
+`SignalSpec` fields accept `None` (any value), an exact value, or a
+`frozenset` of allowed values --- never exact-match-only. This is
+required from the first implementation, not deferred: the Section 37
+compatibility table already declares `Fiber`, `DAC`, and `Photodiode`
+as accepting single **or** dual polarization, so an exact-match-only
+`accepts()` cannot express the components that appear in every pipeline
+example in this document.
+
+``` python
+from typing import Union
+
+PolarizationConstraint = Union["Polarization", "frozenset[Polarization]", None]
+
+
+@dataclass
+class SignalSpec:
+    domain: "SignalDomain | frozenset[SignalDomain] | None" = None
+    polarization: PolarizationConstraint = None
+    representation: "SignalRepresentation | frozenset[SignalRepresentation] | None" = None
+
+    def accepts(self, signal) -> bool:
+        return (
+            self._field_ok(self.domain, signal.domain)
+            and self._field_ok(self.polarization, signal.polarization)
+            and self._field_ok(self.representation, signal.representation)
+        )
+
+    @staticmethod
+    def _field_ok(constraint, value) -> bool:
+        if constraint is None:
+            return True
+        if isinstance(constraint, frozenset):
+            return value in constraint
+        return value == constraint
+```
+
+`Fiber` now matches the compatibility table it is supposed to satisfy:
+
+``` python
+class Fiber(Component):
+    input_spec = SignalSpec(
+        domain=SignalDomain.OPTICAL,
+        polarization=frozenset({Polarization.SINGLE, Polarization.DUAL}),
+    )
+    output_spec = SignalSpec(
+        domain=SignalDomain.OPTICAL,
+        polarization=frozenset({Polarization.SINGLE, Polarization.DUAL}),
+    )
+```
+
+------------------------------------------------------------------------
+
+## 47. Constraints Should Be Declarative
+
+Instead of nested `if` statements scattered per subclass:
 
 ``` python
 if system.architecture == ...:
@@ -1816,32 +2043,104 @@ if system.architecture == ...:
             ...
 ```
 
-we should eventually have explicit constraints.
-
-For example:
+every component declares its rules as data, evaluated generically by
+the base class described in Section 45:
 
 ``` python
 class CoherentReceiver(Component):
-
     constraints = [
         RequiresArchitecture(SystemArchitecture.DCS),
         RequiresPolarization(Polarization.DUAL),
     ]
 ```
 
-Then:
-
-``` python
-component.validate_system(system)
-```
-
-evaluates those constraints.
-
-This makes the architecture extensible.
+This is the only validation path (Section 45) --- there is no separate
+imperative override to keep in sync with it --- which makes the
+architecture extensible: a new rule is a new `Constraint` subclass, not
+a new `if` branch buried in a component that also does physics.
 
 ------------------------------------------------------------------------
 
-# 47. Configuration Inheritance vs Context
+## 48. Sampling Grid Compatibility
+
+`SamplingInfo` (Section 13) can report whether two signals share a
+grid, but nothing yet requires a component to check this before
+combining signals. This matters for any component that mixes two
+inputs --- a coherent hybrid combining a signal with a local
+oscillator, a WDM multiplexer, a polarization combiner --- since
+nothing in `draft.py` prevents combining signals sampled on different
+grids; it "works" only because every example in the notebook happens
+to reuse the same `ts`/`SpS` throughout.
+
+``` python
+@dataclass
+class RequiresSameGrid(Constraint):
+    """Component-level constraint: all input signals must share a time grid."""
+
+    def check_signals(self, signals: list["Signal"]) -> None:
+        reference = signals[0].sampling
+        for other in signals[1:]:
+            if not reference.compatible_with(other.sampling):
+                raise SignalCompatibilityError(
+                    "Inputs do not share a common sampling grid: "
+                    f"{reference} vs {other.sampling}."
+                )
+```
+
+Any component combining multiple signals declares `RequiresSameGrid()`
+alongside its other `constraints` (Section 45) and calls
+`check_signals()` on its inputs before combining them.
+
+------------------------------------------------------------------------
+
+## 49. Random Number Generation Discipline
+
+This is treated as a Day-1 decision rather than deferred (compare the
+open question list in Section 53), because it is the decision that
+would have made the Section 1 bug (`EDFA()` drawing ASE noise from a
+uniform instead of a Gaussian distribution) catchable in a unit test
+instead of invisible. Global, unseeded `np.random` state --- used
+throughout `draft.py` --- cannot be asserted against; a per-component,
+seeded, injectable generator can.
+
+`SimulationContext` (Section 31) owns RNG derivation. Components never
+read or write module-level `np.random` state:
+
+``` python
+class EDFA(Component):
+    def __init__(self, context, gain_db, noise_figure_db):
+        self.rng = context.rng_for(f"EDFA:{id(self)}")
+        self.gain_db = gain_db
+        self.noise_figure_db = noise_figure_db
+
+    def _process(self, signal):
+        ...
+        noise = (
+            self.rng.standard_normal(n_samples)
+            + 1j * self.rng.standard_normal(n_samples)
+        ) * noise_std
+        ...
+```
+
+With this in place, a unit test can seed the context, run `EDFA` on a
+zero-input signal, and assert the output noise samples pass a normality
+check (e.g. `scipy.stats.normaltest`) --- something that cannot be
+written against `np.random.rand`-based noise, or reliably against
+unseeded global state, regardless of which distribution is used.
+
+Two consequences follow and are decided here, not deferred:
+
+- Seeds are always passed explicitly to `SimulationContext`; there is
+  no implicit "random by default" mode in library code (a top-level
+  CLI/script convenience wrapper may choose one, but that is outside
+  this RFC's scope).
+- `RequiresSeededContext` is added as a standard `Constraint`
+  (Section 45) so stochastic components can declare that dependency
+  the same way they declare architecture or polarization requirements.
+
+------------------------------------------------------------------------
+
+## 50. Configuration Inheritance vs Context
 
 The intended meaning of "component acquires parameters from the superior
 class" should be interpreted carefully.
@@ -1864,28 +2163,14 @@ System
    └── Component receives 25 copied attributes
 ```
 
-Example:
-
-``` python
-class SimulationContext:
-    system: SystemConfig
-
-    def __init__(self, system):
-        self.system = system
-```
-
-Then:
-
-``` python
-modulator = CoherentModulator(context)
-```
-
-The component has access to the context but does not own the global
-configuration.
+`SimulationContext` (Section 31) is this context object, and now also
+owns RNG derivation (Section 49) for the same reason: components read
+what they need from a single shared object rather than each holding
+its own copy of simulation-wide state.
 
 ------------------------------------------------------------------------
 
-# 48. A Concrete Future Example
+## 51. A Concrete Future Example
 
 The final user-facing API could eventually look approximately like:
 
@@ -1927,7 +2212,7 @@ system.
 
 ------------------------------------------------------------------------
 
-# 49. Example of a Validation Failure
+## 52. Example of a Validation Failure
 
 Suppose:
 
@@ -1969,32 +2254,52 @@ simulation has already started.
 
 ------------------------------------------------------------------------
 
-# 50. Open Questions
+## 53. Open Questions
 
 The following should remain open until the architecture discussion is
 complete:
 
 1.  Should `Signal` be mutable?
 2.  Should `process()` always return a new `Signal`?
-3.  How should multi-channel WDM data be represented?
-4.  Can a component accept either single or dual polarization?
-5.  Can a DP system contain single-pol intermediate signals?
-6.  Should `domain` include `RF`, `analog`, or `baseband` later?
-7.  Should symbols be considered a domain or a representation?
-8.  Should `label` be a Signal domain or metadata?
-9.  Should binary data use `bool`, integer, or packed bits?
-10. Should signal conversions be automatic?
-11. Should invalid conversions raise immediately?
-12. How should units be represented?
-13. Should physical parameters use a unit library?
-14. How should component constraints be serialized?
-15. Should pipeline validation be static, dynamic, or both?
-16. How should stochastic components expose random seeds?
-17. How should results and analysis objects be represented?
+3.  Should `AxisSpec` allow *named* channel coordinates (e.g. actual
+    wavelength values), or stay purely positional-with-labels until/
+    unless the `xarray` migration (Section 11) happens?
+4.  Can a DP system contain single-pol intermediate signals?
+5.  Should `domain` include `RF`, `analog`, or `baseband` later?
+6.  Should symbols be considered a domain or a representation?
+7.  Should `label` be a Signal domain or metadata?
+8.  Should binary data use `bool`, integer, or packed bits?
+9.  Should signal conversions be automatic?
+10. Should invalid conversions raise immediately?
+11. How should units be represented?
+12. Should physical parameters use a unit library?
+13. How should component constraints be serialized?
+14. Should `rng_for()` key by component *instance* (current proposal,
+    Section 49) or by component *class + position in pipeline*, to
+    keep streams stable across pipeline edits that don't touch the
+    component itself?
+15. Should `RequiresSameGrid` (Section 48) allow a per-component
+    tolerance, or should the global `rtol` in
+    `SamplingInfo.compatible_with` be the single source of truth?
+16. How should results and analysis objects be represented?
+
+Resolved by this version (previously open, see the original v1 list):
+
+-   *"Can a component accept either single or dual polarization?"* ---
+    resolved, Section 46 (`SignalSpec` supports `frozenset`).
+-   *"How should stochastic components expose random seeds?"* ---
+    resolved, Section 49 (`SimulationContext.rng_for`).
+-   *"How should multi-channel WDM data be represented?"* --- resolved
+    for axis semantics, Section 11 (`AxisSpec`); memory layout details
+    remain open.
+-   *"Should pipeline validation be static, dynamic, or both?"* ---
+    effectively static-before-run via the Section 45 constraint list;
+    dynamic per-signal checks still happen in `validate_input`/
+    `process`, so both remain in play.
 
 ------------------------------------------------------------------------
 
-# 51. Initial Architectural Decisions
+## 54. Initial Architectural Decisions
 
 For the first implementation spike, the following decisions are
 recommended:
@@ -2034,7 +2339,8 @@ Pipelines are validated before numerical execution.
 
 Decision 9
 ---------
-WDM is a System capability, with channel structure represented in Signal data/metadata.
+WDM is a System capability. Channel structure is represented via an
+explicit AxisSpec on Signal, not a positional shape convention.
 
 Decision 10
 ---------
@@ -2042,35 +2348,69 @@ Avoid subclass explosion; prefer composition and configuration.
 
 Decision 11
 ---------
-Legacy algorithms are treated as implementation references, not as the new public architecture.
+Legacy algorithms are treated as implementation references, not as the
+new public architecture, and known legacy bugs (duplicate function
+definitions, the EDFA noise-distribution bug) are fixed during porting,
+not carried forward.
 
 Decision 12
 ---------
-Do not commit yet to Hopf or quaternion representations; keep the Representation abstraction extensible.
+Do not commit yet to Hopf or quaternion representations; keep the
+Representation abstraction extensible.
+
+Decision 13
+---------
+Signal carries an explicit AxisSpec; axis order is declared, not
+assumed.
+
+Decision 14
+---------
+SignalSpec fields accept None (any), an exact value, or a frozenset of
+allowed values — never exact-match-only.
+
+Decision 15
+---------
+Component.validate_system is implemented once, in the base class, and
+iterates a declarative constraints list. No subclass overrides it.
+
+Decision 16
+---------
+Components that combine multiple signals declare RequiresSameGrid and
+check sampling-grid compatibility before combining.
+
+Decision 17
+---------
+SimulationContext owns RNG derivation (numpy SeedSequence.spawn per
+component). No component reads or writes global np.random state.
+
+Decision 18
+---------
+An xarray-backed Signal.data remains a possible future direction and is
+explicitly not decided here (see Section 3, Section 11).
 ```
 
 ------------------------------------------------------------------------
 
-# 52. Recommended First Implementation Spike
+## 55. Recommended First Implementation Spike
 
 Before implementing the real optical components, build only:
 
 ``` text
-Signal
+AxisSpec
+Signal (axis-aware)
 SignalDomain
 SignalRepresentation
 Polarization
-SamplingInfo
+SamplingInfo (+ compatible_with)
+SignalSpec (composable — supports sets, not just exact match)
+Constraint, RequiresArchitecture, RequiresPolarization, RequiresSameGrid
 SystemConfig
-SignalSpec
-Component
-SimulationContext
+Component (base class owns validate_system via constraints)
+SimulationContext (+ rng_for)
 PipelineValidator
 ```
 
-Then test the architecture with fake components.
-
-Example:
+Then test the architecture with fake components:
 
 ``` python
 source = FakeDigitalSource()
@@ -2099,11 +2439,21 @@ pipeline = [
 pipeline.validate(system)
 ```
 
-Only after this works should the actual physical algorithms be inserted.
+Because `SignalSpec` now supports sets (Section 46), the fake
+`Fiber`/`DAC` can legitimately declare
+`polarization=frozenset({SINGLE, DUAL})`; because `Component.
+validate_system` lives only in the base class (Section 45), no fake
+needs its own override; and a fake stochastic component can exercise
+`context.rng_for(...)` (Section 49) to prove seeding works end-to-end
+before any real physics is ported.
+
+Only after this works should the actual physical algorithms --- ported
+per Section 40, with the known legacy bugs fixed rather than
+reproduced --- be inserted behind these interfaces.
 
 ------------------------------------------------------------------------
 
-# 53. Final Architecture Concept
+## 56. Final Architecture Concept
 
 The intended PyCOSim model can be summarized as:
 
@@ -2111,25 +2461,29 @@ The intended PyCOSim model can be summarized as:
 flowchart TD
     S["Simulation"]
     SYS["System Context"]
+    RNG["RNG per Component"]
 
     SIG["Signal"]
     DOM["Domain"]
     REP["Representation"]
     POL["Polarization"]
     SAM["Sampling"]
+    AX["AxisSpec"]
 
     COMP["Component"]
     IN["Input Spec"]
     OUT["Output Spec"]
-    CON["System Constraints"]
+    CON["Constraints"]
 
     S --> SYS
     S --> COMP
+    SYS --> RNG
 
     SIG --> DOM
     SIG --> REP
     SIG --> POL
     SIG --> SAM
+    SIG --> AX
 
     COMP --> IN
     COMP --> OUT
@@ -2143,10 +2497,12 @@ flowchart TD
 
 The core idea is:
 
-> **Signals describe what is flowing. Components describe what
-> transformations are possible. Systems describe which configurations
-> are physically valid. Simulation coordinates the whole process.**
+> **Signals describe what is flowing, including which axis means what.
+> Components describe what transformations are possible, and declare
+> their rules as data rather than code. Systems describe which
+> configurations are physically valid. Simulation coordinates the whole
+> process, including reproducible randomness.**
 
 This gives PyCOSim a foundation where the old physical algorithms can be
 rebuilt incrementally without carrying forward the old implicit
-assumptions.
+assumptions --- or its one confirmed bug.
