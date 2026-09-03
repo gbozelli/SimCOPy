@@ -1,7 +1,7 @@
 # Simulador de Sistemas de Comunicações Ópticas
 ## Documento de Arquitetura e Plano de Reescrita
 
-**Versão:** 0.6
+**Versão:** 0.7
 **Escopo:** reescrita e modularização do simulador atual (`6_DigitalCoherentSystem_DP_fiber_solved.ipynb` / `draft.py`) em um pacote Python testável, reprodutível e extensível para WDM, IMDD e DCS.
 **Status:** proposta. As decisões marcadas com **`[D-n]`** estão em aberto e precisam ser fechadas antes da implementação. Decisões já fechadas aparecem riscadas na [seção 13](#13-decisões-em-aberto).
 
@@ -1171,7 +1171,7 @@ Cada seção aplica, no domínio da frequência, um elemento de DGD seguido da r
 U_seção(ω) = U_random · diag( e^{-jωΔτ/2},  e^{+jωΔτ/2} )
 ```
 
-Com `pmd_coefficient = 0` o modelo degenera na rotação unitária pura, que é o comportamento atual corrigido — útil para reproduzir resultados antigos. **Com `[D-8]` fechada, `pmd_coefficient > 0` é o caso de uso principal e entra já na Fase 3.** Fica aberto o valor padrão a adotar para fibra padrão: valores típicos de fibra moderna ficam na faixa de 0,05 a 0,2 ps/√km. **`[D-17]`**
+Com `pmd_coefficient = 0` o modelo degenera na rotação unitária pura, que é o comportamento atual corrigido — útil para reproduzir resultados antigos. **Com `[D-8]` fechada, `pmd_coefficient > 0` é o caso de uso principal e entra já na Fase 3.** Valor padrão fechado pela [seção 14.13](#1413-bifrost-como-referência-de-pmd): **0,05 ps/√km**, coerente com a especificação Corning de < 0,06 ps/√km e com os 0,040 ps/√km simulados pelo BIFROST para fibra spun. ~~`[D-17]`~~
 
 **Parte 3 — RNG do contexto.** `rng = ctx.rng_for("link", span_index, "sop")`, nunca `np.random.rand`.
 
@@ -1287,7 +1287,7 @@ Com `[D-11]` e `[D-12]` fechadas, valem também:
 
 | Item | Decisão sugerida | Observação |
 |---|---|---|
-| Licença | MIT ou BSD-3 | Permissiva favorece adoção acadêmica. GPL obrigaria trabalhos derivados a abrir; provavelmente não é o que se quer |
+| Licença | MIT ou BSD-3 | Permissiva favorece adoção acadêmica. **Atenção:** importar BIFROST (GPL-3.0) em tempo de execução obrigaria o pacote inteiro a ser GPL-3.0. Ver 14.13 |
 | Versionamento | SemVer, começando em `0.x` | Enquanto em `0.x` a API pode quebrar entre versões menores. Só vá para `1.0` quando as assinaturas de `core/` estiverem estáveis |
 | Distribuição | PyPI, wheel pura | Sem extensões compiladas na v1, a wheel é universal |
 | Citação | `CITATION.cff` no repositório + DOI via Zenodo | Um DOI por release permite que artigos citem a versão exata usada |
@@ -1385,6 +1385,9 @@ Nenhuma destas foi assumida no documento. Cada uma muda código ou muda número.
 | **`[D-14]`** | Um canal SP pode coexistir com um canal DP no mesmo enlace? | Se sim, o campo agregado é sempre 2×N e o solver é vetorial sempre que houver ao menos um DP |
 | **`[D-15]`** | IMDD é sempre SP, ou existe caso de IMDD com multiplexação de polarização a considerar? | Determina se `pol` existe em `IMDDChannel` |
 | **`[D-16]`** | Nome do pacote e do repositório para publicação | Muda todos os imports; melhor decidir antes da Fase 1 |
+| ~~**`[D-17]`**~~ | ~~Coeficiente de PMD padrão~~ **Fechada: 0,05 ps/√km**, a partir do BIFROST e da especificação Corning — ver 14.13 | — |
+| **`[D-18]`** | O que `correlation_length` representa: a escala de segmento do modelo convencional (~100 m) ou o período de spin usado pelo BIFROST (~5 m)? | São grandezas diferentes e o nome é ambíguo entre elas |
+| **`[D-19]`** | O modelo de PMD por mecanismo (temperatura, curvatura, torção) entra como capacidade, ou basta a estatística calibrada offline pelo BIFROST? | O alvo VPI não exercita PMD, então essa capacidade não teria validação contra a referência atual |
 
 **Bloqueantes para a Fase 1:** `[D-13]` e `[D-16]`, porque definem assinaturas e imports.
 **Bloqueantes para a Fase 2:** `[D-2]`, `[D-3]` e `[D-4]`.
@@ -1618,6 +1621,53 @@ Confirmado no código: as células de WDM do `draft.py` (linhas 1844, 1908 e 198
 | Ortogonalização | **ausente** | Gram-Schmidt |
 
 As duas últimas linhas são a diferença que mais importa. O rascunho não tem MMA, e é justamente a convergência do MMA que produz o penhasco de baixa potência visto nos dados do VPI. Um simulador sem MMA não reproduz esse penhasco, e isso é esperado, não bug. `MMAEqualizer` e `GramSchmidtOrthogonalizer` entram no catálogo como blocos novos de `components/rx/`.
+
+### 14.13 BIFROST como referência de PMD
+
+Referência correta identificada: **BIFROST** (Birefringence In Fiber: Research and Optical Simulation Toolkit), de Banner, Rolston e Britton (JQI/NIST/UMD e ARL), publicado em *Phys. Rev. Applied*, DOI 10.1103/xgqr-rlmf, arXiv:2510.01212. Repositório em `github.com/JQIamo/BIFROST`.
+
+É um modelo de PMD **de primeiros princípios**: calcula a birrefringência a partir de elipticidade do núcleo, tensão térmica assimétrica, curvatura e torção, com parâmetros físicos reais (temperatura, raio de curvatura, dopagem de germânia, geometria). Adota o **modelo de dobradiças** (*hinge model*): segmentos longos e estáveis, enterrados, alternados com dobradiças curtas acima do solo, modeladas como conjuntos de pás de polarização.
+
+#### O que confirma o que já está no projeto
+
+**A intuição inicial sobre quatérnios e fibração de Hopf estava certa.** A nota original da proposta dizia "fibração de Hopf... quatérnios também podem ser usados, mas não agora". A seção V-E do artigo usa exatamente isso para sortear as rotações do fiber spinning: sorteia quatro gaussianas padrão, normaliza para um ponto na 3-esfera, e monta a matriz de Jones como `J = I₂·cos θ − i·(a⃗·σ⃗)·sin θ`.
+
+O artigo também diagnostica o mesmo defeito que a [seção 10.2](#102-diagnóstico) encontrou no rascunho: sortear ângulos uniformemente **superpondera rotações com ângulo próximo de 0 e π**, e por isso não é medida de Haar.
+
+Verifiquei que a `random_su2` proposta na seção 10.4 é equivalente ao método do artigo. Com 400.000 realizações e entrada linear em X:
+
+| Método | ⟨S₁⟩, ⟨S₂⟩, ⟨S₃⟩ | Uniformidade dos marginais |
+|---|---|---|
+| `random_su2` (2 ângulos + `θ = arcsin√u`) | (+0,0007, −0,0002, +0,0007) | 8 bins entre 0,992 e 1,009 |
+| BIFROST (quatérnio, 4 gaussianas) | (+0,0004, −0,0013, +0,0023) | 8 bins entre 0,989 e 1,006 |
+| Rascunho original (2 ângulos uniformes) | — | **S₃ ∈ [−0,000, +0,000]**: preso no plano |
+
+As duas primeiras são a mesma distribuição. Podemos usar qualquer uma; a forma com quatérnio é mais legível e cita a referência publicada.
+
+#### O que dele **não** se deve usar
+
+| Item | Motivo |
+|---|---|
+| **Dependência em tempo de execução** | BIFROST é **GPL-3.0**. Importá-lo obriga o nosso pacote a ser GPL-3.0 também, o que anula a recomendação de licença permissiva da [seção 11.4](#114-requisitos-específicos-de-um-pacote-publicado). Decisão de projeto, não detalhe |
+| **O modelo de dispersão cromática** | Para o SMF-28e+, BIFROST calcula `D_CD` = 12,31 ps/(nm·km) a 1550 nm, contra os 16 ps/(nm·km) da referência VPI e do artigo do grupo. O λ₀ sai em 1350 nm contra os 1304–1324 nm da especificação. Os autores atribuem isso ao desconhecimento da composição proprietária da fibra e são explícitos sobre a discrepância |
+| **Cálculo por mecanismo em tempo de simulação** | Calcular birrefringência a partir de geometria e temperatura para cada seção, a cada passo, ao longo de 125 km, é ordens de grandeza mais caro que sortear uma SU(2). E, como o próprio artigo diz, para fibra instalada real não se conhecem raio de curvatura e temperatura de cada trecho — a recomendação dos autores é usar **ensembles estatísticos** |
+| Python 3.12.* fixo, dois testes unitários com falha conhecida, e refatoração significativa em andamento (junho de 2026) | Dependência instável |
+
+#### Como usar
+
+**Offline, como fonte de calibração e de alvo estatístico, não como dependência.** Rodar BIFROST para gerar números, guardar os números como dados no nosso repositório e citar o artigo. A saída de um programa GPL não é obra derivada, então a licença permanece limpa.
+
+Isso rende três coisas concretas:
+
+1. **Fecha `[D-17]`.** O artigo simula 26 km de fibra spun com rotações a cada 5 m e obtém DGD médio de 0,204 ps, ou **0,040 ps/√km**, coerente com a especificação Corning de < 0,06 ps/√km. O valor padrão de 0,1 ps/√km que coloquei no `draft_fixed.py` é alto demais para fibra spun moderna. Adotar 0,05 ps/√km como padrão.
+2. **Define o alvo do teste de PMD (novo nível V6).** O modelo de passo grosso deve reproduzir, sobre um ensemble de realizações: distribuição **Maxwelliana** de DGD, escala com **√L**, e cobertura uniforme da esfera de Poincaré. O artigo mostra que o modelo de rotações discretas reproduz as duas primeiras.
+3. **Dá o método de medida de DGD.** O artigo extrai DGD no domínio da frequência a partir dos autovalores de `J⁻¹(ω)·J(ω+dω)`: `τ_DGD = |arg(ρ₁/ρ₂)/dω|`, com `dω` correspondente a cerca de 0,01 nm. É a métrica que o nosso teste V6 deve usar, e não depende de DSP nenhum.
+
+**`[D-18]` a decidir: o que `correlation_length` significa.** Há duas escalas diferentes na literatura e o artigo usa as duas. O modelo convencional de segmentos usa da ordem de **100 m** (a comparação do artigo com a Ref. [43] divide 80 km em 800 segmentos). BIFROST insere as rotações do spinning a cada **5 m**, que é o período de spin típico. Não são a mesma coisa e o nome `correlation_length` é ambíguo entre elas. Precisamos escolher qual grandeza o parâmetro representa, ou separar em duas.
+
+**`[D-19]`: escopo.** O modelo por mecanismo (temperatura, raio de curvatura, torção) entra como capacidade do simulador, ou basta a estatística calibrada? A favor do primeiro: permitiria estudar deriva térmica e fibra aérea. Contra: nada no alvo de validação atual exercita isso — **o artigo do grupo e os dados do VPI não mencionam PMD nem DGD em momento algum**, então não há como validar um modelo de PMD contra a referência 400ZR. PMD precisa de rota de validação própria, e é justamente para isso que o BIFROST serve.
+
+Fica registrado que a arquitetura deve acomodar os dois: `BirefringenceModel` com modo `statistical` (padrão, passo grosso, rápido) e modo `hinge` (segmentos estáveis alternados com dobradiças), sendo o segundo o que permitiria, no futuro, ligar a um modelo por mecanismo sem reescrever o enlace.
 
 ---
 
@@ -1935,6 +1985,7 @@ A conta importante não é o total, é que **14 parâmetros hoje livres passam a
 | Versão | Data | Alterações |
 |---|---|---|
 | 0.1 | — | Versão inicial: diagnóstico do código atual, modelo de domínio, decisão componente/processo, diagramas revisados, catálogo de 20 correções, plano de migração em 7 fases, 12 decisões em aberto |
+| 0.7 | — | Nova seção 14.13 sobre o BIFROST: confirmação de que a `random_su2` proposta é equivalente ao método de quatérnios do artigo publicado, restrição de licença GPL-3.0, discrepância do modelo de dispersão cromática, e uso recomendado como calibração offline. `[D-17]` fechada em 0,05 ps/√km. Novas decisões `[D-18]` e `[D-19]`. Novo nível de validação V6 para estatística de PMD |
 | 0.6 | — | Modelo de três termos verificado contra o dataset de 140 km, que não foi usado no ajuste: erro de 0,02 a 0,06 dB em SNR na janela convergida. Ajuste conjunto das duas distâncias fecha com resíduo RMS de 0,018 dB, tornando `A`, `B` e `C` deriváveis dos dados. Novas seções 14.9 a 14.12: janela de validação móvel, regra de 400ZR como fixture, e comparação do rascunho com a configuração do artigo. Nova correção C-24 (MMA e Gram-Schmidt) |
 | 0.5 | — | Novas seções 14.6 a 14.8: cenário de referência extraído do artigo do grupo, análise do dataset de 125 km (decomposição em ruído de RX, piso constante e não linearidade, com resíduo de 0,02 dB), critérios de aceitação como três números em vez de uma curva, e adaptação do plano de validação ao que o VPI exporta nativamente |
 | 0.4 | — | Referência de validação muda do código legado para o VPI TransmissionMaker. Novas seções 14 (estratégia de validação em camadas V1–V5 e pacote de dados a exportar) e 15 (perfil de desempenho, e o achado de que a BER depende de `SpS` por causa da fase do filtro do fotodiodo). Novos achados P-15 e P-16, novas correções C-21 a C-23. Fase 0 reescrita |
