@@ -1,0 +1,63 @@
+# Cenario de referencia, extraido de WDM_of_400G_ZR_4_Channels_Ch2.vtmu (VPI 11.5).
+# Unica definicao de 400ZR no repositorio (secao 14.11 do documento).
+#
+# Transmissor e receptor ficam DENTRO de cada canal, abaixo do `kind`.
+# Os blocos repetidos sao escritos uma vez em `defaults` (ancora &nome) e
+# reutilizados com *nome. Para mudar so um canal: <<: *nome e sobrescreva a chave.
+
+defaults:
+  dcs_tx: &dcs_tx
+    laser: {power: 1.0e-3, linewidth: 500.0e3}
+    mzm:   {vpi: 5.0, insertion_loss_db: 6.0, extinction_ratio_db: 30.0,
+            s21_bandwidth: 40.0e9, s21_order: 3}
+    iq:    {phase_imbalance_deg: 5.0, skew: 0.75e-12}      # PhaseShift = -90+5 ; Skew
+    rolloff: 0.18
+  dcs_rx: &dcs_rx
+    lo: {power: 1.0e-3, linewidth: 500.0e3}
+    lo_frequency_offset: 500.0e6
+    photodiode: {responsivity: 1.0, thermal_noise_density: 10.0e-12,
+                 shot_noise: true, bandwidth_factor: 1.15,
+                 filter_type: bessel, filter_order: 4}
+    adc: {samples_per_symbol: 2, resolution_bits: 12}
+    optical_bandwidth: 70.0e9
+
+system:
+  center_frequency: 193.7e12       # ou center_wavelength; o outro e derivado por c
+  channel_spacing: 75.0e9
+  channels:
+    # RandomNumberSeedX do VPI: 2, 0, 4, 6. Canal sob teste: index 2.
+    - {index: 0, kind: dcs, modulation: 16QAM, pol: DP, symbol_rate: 59.84e9, seed: 2,
+       tx: *dcs_tx, rx: *dcs_rx}
+    - {index: 1, kind: dcs, modulation: 16QAM, pol: DP, symbol_rate: 59.84e9, seed: 0,
+       tx: *dcs_tx, rx: *dcs_rx}
+    - {index: 2, kind: dcs, modulation: 16QAM, pol: DP, symbol_rate: 59.84e9, seed: 4,
+       tx: *dcs_tx, rx: *dcs_rx}
+    - {index: 3, kind: dcs, modulation: 16QAM, pol: DP, symbol_rate: 59.84e9, seed: 6,
+       tx: *dcs_tx, rx: *dcs_rx}
+    # Exemplo de sobrescrita local (comentado):
+    # - index: 3
+    #   ...
+    #   tx:
+    #     <<: *dcs_tx
+    #     laser: {power: 2.0e-3, linewidth: 100.0e3}
+
+  link:
+    # [D-22] confirmar se PowerdBm e total dos 4 canais ou por canal (secao 14.16)
+    booster: {mode: target_output_power, output_power_dbm: 13.0, noise_figure_db: 5.0}
+    spans:
+      - fiber:
+          length: 125.0e3
+          attenuation: 0.2e-3
+          dispersion: 16.0e-6
+          n2: 2.6e-20
+          effective_area: 80.0e-12
+          birefringence: {pmd_coefficient_ps_sqrt_km: 0.1, correlation_length: 50.0}
+        line_compensation: false
+
+simulation:
+  samples_per_symbol: 16
+  n_symbols: 262144
+  root_seed: 0
+  force_power_of_two: true
+  ssfm_max_step: 5.0e3
+  ssfm_max_phase_change_deg: 0.5

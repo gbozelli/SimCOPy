@@ -1,41 +1,53 @@
-First discussion: Input Signal
+# First Discussion: Input Signal
 
-Treating the input signal as an complex number vector of two units (optical and electrical signal) or an real number vector of four units (Hopf fibration), but this dont have electrical or optical meaning. Quaternions can also be used, but not now.
+Treating the input signal as a complex number vector of two units (optical and electrical signal) or a real number vector of four units (Hopf fibration), but this doesn't have an electrical or optical meaning. Quaternions can also be used, but not right now.
 
-Propose 1:
+## Proposal 1:
 
 ```python
-signal_type: ['eletrical': dim->N, ['optical_1_pol': dim->N, 'optical_2_pol': dim->2N], 'digital': dim->N*sps, 'label': dim->N/modulation_order, 'binary': dim->log2()]
-pol_type = [single, double]
+signal_type = [
+    'electrical': 'dim -> N', 
+    'optical_1_pol': 'dim -> N', 
+    'optical_2_pol': 'dim -> 2N', 
+    'digital': 'dim -> N * sps', 
+    'label': 'dim -> N / modulation_order', 
+    'binary': 'dim -> log2()'
+]
+
+pol_type = ['single', 'double']
 
 class Signal:
-  type: signal_type
-  pol: pol_type
+    type: str  # signal_type
+    pol: str   # pol_type
 
-  def sizeof():
-    #calculate the size of the signal
+    def sizeof(self):
+        # Calculate the size of the signal
+        pass
     
-  def constellation():
-    #each signal type have an type of constellation plot
-    if type == 'digital':
-      return 
+    def constellation(self):
+        # Each signal type has a type of constellation plot
+        if self.type == 'digital':
+            pass 
 
 class System:
-  WDM: true or false
-  if WDM:
-    Channel = multiple_channels
-  type: IMDD or DCS
+    WDM: bool  # True or False
+    if WDM:
+        Channel = 'multiple_channels'
+    type: str  # 'IMDD' or 'DCS'
 
 class Modulator:
-  # this can be affected by the choose ofSystem (IMDD or DCS)
-  # what i am thinking is the use of cascade variable
-  # with the choose of the system, we set parameters
-  # and
+    # This can be affected by the choice of System (IMDD or DCS).
+    # What I am thinking is the use of a cascade variable.
+    # With the choice of the system, we set parameters
+    # and ...
+    pass
 
 class Simulation:
-  # controls system, but maybe some configs of system doesnt 
+    # Controls the system, but maybe some configs of the system don't 
+    pass
   
 class Channel:
+    pass
   
-#simulator can be capable of simulate IMDD and DCS
+# The simulator can be capable of simulating IMDD and DCS
 ```

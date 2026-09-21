@@ -1372,22 +1372,22 @@ Nenhuma destas foi assumida no documento. Cada uma muda código ou muda número.
 | **`[D-1]`** | ~~`QAM_mod` existe?~~ **Resolvida:** está no notebook original (célula 5), foi perdida na exportação para `draft.py`. Será reescrita vetorizada (C-16) | — |
 | **`[D-2]`** | SP é NLSE escalar de verdade (com γ) ou Manakov com pol. Y zerada (com 8/9·γ)? | São equações diferentes. Afeta toda comparação SP vs DP |
 | **`[D-3]`** | O fator 8/9 entra na reescrita, ou mantemos γ puro para bater com resultados já publicados pelo grupo? | Resultados novos não comparáveis com os antigos |
-| **`[D-4]`** | Exigir `fs` múltiplo inteiro de todos os baud rates, ou implementar reamostragem fracionária? | Inteiro simplifica muito o pulse shaping, mas restringe cenários WDM heterogêneos |
-| **`[D-5]`** | Sinal elétrico real: armazenar como complexo com parte imaginária nula, ou tipo separado? | Complexo gasta 2× memória; tipo separado dobra o número de caminhos de código |
-| **`[D-6]`** | Margem de alargamento espectral no validador de Nyquist: constante configurável ou estimada de `γ·P·L_eff`? | Constante pode ser otimista demais em regime não linear |
-| **`[D-7]`** | O RX continua recebendo `L` e `D` verdadeiros do enlace (oracle, como hoje), ou a arquitetura já prevê estimação cega de dispersão? | Muda a interface entre `Link` e `Receiver`. Difícil de mudar depois |
+| ~~**`[D-4]`**~~ | ~~Exigir `fs` múltiplo inteiro de todos os baud rates...~~ **Fechada: `fs` será múltiplo inteiro.** | — |
+| ~~**`[D-5]`**~~ | ~~Sinal elétrico real: armazenar como complexo...~~ **Fechada: real com parte imaginária nula.** | — |
+| ~~**`[D-6]`**~~ | ~~Margem de alargamento espectral no validador...~~ **Fechada: constante configurada.** | — |
+| ~~**`[D-7]`**~~ | ~~O RX continua recebendo `L` e `D` verdadeiros do enlace...~~ **Fechada: aceita diretamente `L` e `D`.** | — |
 | ~~**`[D-8]`**~~ | ~~PMD de 1ª ordem entra agora?~~ **Fechada: entra agora.** O `BirefringenceModel` da seção 10 é implementado completo, com DGD, já na Fase 3 | — |
-| **`[D-9]`** | Nível de fidelidade dos dispositivos: MZM com ER e resposta em frequência, laser com RIN, fotodiodo com corrente de escuro e TIA? Ou manter o nível atual e só arrumar a estrutura? | Define quantos parâmetros cada `ChannelConfig` carrega |
-| **`[D-10]`** | Escala alvo: quantos canais, quantos símbolos, quantas repetições Monte Carlo? Precisa de Numba/CuPy? | Se a resposta for "GPU depois", `kernels/` precisa ser escrito com backend trocável desde já |
+| ~~**`[D-9]`**~~ | ~~Nível de fidelidade dos dispositivos...~~ **Fechada: MZM tem ER implementado, o resto mantém o atual.** | — |
+| ~~**`[D-10]`**~~ | ~~Escala alvo... Precisa de Numba/CuPy?~~ **Fechada: sem suporte a GPU por enquanto.** | — |
 | ~~**`[D-11]`**~~ | ~~Pacote instalável ou script de laboratório?~~ **Fechada: pacote instalável.** A seção 11 se aplica integralmente | — |
 | ~~**`[D-12]`**~~ | ~~Só o grupo ou publicado?~~ **Fechada: será publicado.** Implica licença, versionamento semântico, API estável, `CITATION.cff` e DOI — ver 11.4 | — |
-| **`[D-13]`** | A síntese da seção 4.2.1 para o tipo `Signal` (geometria compartilhada + `domain` como metadado de pré-condição) é aceitável, ou preferem a classe única com `type`? | Decide a assinatura de todos os blocos |
-| **`[D-14]`** | Um canal SP pode coexistir com um canal DP no mesmo enlace? | Se sim, o campo agregado é sempre 2×N e o solver é vetorial sempre que houver ao menos um DP |
-| **`[D-15]`** | IMDD é sempre SP, ou existe caso de IMDD com multiplexação de polarização a considerar? | Determina se `pol` existe em `IMDDChannel` |
-| **`[D-16]`** | Nome do pacote e do repositório para publicação | Muda todos os imports; melhor decidir antes da Fase 1 |
+| ~~**`[D-13]`**~~ | ~~A síntese da seção 4.2.1 para o tipo `Signal`...~~ **Fechada: Signal segue a primeira definição.** | — |
+| ~~**`[D-14]`**~~ | ~~Um canal SP pode coexistir com um canal DP no mesmo enlace?~~ **Fechada: sim.** | — |
+| ~~**`[D-15]`**~~ | ~~IMDD é sempre SP...~~ **Fechada: IMDD sempre é SP.** | — |
+| ~~**`[D-16]`**~~ | ~~Nome do pacote e do repositório para publicação~~ **Fechada: PyCOSim (simcopy).** | — |
 | ~~**`[D-17]`**~~ | ~~Coeficiente de PMD padrão~~ **Fechada: 0,05 ps/√km**, a partir do BIFROST e da especificação Corning — ver 14.13 | — |
-| **`[D-18]`** | O que `correlation_length` representa: a escala de segmento do modelo convencional (~100 m) ou o período de spin usado pelo BIFROST (~5 m)? | São grandezas diferentes e o nome é ambíguo entre elas |
-| **`[D-19]`** | O modelo de PMD por mecanismo (temperatura, curvatura, torção) entra como capacidade, ou basta a estatística calibrada offline pelo BIFROST? | O alvo VPI não exercita PMD, então essa capacidade não teria validação contra a referência atual |
+| ~~**`[D-18]`**~~ | ~~O que `correlation_length` representa...~~ **Fechada: primeira opção (escala convencional, ~100 m).** | — |
+| ~~**`[D-19]`**~~ | ~~O modelo de PMD por mecanismo...~~ **Fechada: usar estatística calibrada.** | — |
 
 **Bloqueantes para a Fase 1:** `[D-13]` e `[D-16]`, porque definem assinaturas e imports.
 **Bloqueantes para a Fase 2:** `[D-2]`, `[D-3]` e `[D-4]`.
