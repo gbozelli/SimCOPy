@@ -21,7 +21,7 @@ do C-25), multiplexador e amplificador, receptor coerente, e aí a BER.
 ## Testes: dois tipos
 
 ```
-pytest                 # 70 testes, ~25 s
+pytest                 # 73 testes, ~25 s
 ```
 
 **Unitários** (`tests/unit/`) perguntam: *o código faz o que diz que faz?*
@@ -100,8 +100,31 @@ pip install -e ".[figures]"
 python scripts/figuras_validacao.py figuras/
 ```
 
-As figuras não substituem as asserções dos testes; servem para inspeção visual e
-documentação. São quatro, uma por teste de física.
+Cada figura tem a mesma estrutura: a **forma fechada** da literatura e a saída do
+**nosso SSFM** plotadas juntas, variando um parâmetro, mais um painel com o **erro**
+entre as duas. A explicação painel a painel está em [`docs/figuras.md`](docs/figuras.md).
+
+| Figura | Fenômeno isolado | Erro típico |
+|---|---|---|
+| `01_atenuacao` | só α: varia α, a grade, a forma do pulso e o passo | ~1e-15 |
+| `02_dispersao` | só β₂: varia C, D e T₀, com colapso em z/L_D | ~1e-13 |
+| `03_nao_linearidade` | só γ: varia φ_max, α (via L_eff) e A_eff (via γ) | ~1e-12 |
+| `04_pmd` | só birrefringência: varia D_PMD e l_c | 10 % (estatístico) |
+| `05_empilhando` | os fenômenos somados, um a um | ver abaixo |
+
+A figura 05 responde até onde dá para empilhar comparando com o analítico:
+
+| Etapa | Referência | Erro |
+|---|---|---|
+| α | forma fechada | 1e-14 |
+| α + β₂ | forma fechada (gaussiana com chirp) | 1e-13 |
+| α + γ | forma fechada (SPM pura) | 1e-12 |
+| β₂ + γ | forma fechada **só** para o sóliton fundamental | 1e-4 |
+| β₂ + γ + PMD | **não existe forma fechada** | ordem de convergência e conservação de energia |
+
+O salto de 1e-12 para 1e-4 é onde os dois efeitos passam a interagir e aparece o
+erro de separação do split-step. É ele que o passo controla, e é por isso que a
+figura 05(c) verifica que o erro cai com h².
 
 ## Estrutura
 

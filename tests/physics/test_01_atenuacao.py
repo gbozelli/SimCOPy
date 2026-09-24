@@ -30,3 +30,14 @@ def test_perda_em_db_e_linear_na_distancia():
     out = propagate(A, omega, FiberKernelParams(125e3, 0.0, 0.0,
                                                 db_per_m_to_np_per_m(0.2e-3)))
     assert -10 * np.log10(np.mean(np.abs(out) ** 2)) == approx(25.0, abs=1e-9)
+
+@pytest.mark.parametrize("L,passo", [(1234.0, 500.0), (99.0, 500.0), (150e3, 7e3)])
+def test_comprimento_nao_multiplo_do_passo(L, passo):
+    """O ultimo passo nao pode ultrapassar o fim da fibra. Com L = 1234 m e passo
+    de 500 m, propagar 1500 m daria 0,05 dB a mais de perda."""
+    A = np.ones((1, 64), dtype=complex)
+    omega = 2 * np.pi * np.fft.fftfreq(64, 1e-12)
+    alpha = db_per_m_to_np_per_m(0.2e-3)
+    out = propagate(A, omega, FiberKernelParams(L, 0.0, 0.0, alpha),
+                    max_step=passo, min_step=passo)
+    assert np.mean(np.abs(out) ** 2) == approx(np.exp(-alpha * L), rel=1e-12)

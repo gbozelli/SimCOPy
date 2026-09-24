@@ -49,7 +49,10 @@ def propagate(A, omega, p: FiberKernelParams, rng=None,
         inten = np.abs(Ax)**2 + (np.abs(Ay)**2 if vec else 0.0)
         pmax = float(np.max(inten)) * nl_factor * p.gamma
         dz = max_step if pmax <= 0 else min(max_step, max_phase / pmax)
-        dz = max(min_step, min(dz, p.length - z))
+        # O ultimo passo nunca pode ultrapassar o fim da fibra: min_step so vale
+        # enquanto couber. Antes, max(min_step, ...) fazia a fibra ficar mais
+        # longa do que a pedida quando L nao era multiplo do passo.
+        dz = min(max(dz, min_step), p.length - z)
 
         dtau = bir.dgd_for_step(p.pmd_coefficient, dz, p.correlation_length) if vec else 0.0
         Ax, Ay = _linear_half(Ax, Ay, omega, p.beta2, p.alpha_np, dz, dtau)
