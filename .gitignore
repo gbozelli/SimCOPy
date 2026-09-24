@@ -24,8 +24,7 @@ dist/
 # Windows / WSL metadata
 *:Zone.Identifier
 
-# Generated figures and results
-figuras/
+# Generated results (large data)
 resultados/
 
 # Archives
