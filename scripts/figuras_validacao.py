@@ -38,7 +38,7 @@ def salvar(fig, nome, formula):
     plt.close(fig)
     print("  ", nome)
 
-# ============================================================ 01 ATENUACAO ====
+# atenuação
 def fig01():
     fig, ax = plt.subplots(2, 2, figsize=(9.5, 6.4))
     zs = np.linspace(2e3, 150e3, 12)
