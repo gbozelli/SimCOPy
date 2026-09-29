@@ -5,24 +5,24 @@ nosso SSFM sao plotadas juntas, variando um parametro por vez, com um painel
 dedicado ao erro entre as duas. As figuras 01 a 04 isolam um fenomeno cada; a 05
 empilha os fenomenos.
 
-As assercoes numericas estao em tests/. A explicacao painel a painel esta em
-docs/figuras.md.
+As assercoes numericas estao em src/simcopy/kernels/tests/physical_tests/. A
+explicacao painel a painel esta em docs/figuras.md.
 
-Uso:  python scripts/figuras_validacao.py [pasta_saida]
+Uso:  python figures/generate_figures/figuras_validacao.py [pasta_saida]
 """
 import sys, pathlib
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-RAIZ = pathlib.Path(__file__).resolve().parents[1]
-sys.path[:0] = [str(RAIZ / "src"), str(RAIZ)]
+RAIZ = pathlib.Path(__file__).resolve().parents[2]
+sys.path[:0] = [str(RAIZ / "src")]
 from simcopy.kernels.ssfm import propagate, FiberKernelParams
 from simcopy.core.units import (beta2_from_dispersion, db_per_m_to_np_per_m,
                                 effective_length, gamma_from_n2)
-from tests.physics._helpers import fwhm, jones_dgd
+from simcopy.testing.fisica import fwhm, jones_dgd
 
-OUT = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "figuras")
+OUT = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "figures")
 OUT.mkdir(parents=True, exist_ok=True)
 plt.rcParams.update({"figure.dpi": 120, "font.size": 9, "axes.grid": True,
                      "grid.alpha": .3, "legend.fontsize": 7.5})
