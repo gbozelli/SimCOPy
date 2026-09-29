@@ -15,10 +15,10 @@ mesma armadilha da comparacao com o VPI (secao 14.3 do documento).
 """
 import numpy as np
 import pytest
-from tests._approx import approx
+from simcopy.testing import approx
 from simcopy.kernels.ssfm import propagate, FiberKernelParams
 from simcopy.core.units import beta2_from_dispersion
-from ._helpers import gaussian, fwhm
+from simcopy.testing.fisica import gaussian, fwhm
 
 N, FS = 1 << 14, 1e12
 T = (np.arange(N) - N // 2) / FS

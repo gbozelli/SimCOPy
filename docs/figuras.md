@@ -14,8 +14,9 @@ exata para comparação; combinando dispersão e não linearidade, a solução e
 existe apenas para o sóliton fundamental. Além desse ponto a verificação passa a
 depender de ordem de convergência e de invariantes, o que a figura 05 explicita.
 
-Reprodução: `python scripts/figuras_validacao.py figuras/`. As asserções
-numéricas correspondentes estão em `tests/physics/`.
+Reprodução: `python figures/generate_figures/figuras_validacao.py figures/`. As
+asserções numéricas correspondentes estão em
+`src/simcopy/kernels/tests/physical_tests/`.
 
 ---
 
