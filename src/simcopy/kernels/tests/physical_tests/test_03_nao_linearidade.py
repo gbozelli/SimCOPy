@@ -19,10 +19,10 @@ analitica, e ela envolve exatamente gamma e L_eff.
 """
 import numpy as np
 import pytest
-from tests._approx import approx
+from simcopy.testing import approx
 from simcopy.kernels.ssfm import propagate, FiberKernelParams
 from simcopy.core.units import db_per_m_to_np_per_m, effective_length
-from ._helpers import gaussian
+from simcopy.testing.fisica import gaussian
 
 N, FS = 4096, 1e12
 T = (np.arange(N) - N // 2) / FS

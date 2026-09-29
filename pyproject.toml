@@ -21,8 +21,11 @@ simcopy = "simcopy.cli:main"
 packages = ["src/simcopy"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-pythonpath = ["src", "."]
+# Testes ficam junto de cada modulo: src/simcopy/<modulo>/tests/.
+testpaths = ["src"]
+pythonpath = ["src"]
+# io_test.py e rascunho e ainda nao roda; entra quando a issue de testes de io.py for feita.
+addopts = "--ignore=src/simcopy/config/tests/io_test.py"
 
 [tool.ruff]
 line-length = 92

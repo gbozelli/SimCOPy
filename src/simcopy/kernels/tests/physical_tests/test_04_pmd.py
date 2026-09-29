@@ -29,9 +29,9 @@ usamos 10 % (cerca de 3 desvios).
 """
 import numpy as np
 import pytest
-from tests._approx import approx
+from simcopy.testing import approx
 from simcopy.kernels.ssfm import propagate, FiberKernelParams
-from ._helpers import jones_dgd
+from simcopy.testing.fisica import jones_dgd
 
 DF, NS = 1.25e9, 64
 OMEGA = 2 * np.pi * np.fft.fftfreq(NS, 1 / (NS * DF))
