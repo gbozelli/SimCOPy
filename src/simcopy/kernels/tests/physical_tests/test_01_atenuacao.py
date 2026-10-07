@@ -10,7 +10,7 @@ ponto flutuante e erro de conta, nao aproximacao numerica.
 """
 import numpy as np
 import pytest
-from tests._approx import approx
+from simcopy.testing import approx
 from simcopy.kernels.ssfm import propagate, FiberKernelParams
 from simcopy.core.units import db_per_m_to_np_per_m
 

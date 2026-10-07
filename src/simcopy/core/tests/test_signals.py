@@ -1,7 +1,7 @@
 """Tipos de sinal: as relacoes de dimensao e as recusas de entrada invalida."""
 import numpy as np
 import pytest
-from tests._approx import approx
+from simcopy.testing import approx
 from simcopy.core.grid import TimeGrid
 from simcopy.core.signals import SignalGeometry, Waveform, Domain, SignalError
 

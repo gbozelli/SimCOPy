@@ -24,11 +24,16 @@ do C-25), multiplexador e amplificador, receptor coerente, e aí a BER.
 pytest                 # 73 testes, ~25 s
 ```
 
-**Unitários** (`tests/unit/`) perguntam: *o código faz o que diz que faz?*
+Cada módulo tem a sua pasta de testes: `src/simcopy/<módulo>/tests/`. A ideia é
+testar função por função, de baixo para cima (unidades → grade e sinais →
+configuração → kernels), para que o comportamento do sistema se apoie em funções
+já verificadas.
+
+**Unitários** (`src/simcopy/<módulo>/tests/`) perguntam: *o código faz o que diz que faz?*
 Não envolvem física. Exemplo: um canal IMDD configurado com 16QAM tem que ser
 recusado com mensagem que diga que a causa é `kind = IMDD`.
 
-**De física** (`tests/physics/`) perguntam: *o código faz o que a natureza faz?*
+**De física** (`src/simcopy/kernels/tests/physical_tests/`) perguntam: *o código faz o que a natureza faz?*
 Cada um compara a simulação com uma **fórmula fechada** da literatura, isolando
 um efeito por vez. Estão numerados na ordem da lista de testes proposta:
 
@@ -64,7 +69,8 @@ tem que dividir o da grade (regra `DSPRateDividesSimulationRate`).
 
 ### Tolerâncias
 
-Os testes usam `tests/_approx.py` em vez de `pytest.approx` direto. O
+Os testes usam `from simcopy.testing import approx` em vez de `pytest.approx`
+direto (nem `np.isclose`, cuja tolerância absoluta padrão é 1e-8). O
 `pytest.approx` tem tolerância **absoluta** padrão de 1e-12, e em unidades SI
 várias grandezas daqui são dessa ordem (DGD ~1e-13 s, β₂ ~2e-26 s²/m). Com o
 padrão, um DGD 3× errado passava.
@@ -97,7 +103,7 @@ código, não no teste.
 
 ```
 pip install -e ".[figures]"
-python scripts/figuras_validacao.py figuras/
+python figures/generate_figures/figuras_validacao.py figures/
 ```
 
 Cada figura tem a mesma estrutura: a **forma fechada** da literatura e a saída do
@@ -129,15 +135,19 @@ figura 05(c) verifica que o erro cai com h².
 ## Estrutura
 
 ```
-src/simcopy/        o pacote (é o que vai para o PyPI)
-tests/unit/         testes de software
-tests/physics/      testes contra fórmula fechada
-scripts/            figuras de validação
-examples/           cenários em YAML (o 400ZR mora só aqui)
+src/simcopy/                          o pacote
+src/simcopy/<módulo>/tests/           testes de cada módulo (core, config, validation, kernels)
+src/simcopy/kernels/tests/physical_tests/   testes contra fórmula fechada
+src/simcopy/testing/                  utilitários de teste (approx, pulsos, medidas)
+figures/                              figuras de validação (PNG)
+figures/generate_figures/             scripts que geram as figuras
+scripts/                              teste de mutação
+examples/                             cenários em YAML (o 400ZR mora só aqui)
 ```
 
-Em layout `src/`, os testes ficam na raiz em `tests/`, não dentro de `src/`:
-tudo que está em `src/` é empacotado e distribuído.
+Os testes ficam junto de cada módulo, como no NumPy e no SciPy
+(`numpy/linalg/tests/`). Um teste em `core/tests/` só importa `core`: a regra de
+camadas do `import-linter` vale também para os testes.
 
 ## Regra do cenário de referência
 
