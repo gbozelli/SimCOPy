@@ -1,6 +1,6 @@
 """Grandezas derivadas: o que deixa de ser configuravel e passa a ser calculado."""
 import pytest
-from tests._approx import approx
+from simcopy.testing import approx
 from simcopy.config.io import load
 from simcopy.config.resolve import resolve
 

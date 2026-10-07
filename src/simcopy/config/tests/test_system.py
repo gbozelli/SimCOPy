@@ -1,6 +1,6 @@
 """Cascata de configuracao: o que cada decisao libera e o que bloqueia."""
 import pytest
-from tests._approx import approx
+from simcopy.testing import approx
 from simcopy.config.system import (IMDDChannel, CoherentChannel, SystemConfig,
     LinkConfig, SpanConfig, FiberConfig, Pol, QAM16, PAM4, ConfigError)
 from simcopy.core.units import C_LIGHT

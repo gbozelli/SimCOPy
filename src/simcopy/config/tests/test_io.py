@@ -1,7 +1,7 @@
 """Leitura de YAML: tx e rx dentro de cada canal, ancoras, coerencia f/lambda."""
 import textwrap
 import pytest
-from tests._approx import approx
+from simcopy.testing import approx
 from simcopy.config.io import load
 from simcopy.config.system import ConfigError
 
