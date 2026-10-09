@@ -29,3 +29,12 @@ resultados/
 
 # Archives
 *.zip
+
+# Notas locais de contexto para o Claude (nao versionar)
+memory/
+
+# Rascunhos locais (testes e codigo em andamento, fora do pytest e do git)
+rascunhos/
+
+# Jupyter
+.ipynb_checkpoints/
