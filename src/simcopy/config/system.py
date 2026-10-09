@@ -40,6 +40,28 @@ class LaserConfig:
     linewidth: float = 500e3      # Hz
 
 @dataclass(frozen=True)
+class RateEquationLaserConfig:
+    """Laser monomodo descrito por equacoes de taxa em densidade (docs/laser.md, 3.6).
+
+    So entradas fisicas; tempo de vida de fotons, limiar, R_sp e eficiencia sao
+    derivados em `config/resolve.py` (decisao de 2026-10-08). Sem valores padrao:
+    nenhum destes parametros tem valor tipico unico na literatura.
+    """
+    cavity_length: float              # m
+    cavity_width: float               # m
+    cavity_height: float              # m
+    group_index: float                # n_gr
+    mirror_loss: float                # alpha_mir [1/m]
+    internal_loss: float              # alpha_int [1/m]
+    differential_gain: float          # sigma_g [m^2]
+    transparency_density: float       # N_tr [1/m^3]
+    confinement: float                # Gamma
+    carrier_lifetime: float           # tau_c [s]
+    spontaneous_emission_factor: float  # n_sp
+    gain_compression: float           # epsilon [m^3]
+    linewidth_enhancement: float      # alpha_H (beta_c no Agrawal)
+
+@dataclass(frozen=True)
 class MZMConfig:
     vpi: float = 5.0                     # V
     vbias: float = 2.5                   # V
