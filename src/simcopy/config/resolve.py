@@ -11,8 +11,9 @@ import numpy as np
 from ..core.grid import TimeGrid
 from ..core.signals import SignalGeometry
 from ..core.units import (beta2_from_dispersion, gamma_from_n2, effective_length,
-                          frequency_to_wavelength, db_per_m_to_np_per_m)
-from .system import SystemConfig, FiberConfig
+                          frequency_to_wavelength, db_per_m_to_np_per_m,
+                          C_LIGHT, H_PLANCK, Q_ELECTRON)
+from .system import SystemConfig, FiberConfig, RateEquationLaserConfig
 from .simulation import SimulationConfig
 
 @dataclass(frozen=True)
@@ -38,6 +39,44 @@ class Resolved:
     fibers: tuple[ResolvedFiber, ...]
     n_samples: int
     window: float
+
+@dataclass(frozen=True)
+class ResolvedRateEquationLaser:
+    volume: float                     # V = L*W*H [m^3]
+    group_velocity: float             # v_g [m/s]
+    photon_lifetime: float            # tau_p [s]
+    gain_coefficient: float           # Gamma*v_g*sigma_g [m^3/s]
+    threshold_density: float          # N_th [1/m^3]
+    threshold_current: float          # I_th [A]
+    spontaneous_emission_rate: float  # R_sp [1/(m^3 s)]
+    photon_energy: float              # h*f [J]
+    differential_efficiency: float    # eta_d
+    slope_efficiency: float           # dPe/dI por faceta [W/A]
+
+def resolve_rate_equation_laser(cfg: RateEquationLaserConfig,
+                                frequency: float) -> ResolvedRateEquationLaser:
+    """Grandezas derivadas do laser (docs/laser.md, secoes 3.2 e 3.6).
+
+    A frequencia optica vem do canal, para que lambda tenha um dono so.
+    Agrawal: Eq. 3.3.4 (tau_p), 3.3.6 (limiar), 3.3.10 (eficiencia, eta_int = 1).
+    """
+    volume = cfg.cavity_length * cfg.cavity_width * cfg.cavity_height
+    vg = C_LIGHT / cfg.group_index
+    tau_p = 1.0 / (vg * (cfg.mirror_loss + cfg.internal_loss))
+    gc = cfg.confinement * vg * cfg.differential_gain
+    n_th = cfg.transparency_density + 1.0 / (gc * tau_p)
+    i_th = Q_ELECTRON * n_th * volume / cfg.carrier_lifetime
+    # Formula do notebook do professor, mantida por decisao de 2026-10-08,
+    # inclusive o fator 1e40 (docs/laser.md, secao 3.5).
+    r_sp = (cfg.confinement * cfg.spontaneous_emission_factor
+            / cfg.carrier_lifetime / volume / 1e40)
+    hf = H_PLANCK * frequency
+    eta_d = cfg.mirror_loss / (cfg.mirror_loss + cfg.internal_loss)
+    return ResolvedRateEquationLaser(
+        volume=volume, group_velocity=vg, photon_lifetime=tau_p, gain_coefficient=gc,
+        threshold_density=n_th, threshold_current=i_th, spontaneous_emission_rate=r_sp,
+        photon_energy=hf, differential_efficiency=eta_d,
+        slope_efficiency=hf / (2.0 * Q_ELECTRON) * eta_d)
 
 def _next_pow2(n: int) -> int:
     return 1 << (int(n) - 1).bit_length()
