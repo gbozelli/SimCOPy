@@ -58,7 +58,7 @@ def propagate(A, omega, p: FiberKernelParams, rng=None,
         Ax, Ay = _linear_half(Ax, Ay, omega, p.beta2, p.alpha_np, dz, dtau)
 
         # Comprimento efetivo do passo. A intensidade aqui e a do ponto medio
-        # (apos meio passo linear); integrar exp(-alpha*z) exatamente no passo da
+        # (apos meio passo linear), integrar exp(-alpha*z) exatamente no passo da
         # 2*sinh(alpha*dz/2)/alpha em vez de dz. Com beta2 = 0 isso torna a SPM
         # exata; com dispersao, mantem 2a ordem com constante de erro menor.
         # Sem isso, passos de 5 km erravam a fase nao linear em ~5e-4.

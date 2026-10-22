@@ -15,11 +15,17 @@ class Domain(Enum):
     ELECTRICAL = "electrical"
     OPTICAL = "optical"
 
+# pass é uma instruição nula. O código é exigido, mas nenhuma ação é executada
 class SignalError(ValueError): pass
 
 @dataclass(frozen=True)
 class SignalGeometry:
-    """O sizeof() da proposta original, promovido a objeto de primeira classe."""
+    """
+    O sizeof() da proposta original, promovido a objeto de primeira classe.
+    Uma classe que define propriedades comuns aos vários sinais que vamos mexer
+    Precisa ser flexível o suficiente
+    """
+    # você pode descrever esse sinal de forma bem melhor, não acha?
     n_symbols: int
     bits_per_symbol: int
     samples_per_symbol: int
@@ -41,27 +47,33 @@ class Bits:
     data: np.ndarray
     geometry: SignalGeometry
     def __post_init__(self):
-        exp = (self.geometry.n_pol, self.geometry.n_bits // self.geometry.n_pol)
-        if self.data.shape != exp:
-            raise SignalError(f"Bits: esperado {exp}, recebido {self.data.shape}")
+        # precisamos escrever uns testes pra isso, e lembrando que isso segue a codificação Gray em modulações QAM
+        expected = (self.geometry.n_pol, self.geometry.n_bits // self.geometry.n_pol)
+        if self.data.shape != expected:
+            raise SignalError(f"Bits: esperado {expected}, recebido {self.data.shape}")
 
 @dataclass(frozen=True)
 class Symbols:
     data: np.ndarray
     geometry: SignalGeometry
     def __post_init__(self):
-        exp = (self.geometry.n_pol, self.geometry.n_symbols)
-        if self.data.shape != exp:
-            raise SignalError(f"Symbols: esperado {exp}, recebido {self.data.shape}")
+        # bom rever esse teste
+        expected = (self.geometry.n_pol, self.geometry.n_symbols)
+        if self.data.shape != expected:
+            raise SignalError(f"Symbols: esperado {expected}, recebido {self.data.shape}")
 
 @dataclass(frozen=True)
 class Waveform:
     """Campo amostrado, sempre (n_pol, n_samples) complexo. Sinal eletrico real e
     guardado como complexo de parte imaginaria nula ([D-5])."""
+    # se o sinal é elétrico, porque domain fica em aberto?
+    # você quer definir óptico aqui também?
     samples: np.ndarray
     grid: TimeGrid
     domain: Domain
     geometry: SignalGeometry
+    # qual a necessidade de definir f0 aqui? 
+    # isso já é definido via canal
     f0: float = 0.0
     channel_id: int | None = None
 
@@ -72,7 +84,7 @@ class Waveform:
             raise SignalError(f"{self.samples.shape[1]} amostras nao batem com a "
                               f"grade ({self.grid.n_samples})")
         if not np.iscomplexobj(self.samples):
-            raise SignalError("samples deve ser complexo ([D-5])")
+            raise SignalError("samples devem ser complexos ([D-5])")
 
     @property
     def n_pol(self): return self.samples.shape[0]
