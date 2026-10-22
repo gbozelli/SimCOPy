@@ -20,6 +20,11 @@ class TimeGrid:
     @property
     def duration(self): return self.n_samples * self.dt
 
+    # uma property normal roda quando o atributo é lido
+    # cached_property troca memória por computação, cada instância tem seu próprio resultado
+    # até q o objeto seja descartado ou atributo removido
+    # aqui isso pode ser útil porque tempo e frequência não mudam 
+    # por que dt e duration não viram cached também?
     @cached_property
     def time(self):  return self.t0 + np.arange(self.n_samples) * self.dt
     @cached_property

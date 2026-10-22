@@ -22,7 +22,7 @@ Amplificadores (EDFA, não usaremos Raman, )
 - Como se agrega ruido no EDFA, como se calcula snr na saída e na entrada
 
 Fotodetectores
-- MUX E DEMUX
+MUX E DEMUX
 
 A partir daqui podemos fazer TX, enlace e RX
 
