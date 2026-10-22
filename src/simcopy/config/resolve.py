@@ -66,10 +66,10 @@ def resolve_rate_equation_laser(cfg: RateEquationLaserConfig,
     gc = cfg.confinement * vg * cfg.differential_gain
     n_th = cfg.transparency_density + 1.0 / (gc * tau_p)
     i_th = Q_ELECTRON * n_th * volume / cfg.carrier_lifetime
-    # Formula do notebook do professor, mantida por decisao de 2026-10-08,
-    # inclusive o fator 1e40 (docs/laser.md, secao 3.5).
-    r_sp = (cfg.confinement * cfg.spontaneous_emission_factor
-            / cfg.carrier_lifetime / volume / 1e40)
+    # Agrawal: R_sp = n_sp*G (texto apos a Eq. 3.3.3), avaliado no limiar, G = 1/tau_p,
+    # como nos Ex. 3.10 e 3.14 (R_sp = 2/tau_p); dividido por V para a forma em
+    # densidade. Decisao de 2026-10-16 (docs/laser.md, secao 3.5).
+    r_sp = cfg.spontaneous_emission_factor / (tau_p * volume)
     hf = H_PLANCK * frequency
     eta_d = cfg.mirror_loss / (cfg.mirror_loss + cfg.internal_loss)
     return ResolvedRateEquationLaser(
@@ -112,6 +112,7 @@ def resolve(system: SystemConfig, simulation: SimulationConfig) -> Resolved:
                                     bits_per_symbol=c.modulation.bits_per_symbol,
                                     samples_per_symbol=sps,
                                     n_pol=c.pol.n_pol)))
+        # tem q fazer uns bons testes aqui p ver se os spans n vão conflitar
     fibers = tuple(resolve_fiber(s.fiber, system.center_frequency)
                    for s in system.link.spans)
     return Resolved(grid=grid, channels=tuple(chans), fibers=fibers,

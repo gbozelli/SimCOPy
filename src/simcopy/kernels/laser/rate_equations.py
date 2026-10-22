@@ -71,27 +71,47 @@ def steady_state(current, p: RateEquationParams):
     s = brentq(balance, 0.0, s_upper, xtol=1e-300, rtol=1e-15, maxiter=2000)
     return carriers(s), s
 
-def integrate(current, dt, p: RateEquationParams, n0, s0, phi0=0.0, max_step=0.1e-12):
-    """Integra N, S e phi no tempo por Euler explicito (docs/laser.md, secao 3.4).
+def integrate(current, dt, p: RateEquationParams, n0, s0, phi0=0.0, max_step=0.1e-12,
+              rng=None):
+    """Integra N, S e phi no tempo por Euler explicito (docs/laser.md, secoes 3.4 e 3.5).
 
     `current` sao as amostras de I(t) [A] na grade de passo `dt`. Cada intervalo da
     grade e dividido em k = ceil(dt/max_step) subpassos de h = dt/k, com I(t)
     interpolada linearmente entre as amostras. Devolve (N, S, phi) nas amostras da
-    grade, comecando em (n0, s0, phi0). Sem ruido (Langevin fica para o passo 7).
+    grade, comecando em (n0, s0, phi0), com o tempo no ultimo eixo.
+
+    Com `rng`, soma as forcas de Langevin (Agrawal, Eq. 3.3.25-3.3.28) por
+    Euler-Maruyama: a cada subpasso S ganha sqrt(2*D_SS*h)*xi e phi ganha
+    sqrt(2*D_phiphi*h)*xi', xi e xi' normais independentes, com D_SS = R_sp*S e
+    D_phiphi = R_sp/(4*S) em densidade. D_NN e os cruzados sao desprezados, como no
+    Agrawal. Com poucos fotons a forca gaussiana deixa de valer: S fica limitado a
+    >= 0 e D_phiphi usa S >= R_sp*tau_p, isto e, n_sp fotons (proposta, secao 3.5).
+
+    n0, s0 e phi0 podem ser arrays de mesma forma (M,): M realizacoes independentes,
+    integradas juntas, para medir estatisticas de conjunto. A saida fica (M, T).
     """
     current = np.asarray(current, dtype=float)
     k = max(1, int(np.ceil(dt / max_step * (1 - 1e-12))))
     h = dt / k
-    n_out = np.empty(current.size)
-    s_out = np.empty(current.size)
-    phi_out = np.empty(current.size)
-    n, s, phi = float(n0), float(s0), float(phi0)
-    n_out[0], s_out[0], phi_out[0] = n, s, phi
+    n, s, phi = np.broadcast_arrays(*(np.asarray(x, dtype=float) for x in (n0, s0, phi0)))
+    n_out = np.empty(n.shape + (current.size,))
+    s_out = np.empty(n.shape + (current.size,))
+    phi_out = np.empty(n.shape + (current.size,))
+    n_out[..., 0], s_out[..., 0], phi_out[..., 0] = n, s, phi
+    r_sp = p.spontaneous_emission_rate
+    noisy = rng is not None and r_sp > 0.0
+    s_floor = r_sp * p.photon_lifetime
     for j in range(current.size - 1):
         i0, i1 = current[j], current[j + 1]
+        if noisy:
+            xi = rng.standard_normal((k, 2) + n.shape)
         for m in range(k):
             i_m = i0 + (i1 - i0) * m / k
             dn, ds, dphi = derivatives(n, s, i_m, p)
-            n, s, phi = n + dn * h, s + ds * h, phi + dphi * h
-        n_out[j + 1], s_out[j + 1], phi_out[j + 1] = n, s, phi
+            n_new, s_new, phi_new = n + dn * h, s + ds * h, phi + dphi * h
+            if noisy:
+                s_new = np.maximum(s_new + np.sqrt(2.0 * r_sp * s * h) * xi[m, 0], 0.0)
+                phi_new = phi_new + np.sqrt(r_sp * h / (2.0 * np.maximum(s, s_floor))) * xi[m, 1]
+            n, s, phi = n_new, s_new, phi_new
+        n_out[..., j + 1], s_out[..., j + 1], phi_out[..., j + 1] = n, s, phi
     return n_out, s_out, phi_out
