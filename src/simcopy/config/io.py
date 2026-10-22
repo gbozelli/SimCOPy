@@ -7,7 +7,7 @@ from .system import (SystemConfig, LinkConfig, SpanConfig, FiberConfig,
                      BirefringenceConfig, AmplifierConfig, CoherentChannel,
                      IMDDChannel, CoherentTransmitter, CoherentReceiver,
                      IMDDTransmitter, IMDDReceiver, DirectModulation,
-                     ExternalModulation, LaserConfig, MZMConfig, IQImpairments,
+                     ExternalModulation, CWLaserConfig, MZMConfig, IQImpairments,
                      PhotodiodeConfig, ADCConfig, Pol, DCS_FORMATS, IMDD_FORMATS,
                      ConfigError)
 from .simulation import SimulationConfig
@@ -37,7 +37,7 @@ def _num(x: Any, key=None) -> float:
 
 # o q são essas funções? Elas são chamadas externamente?
 # vc só colocou pq sim?
-def _laser(d): return LaserConfig(**(d or {}))
+def _laser(d): return CWLaserConfig(**(d or {}))
 def _mzm(d):   return MZMConfig(**(d or {}))
 def _pd(d):    return PhotodiodeConfig(**(d or {}))
 def _adc(d):   return ADCConfig(**(d or {}))
@@ -57,7 +57,7 @@ def _coherent(channel: dict) -> CoherentChannel:
     tx, rx = channel.get("tx") or {}, channel.get("rx") or {}
     return CoherentChannel(
         index=channel["index"], symbol_rate=channel["symbol_rate"], seed=channel["seed"],
-        # Obrigatoriamnete a polarização precisa ser dupla
+        # Obrigatoriamnete a polarização precisa ser dupla (NA VERDADE NÃO, ME CONFUNDI AQUI)
         modulation=DCS_FORMATS[channel["modulation"]], pol=Pol[channel.get("pol", "DP")],
 
         tx=CoherentTransmitter(laser=_laser(tx.get("laser")), mzm=_mzm(tx.get("mzm")),
@@ -84,8 +84,7 @@ def _imdd(channel: dict) -> IMDDChannel:
         # já estamos mexendo com frontend óptico? daria pra simular isso então
         frontend = ExternalModulation(laser=_laser(fe.get("laser")), mzm=_mzm(fe.get("mzm")))
     else:
-        frontend = DirectModulation(laser=_laser(fe.get("laser")),
-                                    chirp_alpha=fe.get("chirp_alpha", 0.0))
+        frontend = DirectModulation(laser=_laser(fe.get("laser")))
     if "pol" in channel and channel["pol"] != "SP":
         raise ConfigError(f"Canal {c['index']}: 'pol' nao se aplica.\n"
                           f"  Causa: channel.kind = IMDD, que e sempre SP ([D-15]).")
