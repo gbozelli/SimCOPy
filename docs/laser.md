@@ -177,7 +177,7 @@ $A(t) = \sqrt{P_e(t)}\,e^{i\phi(t)}$, em √W como o resto do pacote.
 | oscilações de relaxação | $\Omega_R = [GG_NP_b - (\Gamma_P-\Gamma_N)^2/4]^{1/2}$, $\Gamma_R = (\Gamma_P+\Gamma_N)/2$ | Eq. 3.3.20–3.3.21 |
 | resposta de pequeno sinal | $H(\omega_m) = (\Omega_R^2+\Gamma_R^2)/[(\Omega_R+\omega_m-i\Gamma_R)(\Omega_R-\omega_m+i\Gamma_R)]$ | Eq. 3.3.22 |
 | banda de 3 dB | $f_{3dB} \approx \sqrt{3}\,\Omega_R/2\pi$ | Eq. 3.3.23–3.3.24 |
-| chirp | $\delta\nu(t) = \frac{\beta_c}{4\pi}[G_N(N-N_0) - 1/\tau_p]$ | Eq. 3.4.1 |
+| chirp | $\delta\nu(t) = \frac{\beta_c}{4\pi}[G_N(N-N_0) - 1/\tau_p]$ (**[Decidido: Gabriel, 2026-10-15]** δν > 0 é deslocamento para o azul, como na Fig. 3.16) | Eq. 3.4.1 |
 | largura de linha | $\Delta\nu = R_{sp}(1+\beta_c^2)/(4\pi P)$ | Eq. 3.3.37 (exige o ruído de Langevin) |
 | atraso de ligação, de $I_b < I_{th}$ para $I_{on}$ | $t_d = \tau_c\ln[(I_{on}-I_b)/(I_{on}-I_{th})]$ | **[Dedução]** Eq. 3.3.2 com $P \approx 0$ até N atingir $N_{th}$; não está no livro |
 
@@ -277,14 +277,44 @@ diferença está no passo: lá o incremento multiplica dt, aqui $\sqrt{dt}$.
 **[Dedução: Agrawal 3.3.37 em densidade]** $\Delta\nu = R_{sp}(1+\alpha_H^2)/(4\pi S)$: o V
 cancela. Esse é o teste do ruído de fase.
 
-**[Decidido: Gabriel, 2026-10-08]** Manter `R_sp` do notebook,
-`R_sp = Γ·n_sp/(τ_c·V)/1e40` com n_sp = 1,5; não a constante `Rsp = 1.11298`, que só é
-definida uma vez e nunca usada.
+~~**[Decidido: Gabriel, 2026-10-08]** Manter `R_sp` do notebook,
+`R_sp = Γ·n_sp/(τ_c·V)/1e40` com n_sp = 1,5.~~ Revisto em 2026-10-16 (abaixo).
 
-**[Dedução]** Com esse valor (≈ 4e-16 m⁻³s⁻¹) a amplitude do ruído, proporcional a
-$R_{sp}$, fica desprezível. Como o kernel recebe $R_{sp}$ como parâmetro, o teste do ruído
-(Δν contra a Eq. 3.3.37) usa um $R_{sp}$ em que o efeito é mensurável, por exemplo o
-$R_{sp} = 2/\tau_p$ dos exercícios do Agrawal convertido para densidade.
+**[Fato: Agrawal, texto após a Eq. 3.3.3]** $R_{sp} = n_{sp}G$, com $n_{sp}$ da ordem de 2
+em lasers de semicondutor. **[Fato: Agrawal, Ex. 3.10 e 3.14]** $R_{sp} = 2/\tau_p$.
+
+**[Decidido: Gabriel, 2026-10-16]** $R_{sp}$ do Agrawal. **[Interpretação, avisada]**
+$R_{sp} = n_{sp}G$ avaliado no limiar ($G = 1/\tau_p$), constante, como nos exercícios:
+$R_{sp} = n_{sp}/(\tau_p V)$ em densidade (2,88e27 m⁻³s⁻¹ no laser do professor). A
+alternativa $R_{sp} = n_{sp}G(N, S)$ dinâmica fica negativa abaixo da transparência
+(G < 0). Implementado em `resolve_rate_equation_laser`; o teste do resolve mudou de valor
+(mudança de especificação).
+
+**[Fato: verificado rodando]** Efeitos da troca no notebook: o joelho da curva P × I
+arredonda (erro de 6e-4 contra a forma fechada perto do limiar); ao ligar o laser a luz
+aparece 109 ps depois de $t_d$ em 30 mA (antes, 406 ps); no pulso de I_th a 3·I_th o pico sai
+em 76 ps e aparece uma segunda oscilação de relaxação dentro do pulso.
+
+**Implementação (2026-10-16, passo 7).** `integrate(..., rng=None)`: com `rng`, Euler–Maruyama
+com $\sqrt{2D_{SS}h}\,\xi$ em S e $\sqrt{2D_{\phi\phi}h}\,\xi'$ em φ, normais independentes;
+$D_{NN}$ e cruzados desprezados (Agrawal). Sem `rng`, ou com $R_{sp} = 0$, o resultado é o
+determinista.
+
+**[Proposta, a confirmar]** Com poucos fótons a força gaussiana deixa de valer (abaixo do
+limiar há menos de um fóton na cavidade, e um passo de ruído deixaria S < 0). O integrador
+limita S ≥ 0 depois de cada passo e calcula $D_{\phi\phi}$ com S ≥ $R_{sp}\tau_p$
+($n_{sp}$ fótons), para não dividir por zero partindo de S = 0.
+
+**[Dedução, verificada rodando]** A largura de linha medida segue a Eq. 3.3.37 entre 1,5 e
+6·I_th (notebook, seção 7). Linearizando em frequência zero, o fator de aumento exato é
+$1 + \alpha_H^2\kappa$ com $\kappa = [g_cS\,a_{NS}/(a_{SN}a_{NS} + \Gamma_P\Gamma_N)]^2$; com
+ε = 0, κ = 1 − 1e-5 para este laser, e o $b$ da Eq. 3.3.35 (que o Agrawal faz igual a 1 na
+3.3.37) vale 0,995 em 3·I_th. Com ε > 0 a fase usa o ganho sem compressão (Eq. 3.3.16) e
+κ ≈ 1/(1 − εS)²: a largura passa um pouco da Eq. 3.3.37. Não testado com ε > 0.
+
+**[Proposta]** n0 e s0 podem ser arrays (M,): o integrador avança M lasers independentes
+juntos, e a saída fica (M, T). Serve para medir estatísticas de conjunto (o teste da largura
+de linha usa 4000 lasers em ~1 s).
 
 ### 3.6 Notebook do professor (`2_Laser_sources`): formulação em densidade
 
@@ -392,7 +422,7 @@ entrada (mesma regra do resto do projeto: derivadas em `config/resolve.py`).
 | λ, L, W, H | V | L·W·H |
 | $n_{gr}$, $\alpha_{mir}$, $\alpha_{int}$ | $v_g$, $\tau_p$ | $c/n_{gr}$; $[v_g(\alpha_{mir}+\alpha_{int})]^{-1}$ (Eq. 3.3.4) |
 | $\sigma_g$, $N_{tr}$, Γ, $\tau_c$ | $N_{th}$, $I_{th}$ | $N_{tr} + (\Gamma v_g\sigma_g\tau_p)^{-1}$; $qN_{th}V/\tau_c$ (Eq. 3.3.6) |
-| $n_{sp}$ | $R_{sp}$ | fórmula do notebook (seção 3.5) |
+| $n_{sp}$ | $R_{sp}$ | $n_{sp}/(\tau_p V)$, Agrawal no limiar (seção 3.5) |
 | $\varepsilon$ (compressão), $\alpha_H$ | $\eta_d$, $dP_e/dI$ | $\alpha_{mir}/(\alpha_{mir}+\alpha_{int})$; Eq. 3.3.10 |
 
 ---
@@ -435,6 +465,74 @@ medido no volume do modo (V/Γ); o simcopy não a usa.
 ---
 
 ## 7. Estado da implementação
+
+**Atualização (2026-10-22): testes com o grupo.** **[Decidido: Gabriel, 2026-10-22]** Aqui só
+se implementa; os testes são escritos pelo grupo (issue #14). Os testes do laser que eu tinha
+escrito (`kernels/laser/tests/test_*.py`, `components/tx/tests/test_laser.py`,
+`config/tests/test_resolve_laser.py`) e as mutações 10–51 saíram do repo; há uma cópia em
+`rascunhos/testes_claude/` (ignorada pelo git). As menções a testes nas atualizações abaixo
+são históricas.
+
+**Atualização (2026-10-16): passo 8 (blocos e configuração).**
+- `config/system.py`: `LaserConfig` virou `CWLaserConfig` (sem apelido); `chirp_alpha` saiu de
+  `DirectModulation` e do `io.py` (**[Decidido: Gabriel, 2026-10-16]**).
+- `components/tx/laser.py`, os primeiros componentes do pacote:
+  - `CWLaser(laser, frequency, frequency_offset=0, rng_role="tx_laser_phase")`: a entrada só
+    dá a grade e o canal; `rng_role` separa o stream do LO (`"rx_lo_phase"`, por exemplo).
+  - `DirectModulatedLaser(laser, frequency, bias_ratio, modulation_ratio, noise=True,
+    max_step=0.1e-12)`: $I(t) = I_{th}[I_b/I_{th} + (I_m/I_{th})\,x(t)]$ (Eq. 3.3.14,
+    **[Decidido: Gabriel, 2026-10-16]** correntes em múltiplos de $I_{th}$), estacionário em
+    I(0), saída $\sqrt{P_e}\,e^{i\phi}$ por faceta (**[Decidido]**), stream
+    `ctx.rng_for(canal, "tx_laser_noise")`.
+  - `rate_equation_params(cfg, resolvido)`: o mapeamento configuração → kernel, que o
+    notebook também passou a usar.
+  - Os dois devolvem (2, N) com Y = 0, domínio óptico, f0 = frequência do canal, e exigem
+    `channel_id` (sem ele não há stream do contexto).
+- **[Proposta, a confirmar]** Com `noise=True` a fase inicial do `DirectModulatedLaser` é
+  uniforme, como no CW (decisão 2); com `noise=False`, φ(0) = 0.
+- Testes em `components/tx/tests/test_laser.py` (10), com entrada elétrica sintética
+  (**[Decidido]**); 9 mutações novas. Notebook: seção 9 (OOK sintético a 10 Gb/s).
+- **[Pendente, pergunta ao Gabriel]** `DirectModulation.laser` ainda é `CWLaserConfig`. Trocar
+  para `RateEquationLaserConfig` (que não tem padrões) quebra `IMDDChannel()` sem `tx`, usado
+  em 2 testes de `config/tests/test_system.py`. Opção A: `tx` obrigatório no IMDD e os 2
+  testes passam a informar o transmissor. Opção B: o padrão do IMDD vira modulação externa.
+- **[Pendente, pergunta ao Gabriel]** Frequência no estacionário. **[Fato: Agrawal, texto
+  da Eq. 3.4.1]** o chirp é a mudança da frequência "em relação ao valor de estado
+  estacionário ν₀". **[Fato: verificado rodando]** Com $R_{sp}$ e ε, a Eq. 3.4.1 não zera no
+  estacionário. Com o ε do Agrawal: −0,64 GHz em $I_{th}$, +0,55 GHz em 1,2·I_th, +2,8 GHz
+  em 2·I_th, +5,9 GHz em 3·I_th e +12,7 GHz em 5·I_th (comparar com 75 GHz entre canais). Hoje o bloco devolve a fase crua, ou seja, f0 é a frequência em que
+  $g_c(N - N_{tr}) = 1/\tau_p$, e a portadora sai deslocada de f0 por um valor que depende
+  de $I_b$. Alternativa: descontar a frequência do estacionário em $I_b$, para a portadora
+  ficar em f0.
+
+**Atualização (2026-10-16): passo 7 (ruído de Langevin).** Detalhes na seção 3.5.
+- `resolve`: $R_{sp} = n_{sp}/(\tau_p V)$ (Agrawal); `test_resolve_laser` atualizado para o
+  valor novo, 2,8803589e27 m⁻³s⁻¹.
+- `integrate(..., rng=None)` com Euler–Maruyama; n0 e s0 aceitam arrays (conjunto).
+- Testes novos (8): variância por passo do ruído de intensidade e de fase, independência
+  das duas forças, semente, R_sp = 0, S ≥ 0 abaixo do limiar, conjunto = realizações
+  separadas, largura de linha contra a Eq. 3.3.37 (4000 lasers, tolerância 15 %).
+- Mutações novas: 7 (R_sp com τ_c; ruído ∝ h; $D_{\phi\phi}$ sem 1/4; forças correlacionadas;
+  S negativo; sem piso em $D_{\phi\phi}$; ruído ligado com R_sp = 0).
+- Notebook: seção 7 nova (ruído), CW passa a ser a seção 8; textos das seções 2, 3 e 6
+  atualizados para o R_sp novo.
+- Os testes do kernel continuam usando o R_sp antigo (3,97e-16) como entrada nos casos
+  deterministas: lá ele é só um número de entrada e os testes não dependem do resolve.
+
+**Atualização (2026-10-15): passo 5 (pequeno sinal).** `kernels/laser/small_signal.py`:
+`linearize`, `modulation_response` (Eq. 3.3.19), `normalized_modulation_response`
+(Eq. 3.3.22), `bandwidth_3db` (Eq. 3.3.23, |H| = 1/2).
+- **[Decidido: Gabriel, 2026-10-15]** Linearização completa, sem descartar os termos de
+  ordem ε·S; coincide com o Agrawal quando ε = 0.
+- **[Decidido: Gabriel, 2026-10-15]** Compressão de ganho do Agrawal: ε_NL = 1e-7 por fóton,
+  ε = ε_NL·V (1,8e-23 m³ no laser do professor).
+- **[Fato: verificado rodando]** Com o ε do notebook do professor (1e-22 m³), ε·S passa de 0,2
+  a partir de ~40 mA; a fórmula literal do livro erra Ω_R em 25 % já em 31 mA e prevê
+  ressonância onde a simulação é superamortecida (60 mA: zero cruzamentos).
+- Testes em `tests/test_small_signal.py` (5), inclusive a medição por lock-in com o
+  integrador (amplitude a 1,5 %, fase a 0,02 rad); 4 mutações novas.
+- Notebook: seção 5 nova (pequeno sinal) e seção 6 refeita (pulso de I_th a 3·I_th,
+  potência em watts, **[Decidido]** δν > 0 = azul).
 
 **Atualização (2026-10-08, segunda rodada).** CW e equações de taxa agora estão juntos em
 `kernels/laser/` no branch `laser-estado-estacionario` (pasta `Área de Trabalho\simcopy\laser`):

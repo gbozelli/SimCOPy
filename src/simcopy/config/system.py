@@ -17,7 +17,6 @@ class Pol(Enum):
     @property
     def n_pol(self) -> int: return self.value
 
-# --------------------------------------------------------------- modulacao ---
 @dataclass(frozen=True)
 class Modulation:
     name: str
@@ -33,9 +32,9 @@ QAM64 = Modulation("64QAM", 6)
 IMDD_FORMATS = {"OOK": OOK, "PAM4": PAM4}
 DCS_FORMATS = {"QPSK": QPSK, "16QAM": QAM16, "32QAM": QAM32, "64QAM": QAM64}
 
-# ---------------------------------------------------------------- devices ----
 @dataclass(frozen=True)
-class LaserConfig:
+class CWLaserConfig:
+    """Laser quase-monocromatico (modelo B, docs/laser.md, secao 2)."""
     power: float = 1e-3           # W
     linewidth: float = 500e3      # Hz
 
@@ -96,13 +95,12 @@ class ADCConfig:
 @dataclass(frozen=True)
 class DirectModulation:
     scheme: Literal["direct"] = "direct"
-    laser: LaserConfig = field(default_factory=LaserConfig)
-    chirp_alpha: float = 0.0
+    laser: CWLaserConfig = field(default_factory=CWLaserConfig)
 
 @dataclass(frozen=True)
 class ExternalModulation:
     scheme: Literal["external"] = "external"
-    laser: LaserConfig = field(default_factory=LaserConfig)
+    laser: CWLaserConfig = field(default_factory=CWLaserConfig)
     mzm: MZMConfig = field(default_factory=MZMConfig)
 
 @dataclass(frozen=True)
@@ -118,14 +116,14 @@ class IMDDReceiver:
 
 @dataclass(frozen=True)
 class CoherentTransmitter:
-    laser: LaserConfig = field(default_factory=LaserConfig)
+    laser: CWLaserConfig = field(default_factory=CWLaserConfig)
     mzm: MZMConfig = field(default_factory=MZMConfig)
     iq: IQImpairments = field(default_factory=IQImpairments)
     rolloff: float = 0.18
 
 @dataclass(frozen=True)
 class CoherentReceiver:
-    lo: LaserConfig = field(default_factory=LaserConfig)
+    lo: CWLaserConfig = field(default_factory=CWLaserConfig)
     lo_frequency_offset: float = 500e6           # [D-20]: fica aqui, nao no comum
     photodiode: PhotodiodeConfig = field(default_factory=PhotodiodeConfig)
     adc: ADCConfig = field(default_factory=ADCConfig)
@@ -175,7 +173,6 @@ class CoherentChannel:
 
 ChannelConfig = Union[IMDDChannel, CoherentChannel]
 
-# ------------------------------------------------------------------ enlace ---
 @dataclass(frozen=True)
 class BirefringenceConfig:
     """[D-17] e [D-18] fechadas com os valores do arquivo VPI."""
