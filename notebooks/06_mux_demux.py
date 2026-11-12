@@ -39,6 +39,10 @@
 # O kernel `bandpass_response` tem a máscara retangular do professor e a supergaussiana
 # $H(f) = \exp[-\tfrac{\ln 2}{2}(2(f - f_c)/B)^{2n}]$, com $|H|^2 = 1/2$ nas bordas (n = 1 é a
 # gaussiana). **[Proposta]** É a minha leitura do "Gaussian de ordem 3" do VPI, a confirmar.
+#
+# Frequências são ópticas relativas (positivo = azul), na convenção do Agrawal decidida para o
+# projeto em 2026-10-22: o kernel leva um canal para +Δ com $e^{-i2\pi\Delta t}$, e a grade dá a
+# frequência de cada bin em `TimeGrid.optical_frequency`.
 
 # %%
 import numpy as np
@@ -59,7 +63,7 @@ SISTEMA = SystemConfig(channels=tuple(CoherentChannel(index=i, symbol_rate=RS, s
 OFFS = np.array(SISTEMA.channel_offsets())           # desvios dos canais [Hz], da configuração
 FS, N = 600e9, 2 ** 16                               # bins de 9,155 MHz: 37,5 GHz = 4096 bins
 grade = TimeGrid(FS, N)
-t, f = grade.time, grade.freq
+t, f = grade.time, grade.optical_frequency            # frequência óptica relativa de cada bin
 
 def espectro_rc(freq):
     """Espectro de cosseno levantado (não a raiz): o canal ocupa |f| ≤ (1 + ρ)R_s/2 = 30 GHz."""
@@ -108,7 +112,7 @@ for i, (nome, (kind, Bf, n)) in enumerate(filtros.items()):
     ax[1].plot((t - t[N // 2]) * 1e12, np.abs(h) / np.abs(h).max(), color=C4[i], label=nome)
 for o in OFFS:
     ax[0].axvline(o / 1e9, color="0.85", lw=0.6, zorder=0)
-ax[0].set(xlim=(-200, 200), ylim=(-60, 3), xlabel="f [GHz] (eixo da FFT)", ylabel="dB",
+ax[0].set(xlim=(-200, 200), ylim=(-60, 3), xlabel="frequência óptica relativa [GHz]", ylabel="dB",
           title="(a) espectro e |H|² dos filtros no canal 2 (−37,5 GHz)")
 ax[1].set(xlim=(-60, 60), yscale="log", ylim=(1e-4, 1.5), xlabel="t [ps]",
           ylabel="|h(t)| normalizada", title="(b) resposta ao impulso")
@@ -164,7 +168,7 @@ fig.tight_layout()
 # arredondamento (o ~1e-12 vem da fase $2\pi f t$ com $t$ até 109 ns), com ou sem os vizinhos: o
 # invariante da arquitetura vale para esse filtro e essa guarda. Na supergaussiana de ordem 3 o
 # erro é quase o mesmo com e sem vizinhos: domina a distorção do próprio canal (as bordas do
-# espectro de 60 GHz são atenuadas). Na gaussiana de 70 GHz o erro com os vizinhos é seis vezes o do
+# espectro de 60 GHz são atenuadas). Na gaussiana de 70 GHz o erro com os vizinhos é cinco vezes o do
 # canal sozinho: ali domina a interferência dos canais vizinhos (seção 3).
 
 # %% [markdown]

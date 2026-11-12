@@ -61,6 +61,8 @@ def ssfm_step_resolves_nonlinearity(system, simulation, res):
     if p is None:
         return v
     for i, (span, rf) in enumerate(zip(system.link.spans, res.fibers)):
+        if rf.gamma == 0.0:              # sem Kerr: comprimento nao linear infinito
+            continue
         l_nl = 1.0 / (rf.gamma * p)
         if simulation.ssfm_max_step > 0.1 * l_nl:
             v.append(Violation("SSFMStepResolvesNonlinearity", Severity.WARNING,
@@ -95,9 +97,50 @@ def dsp_rate_divides_simulation_rate(system, simulation, res):
                 f"{', '.join(str(d) for d in range(1, sim + 1) if sim % d == 0 and d <= 8)})."))
     return v
 
+MIN_MEASURED_SYMBOLS = 100
+
+def edge_guard_fits_window(system, simulation, res):
+    """A medida de um canal IMDD descarta edge_guard_symbols simbolos em cada borda da janela,
+    contaminados pela emenda da janela periodica (config/resolve.py; docs/sistema_imdd.md,
+    secao 3). Sem simbolos sobrando nao ha medida (erro). Com menos de MIN_MEASURED_SYMBOLS,
+    cerca de 50 por nivel, o desvio de cada nivel sai com erro relativo acima de 1/sqrt(2*50) =
+    10 % (aviso)."""
+    v = []
+    for c, rc in zip(system.channels, res.channels):
+        if c.kind != "imdd":
+            continue
+        g, n = rc.edge_guard_symbols, rc.n_symbols
+        measured = n - 2 * g
+        if measured < 2:
+            v.append(Violation("EdgeGuardFitsWindow", Severity.ERROR,
+                f"Canal {c.index}: a guarda de {g} simbolos em cada borda (dispersao acumulada "
+                f"do enlace e memoria do transmissor) nao deixa simbolos para medir numa janela "
+                f"de {n}.",
+                f"n_symbols >= {2 * g + MIN_MEASURED_SYMBOLS}."))
+        elif measured < MIN_MEASURED_SYMBOLS:
+            v.append(Violation("EdgeGuardFitsWindow", Severity.WARNING,
+                f"Canal {c.index}: so {measured} dos {n} simbolos entram na medida (guarda de {g} "
+                f"em cada borda); o fator Q sai com erro estatistico acima de ~10 %.",
+                f"n_symbols >= {2 * g + MIN_MEASURED_SYMBOLS}."))
+    return v
+
+def channel_seeds_are_distinct(system, simulation, res):
+    """Canais com a mesma semente transmitem os mesmos bits: era o defeito do rascunho, em que os
+    4 canais WDM carregavam a mesma sequencia (correcao C-1)."""
+    seen = {}
+    v = []
+    for c in system.channels:
+        if c.seed in seen:
+            v.append(Violation("ChannelSeedsAreDistinct", Severity.WARNING,
+                f"Canais {seen[c.seed]} e {c.index} tem a mesma semente ({c.seed}): transmitem "
+                f"os mesmos bits.",
+                "Uma semente por canal."))
+        seen.setdefault(c.seed, c.index)
+    return v
+
 ALL = (nyquist_satisfied, integer_samples_per_symbol, channels_do_not_overlap,
        fft_size_is_efficient, ssfm_step_resolves_nonlinearity, window_fits_symbols,
-       dsp_rate_divides_simulation_rate)
+       dsp_rate_divides_simulation_rate, edge_guard_fits_window, channel_seeds_are_distinct)
 
 def validate(system: SystemConfig, simulation: SimulationConfig, raise_on_error=False):
     res = resolve(system, simulation)

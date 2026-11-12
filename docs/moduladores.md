@@ -218,3 +218,24 @@ do IQ?
 **M9. Potência de saída.** O VPI tem `Renormalize = On`. A saída do modulador deve ser
 laser × perdas × perda de modulação (o que o roadmap pede como aceitação: "potência média da
 saída bate com laser × perdas"), ou renormalizada?
+
+---
+
+## 8. Decisões de 2026-10-22 (`docs/duvidas_abertas.md`)
+
+- **M1 [Decidido: Gabriel]** Convenção do Agrawal. O sinal de θ no IQ só precisa combinar com o
+  receptor coerente.
+- **M4 [Decidido: Gabriel]** Extinção finita pelo desbalanço dos braços (professor), com
+  $a_1 + a_2 = 10^{-IL/20}$ e $(a_1 - a_2)/(a_1 + a_2) = 10^{-ER/20}$.
+- **M5 [Decidido: Gabriel]** S21 com Bessel de ordem 3; o VPI assume banda infinita (sem banda
+  configurada, o bloco não filtra).
+- **M6 [Decidido: Gabriel]** Pré-distorção: o VPI tem. Aplicado: `arcsin_predistortion` no kernel
+  (no nulo, $V = (V_\pi/\pi)\arcsin(m\,s)$ dá campo $m\,s$); painel (d) da seção 6 do notebook 03.
+- **M7 [Decidido: Gabriel]** Skew por fase linear na FFT.
+- **M8 [Decidido: Gabriel, parcial]** Estrutura do VPI: laser dividido meio a meio entre X e Y.
+  **[Aberto]** Os 30 dB de `Splitter/CombinerExtinctionRatio`: vazamento entre X e Y ou acopladores
+  do IQ?
+- **M9 [Decidido: Gabriel]** Renormalizar a saída. **[Minha leitura, a confirmar]** para a potência
+  do laser (`AveragePower` do VPI).
+- **Desbalanço de ganho I/Q [Decidido: Gabriel]** Entra, com padrão 0. Aplicado:
+  `IQImpairments.gain_imbalance_db = 0.0` e `q_gain` no `iq_field`.

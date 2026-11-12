@@ -27,8 +27,13 @@ def amplify(field, gain, psd, sampling_rate, rng=None):
     A ASE de cada polarizacao e ruido gaussiano circular de densidade `psd` [W/Hz] na banda
     inteira da grade (largura `sampling_rate`): potencia psd*sampling_rate por polarizacao,
     metade em cada quadratura. Sem `rng`, so o ganho (amplificador sem ruido).
+
+    Um campo de uma polarizacao (1, N) sai como (2, N), com Y = 0 antes do ruido: a ASE e
+    despolarizada e entra nas duas (decisao de 2026-10-22).
     """
     field = np.asarray(field, dtype=complex)
+    if field.shape[0] == 1:
+        field = np.vstack([field, np.zeros_like(field)])
     out = np.sqrt(gain) * field
     if rng is not None and psd > 0.0:
         sigma = np.sqrt(psd * sampling_rate / 2.0)

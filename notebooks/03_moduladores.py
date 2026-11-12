@@ -18,7 +18,7 @@
 # `DPQAM_transmitter`). O texto separa **fato** (com a fonte) de **dedução**.
 #
 # **Ainda não há blocos de modulador** (`ExternalModulator`, `IQModulator`): a configuração
-# depende das dúvidas M1–M9 do guia. Aqui só o kernel, que é física do Agrawal.
+# depende das dúvidas que faltam (`docs/duvidas_abertas.md`). Aqui só o kernel.
 
 # %% [markdown]
 # ## 0. Equações
@@ -45,7 +45,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from simcopy.kernels.modulator.mzm import mzm_field, push_pull, iq_field
+from simcopy.kernels.modulator.mzm import mzm_field, push_pull, iq_field, arcsin_predistortion
 from simcopy.components.tx.laser import CWLaser
 from simcopy.config.system import CWLaserConfig
 from simcopy.core.context import SimContext
@@ -210,8 +210,9 @@ print(f"extinção: dedução {er_ana:.4f} dB | kernel numa grade de 401 tensõe
 # braços de 2 e 3 dB a transmissão não desce de −27,3 dB, 24,8 dB abaixo do máximo de −2,5 dB.
 # Em (c) a extinção medida no kernel coincide com a dedução porque a grade de tensões passa
 # pelo máximo e pelo nulo ($\pm V_\pi/4$). Em (b) a fase com braços iguais só salta de π no nulo; com braços
-# desbalanceados ela gira continuamente perto dele. O VPI usa 30 dB (dúvida M4 do guia: como
-# mapear a extinção e a perda de inserção em amplitudes de braço).
+# desbalanceados ela gira continuamente perto dele. **[Decidido: Gabriel, 2026-10-22]** O bloco
+# usa esse modelo do professor; os 30 dB de extinção e os 6 dB de perda do VPI viram amplitudes
+# de braço com $a_1 + a_2 = 10^{-IL/20}$ e $(a_1 - a_2)/(a_1 + a_2) = 10^{-ER/20}$.
 #
 # Testes: issue #15.
 
@@ -272,7 +273,8 @@ print(f"braços de 2 e 3 dB com a = V_π/4: {extincao(ook(VPI / 4, ARMS_PROF)):.
 # %% [markdown]
 # **Leitura.**
 # - (b) Com $a = V_\pi/4$ a potência vai de 0 a 1 mW, a potência do laser (o MZM ideal não tem
-#   perda de inserção; a do VPI, 6 dB, ainda não entrou: dúvida M9). O ruído de fase do laser
+#   perda de inserção; a do VPI, 6 dB, entra no bloco, que renormaliza a saída: decisão de
+#   2026-10-22). O ruído de fase do laser
 #   não aparece na potência, porque o MZM em push-pull só multiplica a amplitude. Com braços
 #   desbalanceados o máximo cai para −2,5 dB e o nível 0 sobe.
 # - (c) A extinção cai rápido quando o sinal não cobre a excursão inteira: em $a = 0{,}1V_\pi$,
@@ -338,7 +340,13 @@ fig.tight_layout()
 # pontos externos (razão externo/interno $\sin(\pi/2)/\sin(\pi/6) = 2$ em vez de 3).
 #
 # **[Fato: VPI]** `PhaseShiftX = -90+5` graus: o VPI usa −90° entre os braços e põe 5° de
-# desbalanço. O professor usa +90°. O sinal espelha a constelação (dúvida M1).
+# desbalanço. O professor usa +90°. O sinal espelha a constelação; com a convenção do Agrawal
+# decidida (2026-10-22), ele só precisa combinar com o receptor coerente.
+#
+# **[Decidido: Gabriel, 2026-10-22]** O VPI tem pré-distorção (`PreDistortion = Yes`).
+# **[Dedução, da Eq. 10.1.4 no nulo]** Como o campo de cada braço é $\sin(\pi V/V_\pi)$, a tensão
+# $V = (V_\pi/\pi)\arcsin(m\,s)$ dá campo exatamente $m\,s$, com $s$ normalizado em [−1, 1] e $m$ a
+# excursão (kernel `arcsin_predistortion`). O painel (d) usa isso com a excursão inteira.
 
 # %%
 niveis = np.array([-3, -1, 1, 3])
@@ -352,7 +360,8 @@ def qam16_ana(a, theta):
     return 0.5 * (np.sin(np.pi * VI * a / VPI) + np.exp(1j * theta) * np.sin(np.pi * VQ * a / VPI))
 
 pequeno, cheio = 0.02 * VPI, VPI / 6
-fig, ax = plt.subplots(1, 3, figsize=(12.5, 4.0))
+fig, ax = plt.subplots(2, 2, figsize=(10, 9.4))
+ax = ax.ravel()
 casos6 = [(ax[0], pequeno, np.pi / 2, "(a) sinal pequeno, a = 0,02 V_π"),
           (ax[1], cheio, np.pi / 2, "(b) excursão inteira, 3a = V_π/2"),
           (ax[2], cheio, np.pi / 2 + np.deg2rad(5), "(c) como (b), com 5° de desbalanço")]
@@ -371,6 +380,18 @@ for a_, a, th, titulo in casos6:
 ax[0].plot(qpsk.real / np.max(qpsk.real), qpsk.imag / np.max(qpsk.real), "s", ms=9, mfc="none",
            color=C3[1], label="QPSK (±V_π/2)")
 ax[0].legend(fontsize=6.5, loc="upper left")
+# (d) excursão inteira com pré-distorção: níveis normalizados em [−1, 1] e m = 1
+s_pd = iq_field(1.0, arcsin_predistortion(VI / 3, VPI, 1.0), arcsin_predistortion(VQ / 3, VPI, 1.0),
+                VPI, VPI, np.pi / 2)
+ref_pd = 0.5 * (VI / 3 + 1j * VQ / 3)
+esc_pd = np.max(np.abs(s_pd.real))
+ax[3].plot(ref_pd.real / esc_pd, ref_pd.imag / esc_pd, "+", ms=12, color="k", label="grade uniforme")
+ax[3].plot(s_pd.real / esc_pd, s_pd.imag / esc_pd, "o", mfc="none", color=C3[0], label="kernel")
+for g in niveis / 3:
+    ax[3].axvline(g, color="0.85", lw=0.6, zorder=0); ax[3].axhline(g, color="0.85", lw=0.6, zorder=0)
+ax[3].set(xlim=(-1.4, 1.4), ylim=(-1.4, 1.4), aspect="equal", xlabel="I (normalizado)",
+          ylabel="Q (normalizado)", title="(d) excursão inteira com pré-distorção arco-seno")
+ax[3].legend(fontsize=6.5, loc="upper left")
 fig.suptitle("6. Modulador em quadratura (θ = π/2, nulo): 16QAM; linhas cinza = grade uniforme")
 fig.tight_layout()
 s_cheio = qam16(cheio, np.pi / 2)
@@ -378,6 +399,9 @@ print(f"razão externo/interno em (b): {np.max(np.abs(s_cheio.real)) / np.min(np
       f"(sem compressão: 3) | em (a): "
       f"{np.max(np.abs(qam16(pequeno, np.pi/2).real)) / np.min(np.abs(qam16(pequeno, np.pi/2).real)):.4f}")
 print("erro máximo kernel × dedução:", [f"{e:.1e}" for e in erros6])
+print(f"com pré-distorção: razão externo/interno {np.max(np.abs(s_pd.real)) / np.min(np.abs(s_pd.real)):.4f} | "
+      f"erro contra a grade uniforme {np.max(np.abs(s_pd - ref_pd)):.1e} | potência média "
+      f"{np.mean(np.abs(s_pd)**2):.4f} (sem pré-distorção: {np.mean(np.abs(s_cheio)**2):.4f})")
 print(f"θ = −π/2 (VPI): símbolo (+3, +3) em {qam16(cheio, -np.pi/2)[np.argmax(VI + VQ)]:.4f}; "
       f"θ = +π/2 (professor): em {qam16(cheio, np.pi/2)[np.argmax(VI + VQ)]:.4f}")
 
@@ -386,19 +410,20 @@ print(f"θ = −π/2 (VPI): símbolo (+3, +3) em {qam16(cheio, -np.pi/2)[np.argm
 # - (a) Com sinal pequeno a grade é quadrada e uniforme (razão 3,0), mas a potência de saída
 #   é pequena: é a escolha do código do professor ($K_{mod}$ = 0,1 V com $V_\pi$ = 2,5 V).
 # - (b) Com a excursão inteira os pontos externos se aproximam dos internos (razão 2): a
-#   constelação deixa de ser uniforme, o que custa margem de ruído. O `PreDistortion = Yes` do
-#   VPI provavelmente compensa isso com arco-seno no sinal elétrico (dúvida M6).
+#   constelação deixa de ser uniforme, o que custa margem de ruído.
 # - (c) Com 5° de desbalanço o eixo Q tomba e a grade vira um losango: é o impairment do VPI
 #   (`PhaseShiftX = -90+5`), que o `IQImpairments.phase_imbalance_deg` vai controlar.
+# - (d) Com a pré-distorção arco-seno, a mesma excursão inteira dá a grade uniforme de novo
+#   (razão 3, erro no arredondamento), com mais potência que o sinal pequeno de (a): é o que o
+#   VPI faz.
 # - O sinal de θ espelha a constelação em torno do eixo I (saída da célula): com −90°, o
-#   símbolo (+3, +3) sai no quarto quadrante. Qual sinal usar depende da convenção de frequência
-#   do projeto (dúvida M1).
+#   símbolo (+3, +3) sai no quarto quadrante. Ele só precisa combinar com o receptor coerente.
 #
 # Testes: issue #15.
 #
 # ## Próximos passos (guia, seções 6 e 7)
 #
-# - Responder às dúvidas M1–M9 do guia.
+# - Responder às dúvidas que faltam (`docs/duvidas_abertas.md`).
 # - Blocos `ExternalModulator` (IMDD) e `IQModulator` (coerente, SP e DP) em
 #   `components/tx/modulator.py`, com a configuração decidida (polarização, escala do sinal,
 #   extinção, S21, perdas, skew, desbalanço).

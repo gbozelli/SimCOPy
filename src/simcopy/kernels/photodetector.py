@@ -11,8 +11,9 @@ O ruido e somado antes do filtro do receptor, como no professor e no Agrawal (Eq
 """
 from __future__ import annotations
 import numpy as np
-from scipy import signal
 from ..core.units import Q_ELECTRON, K_BOLTZMANN
+# Os filtros moraram aqui ate 2026-11-12; continuam importaveis deste modulo.
+from .filters import lowpass_response, noise_bandwidth, apply_response  # noqa: F401
 
 def photocurrent(field, responsivity, dark_current=0.0):
     """Corrente media R*(|A_x|^2 + |A_y|^2) + I_d [A] de um campo (n_pol, N) (Eq. 4.1.1)."""
@@ -35,28 +36,3 @@ def receiver_noise(current, sampling_rate, rng, thermal=0.0, shot=True):
     if shot:
         var = var + Q_ELECTRON * np.maximum(current, 0.0) * sampling_rate
     return np.sqrt(var) * rng.standard_normal(current.shape)
-
-def lowpass_response(freq, bandwidth, kind, order):
-    """Resposta em frequencia H(f) de um passa-baixas analogico com -3 dB em `bandwidth` [Hz].
-
-    kind = "bessel" (fase quase linear) ou "butterworth"; `freq` no eixo da FFT [Hz].
-    """
-    wn = 2 * np.pi * bandwidth
-    if kind == "bessel":
-        b, a = signal.bessel(order, wn, analog=True, norm="mag")
-    elif kind == "butterworth":
-        b, a = signal.butter(order, wn, analog=True)
-    else:
-        raise ValueError(f"filtro desconhecido: {kind!r}")
-    return signal.freqs(b, a, 2 * np.pi * np.asarray(freq))[1]
-
-def noise_bandwidth(response, freq):
-    """Banda equivalente de ruido delta_f = integral de |H|^2 nas frequencias positivas (Eq. 4.4.4),
-    normalizada por |H(0)|^2, a partir da resposta amostrada na grade da FFT."""
-    df = abs(freq[1] - freq[0])
-    h2 = np.abs(response) ** 2
-    return 0.5 * np.sum(h2) * df / h2[0]
-
-def apply_response(current, response):
-    """Filtra uma corrente real pela resposta H(f) dada no eixo da FFT."""
-    return np.fft.ifft(np.fft.fft(current) * response).real
