@@ -471,7 +471,9 @@ print(f"pico de {Pe6p.max()*1e3:.1f} mW em {(t6p[k_pico]-t_ini)*1e12:.0f} ps ap�
 #   descrito para a Fig. 3.16 do Agrawal.
 # - Antes do pulso o chirp não é zero, e sim −0,64 GHz: no estacionário em $I_{th}$ o ganho
 #   fica um pouco abaixo da perda ($G = 1/\tau_p - R_{sp}/S$), e a fase gira devagar. É um
-#   desvio constante da frequência óptica que depende da corrente de polarização.
+#   desvio constante da frequência óptica que depende da corrente de polarização. O bloco do
+#   transmissor (seção 9) desconta esse desvio na polarização, para a portadora ficar na
+#   frequência do canal (decisão de 2026-10-22).
 #
 # Sem forma fechada para a forma do pulso.
 
@@ -630,8 +632,10 @@ print(f"flutuação RMS de S em 2·I_th: {np.std(S7 / s7 - 1) * 100:.3f} %")
 # ## 8. Modelo B: laser quase-monocromático (CW)
 #
 # **Conceito.** Em modulação externa o laser opera em corrente constante e só a fase
-# flutua. O campo é $E(t) = \sqrt{P}\,e^{i[2\pi\Delta f\,t + \phi(t)]}$, com $\phi$ um passeio
-# aleatório (Agrawal, Eq. 3.3.33–3.3.37; código do professor `single_frequency_laser`).
+# flutua. O campo é $E(t) = \sqrt{P}\,e^{i[-2\pi\Delta f\,t + \phi(t)]}$, com $\phi$ um passeio
+# aleatório (Agrawal, Eq. 3.3.33–3.3.37; código do professor `single_frequency_laser`). Δf é o
+# desvio de frequência óptica (positivo = azul); o sinal de menos é a convenção do Agrawal,
+# decidida para o projeto em 2026-10-22 (o professor usa $+2\pi\Delta f\,t$).
 #
 # **Forma fechada** [dedução, guia seção 2.2]:
 #
@@ -735,7 +739,8 @@ y9 = dml9(x9, ctx9)
 y9_det = dataclasses.replace(dml9, noise=False)(x9, ctx9)
 cw9 = CWLaser(CWLaserConfig(power=y9.power, linewidth=1e6), F_LASER)(x9, ctx9)
 t9 = grade9.time
-chirp9 = np.gradient(np.unwrap(np.angle(y9_det.samples[0])), grade9.dt) / (2 * np.pi)
+# Convenção do Agrawal: δν = −(1/2π)·d(arg E)/dt (Eq. 2.4.12); o bloco devolve E ∝ exp(−iφ).
+chirp9 = -np.gradient(np.unwrap(np.angle(y9_det.samples[0])), grade9.dt) / (2 * np.pi)
 
 fig, ax = plt.subplots(3, 1, figsize=(9, 7), sharex=True)
 ax[0].plot(t9 * 1e9, dml9.current(x9) / R.threshold_current, color="k")
@@ -750,7 +755,7 @@ ax[2].set(xlabel="t [ns]", ylabel="δν [GHz]", title="chirp da saída sem ruíd
 fig.suptitle("9. DirectModulatedLaser com OOK sintético a 10 Gb/s")
 fig.tight_layout()
 um, zero = nrz9 > 0.99, nrz9 < 0.01
-print(f"saída: {y9.samples.shape}, {y9.domain.value}, f0 = {y9.f0/1e12:.5f} THz, "
+print(f"saída: {y9.samples.shape}, {y9.domain.value}, f0 = {y9.f0/1e9:.1f} GHz (desvio do canal), "
       f"canal {y9.channel_id}, potência média {y9.power*1e3:.2f} mW")
 print(f"δν médio nos bits 1: {chirp9[um].mean()/1e9:.2f} GHz | nos bits 0: "
       f"{chirp9[zero].mean()/1e9:.2f} GHz")
@@ -760,7 +765,8 @@ print(f"CWLaser com a mesma potência: {cw9.samples.shape}, potência {cw9.power
 # %% [markdown]
 # **Leitura.** (Os números citados estão na saída da célula.)
 # - A saída tem o formato de todo campo óptico do simulador: (2, 2400), domínio óptico,
-#   f0 do canal e o mesmo canal da entrada. O `CWLaser` devolve o mesmo formato, com |X|²
+#   f0 = desvio do canal em relação ao centro da banda (0 aqui; decisão de 2026-11-12) e o
+#   mesmo canal da entrada. O `CWLaser` devolve o mesmo formato, com |X|²
 #   constante.
 # - A luz segue os bits, mas não é uma cópia da corrente: cada borda de subida gera um pico
 #   de relaxação (15–17 mW contra ~9 mW do estacionário em 3·I_th, seção 6), e um bit "1"
@@ -773,5 +779,100 @@ print(f"CWLaser com a mesma potência: {cw9.samples.shape}, potência {cw9.power
 #   compressão de ganho, a frequência no estacionário depende da potência. A excursão de
 #   frequência (dezenas de GHz) é maior que a banda do sinal de 10 Gb/s: é o motivo dado pelo
 #   Agrawal (seção 3.4.2) para a modulação direta ser rara a 5 Gb/s ou mais.
+# - A referência de frequência é o estacionário na polarização (1,2·I_th): o bloco desconta o
+#   desvio dele (decisão de 2026-10-22), e num 0 longo a frequência tende à do canal. A média
+#   negativa nos bits 0 (saída da célula) vem dos transientes depois das descidas.
 #
 # Testes: issue #14.
+
+# %% [markdown]
+# ### 9.1 Espectros
+#
+# O espectro óptico mostra quanto o chirp alarga o sinal. Para separar a contribuição do chirp,
+# a saída do laser é comparada com um campo de **mesma intensidade e fase constante**,
+# $\sqrt{P_e(t)}$: é a modulação de intensidade "pura", o que um modulador externo ideal daria com
+# a mesma forma de pulso. Entram também a saída com ruído de Langevin e um laser CW de mesma
+# potência média (1 MHz de largura de linha).
+#
+# Usa-se uma sequência de 256 bits (25,6 ns), para resolução de 39 MHz. O eixo é a frequência
+# óptica relativa (`TimeGrid.optical_frequency`, convenção do Agrawal): positivo = azul.
+#
+# O painel (b) é o espectro elétrico da potência óptica $P_e(t)$, comparado com o do sinal elétrico
+# de entrada: a razão entre os dois é a resposta de modulação do laser (seção 5), em grande sinal.
+
+# %%
+bits91 = np.random.default_rng(4).integers(0, 2, 256)
+nrz91 = np.convolve(np.repeat(bits91.astype(float), SPS9), np.ones(30) / 30, mode="same")
+grade91 = TimeGrid(1e12, nrz91.size)
+x91 = Waveform(samples=nrz91.astype(complex)[None, :], grid=grade91, domain=Domain.ELECTRICAL,
+               geometry=SignalGeometry(n_symbols=bits91.size, bits_per_symbol=1,
+                                       samples_per_symbol=SPS9, n_pol=1),
+               channel_id=0)
+ctx91 = SimContext(grid=grade91, root_seed=1)
+y91 = dml9(x91, ctx91).samples[0]                                         # com ruído
+y91_det = dataclasses.replace(dml9, noise=False)(x91, ctx91).samples[0]   # sem ruído
+pe91 = np.abs(y91_det) ** 2
+sem_chirp = np.sqrt(pe91).astype(complex)                                 # mesma intensidade, sem fase
+cw91 = CWLaser(CWLaserConfig(power=pe91.mean(), linewidth=1e6), F_LASER)(x91, ctx91).samples[0]
+f91 = np.fft.fftshift(grade91.optical_frequency)
+
+def suaviza(S, n=26):
+    """Média móvel de n bins (26 bins = 1 GHz) na potência linear, para ler o espectro."""
+    return np.convolve(S, np.ones(n) / n, mode="same")
+
+JANELA = np.hanning(nrz91.size)
+
+def por_bin_dbm(campo):
+    """Potência por bin da FFT [dBm], com janela de Hann (a fase do laser direto não fecha
+    nas bordas da janela, e sem ela o salto vaza para o espectro todo) e média móvel de 1 GHz."""
+    S = np.fft.fftshift(np.abs(np.fft.fft(campo * JANELA) / campo.size) ** 2) / np.mean(JANELA ** 2)
+    return 10 * np.log10(suaviza(S) + 1e-30) + 30
+
+def banda_99(campo):
+    """Largura da faixa centrada na portadora que contém 99 % da potência óptica."""
+    S = np.fft.fftshift(np.abs(np.fft.fft(campo * JANELA)) ** 2)
+    c = np.argmin(np.abs(f91))
+    acum = [S[c - k:c + k + 1].sum() for k in range(S.size // 2)]
+    k = np.argmax(np.array(acum) >= 0.99 * S.sum())
+    return 2 * k * abs(f91[1] - f91[0])
+
+fig, ax = plt.subplots(1, 2, figsize=(12.5, 3.8))
+for campo, nome, cor, lw in [(y91, "laser direto, com ruído", C3[0], 0.4),
+                             (y91_det, "laser direto, sem ruído", C3[2], 0.7),
+                             (sem_chirp, "mesma intensidade, sem chirp", "k", 0.7),
+                             (cw91, "CW de mesma potência", C3[1], 0.7)]:
+    ax[0].plot(f91 / 1e9, por_bin_dbm(campo), color=cor, lw=lw, label=nome)
+ax[0].set(xlim=(-60, 60), ylim=(-90, -10), xlabel="frequência óptica relativa [GHz]",
+          ylabel="potência por bin [dBm]", title="(a) espectro óptico (média móvel de 1 GHz)")
+ax[0].legend(fontsize=6.5, loc="upper left")
+fe = grade91.freq
+pos = (fe > 0) & (fe < 40e9)
+X = suaviza(np.abs(np.fft.fft(nrz91 - nrz91.mean())) ** 2)
+P = suaviza(np.abs(np.fft.fft(pe91 - pe91.mean())) ** 2)
+ax[1].semilogy(fe[pos] / 1e9, X[pos] / X[pos].max(), color="0.6", lw=0.6, label="sinal elétrico x(t)")
+ax[1].semilogy(fe[pos] / 1e9, P[pos] / P[pos].max(), color=C3[0], lw=0.6, label="potência óptica $P_e(t)$")
+ax[1].set(ylim=(1e-7, 2), xlabel="frequência elétrica [GHz]", ylabel="espectro normalizado",
+          title="(b) espectro da intensidade (média móvel de 1 GHz)")
+ax[1].legend(fontsize=6.5)
+fig.suptitle("9.1 Espectros do laser de modulação direta (OOK a 10 Gb/s, 1,2 a 3·I_th)")
+fig.tight_layout()
+for campo, nome in [(sem_chirp, "sem chirp"), (y91_det, "laser direto, sem ruído"),
+                    (y91, "laser direto, com ruído"), (cw91, "CW")]:
+    print(f"{nome}: 99 % da potência em {banda_99(campo)/1e9:.2f} GHz")
+
+# %% [markdown]
+# **Leitura.** (Números na saída da célula.)
+# - (a) Com a mesma intensidade, o campo sem chirp fica simétrico em torno da portadora, com 99 %
+#   da potência em ~27 GHz. A saída do laser direto ocupa ~96 GHz, 3,5 vezes mais, e é
+#   assimétrica: a maior parte vai para o azul (+f), com pico em ~6 GHz.
+#   É o chirp: o transitório nas bordas de subida (até +25 GHz) e o adiabático, que põe o bit 1
+#   alguns GHz acima do bit 0 (seção 9). O CW é uma linha só (1 MHz). O ruído de Langevin quase
+#   não muda o espectro do laser direto (as duas curvas se sobrepõem).
+# - (b) O sinal elétrico NRZ tem os nulos em 10, 20 e 30 GHz (múltiplos da taxa de bits). A
+#   potência óptica segue o sinal em baixa frequência, mas preenche os nulos e tem muito mais
+#   conteúdo acima de ~8 GHz: a resposta do laser não é linear em grande sinal, com os picos de
+#   relaxação nas bordas de subida (~10 GHz em 3·I_th, seção 5). As linhas em 10, 20 e 30 GHz
+#   aparecem porque subida e descida não são simétricas: sobra uma componente periódica na taxa
+#   de bits.
+# - Para o enlace, o que pesa é (a): o espectro mais largo do laser direto é o que a dispersão da
+#   fibra transforma em alargamento dos pulsos (notebook 01, seção 3).

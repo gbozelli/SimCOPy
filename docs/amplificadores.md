@@ -140,3 +140,26 @@ a banda WDM? O VPI usa `NoiseCenterFrequency = TxCarrierFrequency`.
 
 **A6. Banda do ruído.** ASE na banda inteira da grade, como o professor (o VPI representa o ruído
 fora da banda amostrada por "noise bins")?
+
+---
+
+## 8. Decisões de 2026-10-22 (`docs/duvidas_abertas.md`)
+
+- **Potência [Decidido: Gabriel]** Por canal: `AmplifierConfig.output_power` é por canal; o total é
+  N vezes.
+- **A1 [Decidido: Gabriel]** Agrawal: $n_{sp}$ pela Eq. 7.2.15 invertida (já é o kernel).
+- **A2 [Decidido: Gabriel]** Agrawal: $S_{ASE}$ em cada polarização (já é o kernel).
+- **A3 [Decidido: Gabriel; minha leitura, a confirmar]** Campo (1, N) vira (2, N) com Y = 0 e a ASE
+  entra nas duas polarizações. Aplicado no `amplify`.
+- **A4 [Decidido: Gabriel]** "Considere sempre o Agrawal; se houver conflito com o que definimos
+  para o sistema, vale o sistema." **[Minha leitura, a confirmar]** Modos e potência como na
+  configuração, ganho aplicado ao campo total (sinal + ASE), sem saturação (a configuração não tem).
+- A5 e A6 seguem abertas.
+
+## 9. Decisões de 2026-11-12 (`docs/sistema_imdd.md`, seção 7)
+
+- **Saturação [Decidido: Gabriel]** "Pode colocar". Aplicado no bloco `Amplifier`: `saturation_power`,
+  g = g0/(1 + P/Ps) (Agrawal, Exercício 7.2), ln G + (G − 1)·P_in/Ps = ln G0 com a potência média de
+  entrada, só no modo `fixed_gain`. **[Dúvida]** Saturação no modo controlado por potência (o VPI usa
+  `SaturationPowerType = OutputPower`): recusada até decidir.
+- Bloco `Amplifier` em `components/optical/amplifier.py` (seção 6 deste guia): feito.

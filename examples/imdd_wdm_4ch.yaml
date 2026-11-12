@@ -1,0 +1,42 @@
+# IMDD com 4 canais WDM: 4 x (laser CW -> MZM) -> mux -> 80 km de fibra padrao -> DCF ->
+# amplificador -> demux -> 4 fotodetectores (notebook 07, secao de multiplos canais).
+# Rodar:  simcopy run examples/imdd_wdm_4ch.yaml -o resultados/wdm
+# Guia: docs/sistema_imdd.md. Unidades do SI.
+
+defaults:
+  tx: &tx
+    driver: {filter_type: bessel, filter_order: 4, bandwidth_factor: 1.0}   # LPF do transmissor do VPI
+    frontend:
+      scheme: external
+      laser: {power: 1.0e-3, linewidth: 500.0e3}
+      mzm: {vpi: 5.0, vbias: 2.5, insertion_loss_db: 0.0, extinction_ratio_db: .inf}
+      drive_amplitude: 0.25
+  rx: &rx
+    # demux: supergaussiano de ordem 3 (a forma do VPI) com 3x a taxa de bits. Em 2026-11-12, com
+    # 50 GHz entre canais, filtros suaves de 20 a 50 GHz deram Q de 27 a 35; abaixo de 15 GHz o
+    # filtro corta o sinal (docs/sistema_imdd.md, secao 8). Sem padrao: escolha por cenario.
+    optical_filter: {bandwidth: 30.0e9, filter_type: supergaussian, filter_order: 3}
+    photodiode: {responsivity: 1.0, thermal_noise_density: 10.0e-12, shot_noise: true,
+                 bandwidth_factor: 1.15, filter_type: bessel, filter_order: 4}
+
+system:
+  center_wavelength: 1550.0e-9
+  channel_spacing: 50.0e9              # canais em -75, -25, +25 e +75 GHz
+  channels:
+    - {index: 0, kind: imdd, modulation: OOK, symbol_rate: 10.0e9, seed: 1, launch_power_dbm: 0.0, tx: *tx, rx: *rx}
+    - {index: 1, kind: imdd, modulation: OOK, symbol_rate: 10.0e9, seed: 2, launch_power_dbm: 0.0, tx: *tx, rx: *rx}
+    - {index: 2, kind: imdd, modulation: OOK, symbol_rate: 10.0e9, seed: 3, launch_power_dbm: 0.0, tx: *tx, rx: *rx}
+    - {index: 3, kind: imdd, modulation: OOK, symbol_rate: 10.0e9, seed: 4, launch_power_dbm: 0.0, tx: *tx, rx: *rx}
+  link:
+    spans:
+      # fibra padrao: D = 16 ps/(nm km), 0,2 dB/km
+      - fiber: {length: 80.0e3, attenuation: 0.2e-3, dispersion: 16.0e-6}
+      # DCF (Agrawal, secao 8.2): D = -100 ps/(nm km), ~0,5 dB/km, A_eff ~ 20 um^2;
+      # 12,8 km zeram D*L (Eq. 8.2.3). O amplificador repoe as perdas: 16 + 6,4 = 22,4 dB.
+      - fiber: {length: 12.8e3, attenuation: 0.5e-3, dispersion: -100.0e-6, effective_area: 20.0e-12}
+        amplifier: {mode: fixed_gain, gain_db: 22.4, noise_figure_db: 5.0}
+
+simulation:
+  samples_per_symbol: 32               # fs = 320 GHz: a grade cobre os 4 canais
+  n_symbols: 2048
+  root_seed: 1

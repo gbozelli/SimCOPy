@@ -562,3 +562,19 @@ são históricas.
 **[Proposta, a confirmar]** O ganho não é limitado a G ≥ 0. O notebook do professor
 usa `max(G, 0)`; o Agrawal (Eq. 3.3.3) não limita. A diferença só aparece abaixo da
 transparência (N < N_tr), onde G < 0 representa absorção.
+
+---
+
+## 8. Decisões de 2026-10-22 (`docs/duvidas_abertas.md`)
+
+- **[Decidido: Gabriel]** Convenção de frequência do Agrawal no projeto inteiro (portadora
+  $e^{-i\omega_0 t}$). Aplicado: `cw_field` aplica o desvio como $e^{-i2\pi\Delta f t}$ (Δf > 0 = azul);
+  o `DirectModulatedLaser` devolve $\sqrt{P_e}\,e^{-i\phi}$, porque o δν > 0 da Eq. 3.4.1 é azul;
+  `TimeGrid.optical_frequency` dá a frequência óptica relativa de cada bin.
+- **[Decidido: Gabriel, "considere"; minha leitura, a confirmar]** O `DirectModulatedLaser`
+  desconta o desvio de frequência do estacionário na polarização $I_b$: a portadora fica na
+  frequência do canal e o chirp é a variação em torno dela.
+- **[Decidido: Gabriel]** Manter o piso e o limite S ≥ 0 do ruído de Langevin.
+- **[Decidido: Gabriel]** Fase inicial aleatória por canal (semente do canal), como já está.
+- **[Aberto]** G ≥ 0: a resposta "sim" e a regra "considere sempre o Agrawal" apontam em sentidos
+  opostos.

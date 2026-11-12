@@ -86,3 +86,24 @@ da FFT.
 
 **X6. Potência.** Potência de lançamento total ou por canal (decisão D-22, ainda aberta), e
 quem normaliza (C-20).
+
+---
+
+## 5. Decisões de 2026-10-22 (`docs/duvidas_abertas.md`)
+
+- **X2 [Decidido: Gabriel]** Convenção do Agrawal. Aplicado: o kernel recebe desvios e centros em
+  frequência óptica relativa (positivo = azul), leva um canal para +Δ com $e^{-i2\pi\Delta t}$, e os
+  filtros são avaliados em `TimeGrid.optical_frequency`. O notebook 06 usa esse eixo.
+- **X6 [Decidido: Gabriel]** Potência do amplificador por canal.
+- X1, X3, X4 e X5 seguem abertas.
+
+## 6. Decisões de 2026-11-12 (`docs/sistema_imdd.md`, seção 7)
+
+- **X1 [Decidido: Gabriel]** O mux leva o canal para a sua frequência; `Waveform.f0` é o desvio do canal
+  na saída do transmissor e 0 depois do mux.
+- **X3 [Decidido: Gabriel]** As duas: soma ideal por padrão (`SystemConfig.mux`) ou filtro por canal e
+  perda, como o VPI.
+- **X4 ["não sei"]** Filtro do demux configurável e sem padrão (`rx.optical_filter`); estudo na seção 8
+  do `docs/sistema_imdd.md`. Exemplo: supergaussiano de ordem 3 com 30 GHz para 10 Gb/s a 50 GHz.
+- **X5 [Decidido: Gabriel]** O demux deixa o canal na posição dele.
+- Blocos `Multiplexer` e `Demultiplexer` em `components/optical/wdm.py`: feitos.

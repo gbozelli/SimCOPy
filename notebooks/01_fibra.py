@@ -61,8 +61,9 @@
 # inversa do NumPy usa $e^{+i\omega t}$, então o eixo de frequência da FFT é o do Agrawal com
 # o sinal trocado: uma componente em $+f$ no eixo da FFT está, fisicamente, em $f_0 - f$
 # (lado vermelho). A dispersão ($\beta_2\omega^2$) não depende desse sinal; os gráficos de
-# espectro abaixo usam o eixo da FFT, e cada seção diz quando o sinal importa. (Pergunta em
-# aberto para o projeto inteiro: `docs/moduladores.md`, dúvida M1.)
+# espectro abaixo usam o eixo da FFT, e cada seção diz quando o sinal importa.
+# **[Decidido: Gabriel, 2026-10-22]** A convenção do Agrawal vale para o projeto inteiro; os
+# blocos usam `TimeGrid.optical_frequency` (= −freq) para a frequência óptica relativa.
 
 # %%
 import numpy as np
