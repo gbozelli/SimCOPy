@@ -33,7 +33,9 @@ line-length = 92
 [tool.importlinter]
 root_package = "simcopy"
 [[tool.importlinter.contracts]]
-name = "Camadas: core < config < validation < kernels < components < pipelines"
+# analysis (contas para graficos) so depende de core; plotting fica no topo: nenhum bloco,
+# kernel ou pipeline importa matplotlib (CLAUDE.md, regra 6).
+name = "Camadas: core < analysis < config < validation < kernels < components < pipelines < plotting"
 type = "layers"
-layers = ["simcopy.pipelines", "simcopy.components", "simcopy.kernels",
-          "simcopy.validation", "simcopy.config", "simcopy.core"]
+layers = ["simcopy.plotting", "simcopy.pipelines", "simcopy.components", "simcopy.kernels",
+          "simcopy.validation", "simcopy.config", "simcopy.analysis", "simcopy.core"]

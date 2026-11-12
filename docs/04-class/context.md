@@ -36,6 +36,7 @@ Laser de onda contínua - MZM - fibra - fotodetector
 Colocar duas fibras ao inves de uma (SMF, DCF)
 Colocar um aplificador depois da fibra DCF
 Múltiplos spans
+MZM
 Múltiplos canais (mux e demux, enlace compartilhado)
 
 ja tinha modulação no IMDD

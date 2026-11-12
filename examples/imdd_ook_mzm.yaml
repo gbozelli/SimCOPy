@@ -1,0 +1,32 @@
+# IMDD com modulacao externa: laser CW -> MZM -> fibra -> fotodetector (notebook 07, ultima celula).
+# Rodar:  simcopy run examples/imdd_ook_mzm.yaml -o resultados/mzm
+#         simcopy sweep examples/imdd_ook_mzm.yaml --param link.spans[0].fiber.length --range 20e3 40e3 1e3
+# Unidades do SI (W, Hz, m, s). Guia: docs/sistema_imdd.md.
+
+system:
+  center_wavelength: 1550.0e-9          # ou center_frequency; o outro e derivado por c
+  channels:
+    - index: 0
+      kind: imdd
+      modulation: OOK
+      symbol_rate: 10.0e9
+      seed: 1
+      tx:
+        driver: {filter_type: bessel, filter_order: 4, bandwidth_factor: 1.0}   # -3 dB na taxa de simbolos, ordem 4 (LPF do transmissor do VPI)
+        frontend:
+          scheme: external
+          laser: {power: 10.0e-3, linewidth: 500.0e3}
+          # MZM ideal, como no notebook: sem perda de insercao, extincao infinita, sem S21.
+          mzm: {vpi: 5.0, vbias: 2.5, insertion_loss_db: 0.0, extinction_ratio_db: .inf}
+          drive_amplitude: 0.25          # +-V_pi/4 por braco: OOK de nulo a pico
+      rx:
+        photodiode: {responsivity: 1.0, thermal_noise_density: 10.0e-12, shot_noise: true,
+                     bandwidth_factor: 1.15, filter_type: bessel, filter_order: 4}
+  link:
+    spans:
+      - fiber: {length: 20.0e3, attenuation: 0.2e-3, dispersion: 16.0e-6}
+
+simulation:
+  samples_per_symbol: 16
+  n_symbols: 2048
+  root_seed: 1

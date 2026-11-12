@@ -1,0 +1,67 @@
+{
+  "system": {
+    "center_wavelength": 1.55e-06,
+    "channels": [
+      {
+        "index": 0,
+        "kind": "imdd",
+        "modulation": "OOK",
+        "symbol_rate": 10000000000.0,
+        "seed": 1,
+        "tx": {
+          "driver": {
+            "filter_type": "bessel",
+            "filter_order": 4,
+            "bandwidth_factor": 1.0
+          },
+          "frontend": {
+            "scheme": "direct",
+            "bias_ratio": 1.2,
+            "modulation_ratio": 1.8,
+            "laser": {
+              "cavity_length": 0.0003,
+              "cavity_width": 3e-06,
+              "cavity_height": 2e-07,
+              "group_index": 3.4,
+              "mirror_loss": 2410.0,
+              "internal_loss": 1510.0,
+              "differential_gain": 4e-20,
+              "transparency_density": 1.25e+24,
+              "confinement": 1.0,
+              "carrier_lifetime": 2.1e-09,
+              "spontaneous_emission_factor": 1.5,
+              "gain_compression": 1.8e-23,
+              "linewidth_enhancement": 3.0
+            }
+          }
+        },
+        "rx": {
+          "photodiode": {
+            "responsivity": 1.0,
+            "thermal_noise_density": 1e-11,
+            "shot_noise": true,
+            "bandwidth_factor": 1.15,
+            "filter_type": "bessel",
+            "filter_order": 4
+          }
+        }
+      }
+    ],
+    "link": {
+      "spans": [
+        {
+          "fiber": {
+            "length": 20000.0,
+            "attenuation": 0.0002,
+            "dispersion": 1.6e-05
+          }
+        }
+      ]
+    }
+  },
+  "simulation": {
+    "samples_per_symbol": 16,
+    "n_symbols": 2048,
+    "root_seed": 1
+  }
+}

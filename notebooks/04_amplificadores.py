@@ -399,7 +399,8 @@ fig.tight_layout()
 #   da de entrada sem que o sinal tenha melhorado.
 # - (c) Com o $n_{sp}$ obtido invertendo a Eq. 7.2.15, a figura de ruído medida é a configurada
 #   (5 dB) em qualquer ganho. Com a aproximação $n_{sp} = F_n/2$ do professor, ela cai em ganho
-#   baixo: em G = 3 dB, a NF real fica 1,8 dB abaixo da configurada (dúvida A1 do guia). Acima de
+#   baixo: em G = 3 dB, a NF real fica 1,8 dB abaixo da configurada. **[Decidido: Gabriel,
+#   2026-10-22]** O projeto usa a do Agrawal (Eq. 7.2.15 invertida). Acima de
 #   ~15 dB as duas coincidem.
 #
 # Testes: issue #19.

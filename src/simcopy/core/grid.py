@@ -31,3 +31,9 @@ class TimeGrid:
     def freq(self):  return np.fft.fftfreq(self.n_samples, self.dt)
     @cached_property
     def omega(self): return 2.0 * np.pi * self.freq
+    @cached_property
+    def optical_frequency(self):
+        """Frequencia optica relativa [Hz] de cada bin da FFT. Convencao do Agrawal (portadora
+        exp(-i*w0*t), Eq. 2.4.3 e 2.4.5; decisao de 2026-10-22): o bin +f esta em f0 - f, entao
+        a frequencia optica relativa e -freq. Positivo = mais alta (azul)."""
+        return -self.freq

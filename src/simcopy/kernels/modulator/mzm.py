@@ -28,13 +28,26 @@ def push_pull(v, v_bias):
     """
     return v - 0.5 * v_bias, -v + 0.5 * v_bias
 
-def iq_field(field, v_i, v_q, vpi, v_bias, quadrature_phase, a1=0.5, a2=0.5):
-    """Modulador em quadratura (Fig. 10.3): (1/2)*[t(v_i) + exp(i*theta)*t(v_q)]*field.
+def iq_field(field, v_i, v_q, vpi, v_bias, quadrature_phase, a1=0.5, a2=0.5, q_gain=1.0):
+    """Modulador em quadratura (Fig. 10.3): (1/2)*[t(v_i) + g_Q*exp(i*theta)*t(v_q)]*field.
 
     t e o MZM em push-pull de cada braco e theta = `quadrature_phase` [rad], a defasagem
     entre os bracos (pi/2 no ideal). O 1/2 e a divisao e a recombinacao do interferometro
     externo, como na Eq. 10.1.3; o codigo do professor da o mesmo fator (1/sqrt(2) duas vezes).
+    g_Q = `q_gain` e o ganho de campo do braco Q em relacao ao I (desbalanco de ganho I/Q,
+    decisao de 2026-10-22; 1 = sem desbalanco). O sinal de theta (+pi/2 ou -pi/2) so precisa
+    combinar com o receptor coerente.
     """
     t_i = mzm_field(1.0, *push_pull(v_i, v_bias), vpi, a1, a2)
     t_q = mzm_field(1.0, *push_pull(v_q, v_bias), vpi, a1, a2)
-    return 0.5 * field * (t_i + np.exp(1j * quadrature_phase) * t_q)
+    return 0.5 * field * (t_i + q_gain * np.exp(1j * quadrature_phase) * t_q)
+
+def arcsin_predistortion(signal, vpi, depth):
+    """Tensao por braco que lineariza o campo de um MZM em push-pull no nulo.
+
+    No nulo (V_b = V_pi) o campo e sin(pi*v/V_pi) (Eq. 10.1.4); com v = (V_pi/pi)*arcsin(depth*s)
+    o campo fica exatamente depth*s. E a pre-distorcao do transmissor do VPI
+    (`PreDistortion = Yes`, decisao de 2026-10-22). `signal` normalizado em [-1, 1];
+    0 < depth <= 1 e a excursao do campo (1 = excursao inteira, de -1 a 1).
+    """
+    return vpi / np.pi * np.arcsin(depth * np.asarray(signal))
