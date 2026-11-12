@@ -1,0 +1,43 @@
+# IMDD com modulacao direta: laser de equacoes de taxa -> fibra -> fotodetector (notebook 07).
+# Rodar:  simcopy run examples/imdd_ook_dml.yaml -o resultados/dml
+# O mesmo cenario em JSON: examples/imdd_ook_dml.json. Guia: docs/sistema_imdd.md.
+
+system:
+  center_wavelength: 1550.0e-9
+  channels:
+    - index: 0
+      kind: imdd
+      modulation: OOK
+      symbol_rate: 10.0e9
+      seed: 1
+      tx:
+        driver: {filter_type: bessel, filter_order: 4, bandwidth_factor: 1.0}   # LPF do transmissor do VPI
+        frontend:
+          scheme: direct
+          bias_ratio: 1.2                # I_b = 1,2*I_th
+          modulation_ratio: 1.8          # I = I_th*(1,2 + 1,8*x), x em [0, 1]
+          laser:                         # parametros do notebook 02 (secao 9) e do 07
+            cavity_length: 300.0e-6
+            cavity_width: 3.0e-6
+            cavity_height: 0.2e-6
+            group_index: 3.4
+            mirror_loss: 2410.0
+            internal_loss: 1510.0
+            differential_gain: 4.0e-20
+            transparency_density: 1.25e+24
+            confinement: 1.0
+            carrier_lifetime: 2.1e-9
+            spontaneous_emission_factor: 1.5
+            gain_compression: 1.8e-23    # 1e-7 * volume da cavidade [m^3]
+            linewidth_enhancement: 3.0
+      rx:
+        photodiode: {responsivity: 1.0, thermal_noise_density: 10.0e-12, shot_noise: true,
+                     bandwidth_factor: 1.15, filter_type: bessel, filter_order: 4}
+  link:
+    spans:
+      - fiber: {length: 20.0e3, attenuation: 0.2e-3, dispersion: 16.0e-6}
+
+simulation:
+  samples_per_symbol: 16
+  n_symbols: 2048
+  root_seed: 1

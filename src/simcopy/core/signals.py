@@ -65,7 +65,11 @@ class Symbols:
 @dataclass(frozen=True)
 class Waveform:
     """Campo amostrado, sempre (n_pol, n_samples) complexo. Sinal eletrico real e
-    guardado como complexo de parte imaginaria nula ([D-5])."""
+    guardado como complexo de parte imaginaria nula ([D-5]).
+
+    f0: desvio, em relacao ao centro da banda de simulacao, da frequencia em que o envelope esta
+    referenciado (decisao de 2026-11-12). Na saida do transmissor e o desvio do canal (o campo
+    esta em banda base do canal); depois do mux, que leva cada canal para a sua posicao, e 0."""
     # se o sinal é elétrico, porque domain fica em aberto?
     # você quer definir óptico aqui também?
     samples: np.ndarray

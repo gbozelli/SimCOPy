@@ -23,6 +23,7 @@ class ResolvedChannel:
     samples_per_symbol: int
     n_symbols: int
     geometry: SignalGeometry
+    edge_guard_symbols: int           # simbolos descartados em cada borda da janela na medida
 
 @dataclass(frozen=True)
 class ResolvedFiber:
@@ -93,12 +94,32 @@ def resolve_fiber(f: FiberConfig, center_frequency: float,
         dispersion_length=(pulse_width**2 / abs(b2)) if pulse_width else None,
     )
 
+EDGE_SETTLING_TIME = 1e-9     # s, memoria do transmissor e dos filtros na borda da janela
+
+def edge_guard_symbols(fibers, lengths, sampling_rate: float, symbol_rate: float) -> int:
+    """Simbolos de cada borda da janela que a medida descarta (docs/sistema_imdd.md, secao 3).
+
+    A FFT trata a janela como periodica, e o inicio e o fim do sinal nao se emendam (fase do
+    laser, primeiro e ultimo bits). Na fibra, a componente na borda da banda de simulacao
+    (omega = pi*fs) se atrasa pi*|beta2|*L*fs em relacao a portadora: e ate onde a emenda pode
+    contaminar a janela (docs/mapa_arquitetura.md, 5.7). EDGE_SETTLING_TIME cobre a memoria do
+    transmissor: o laser de modulacao direta parte do estacionario de I(0), sem a historia dos bits
+    anteriores, e difere da janela longa por 0,6 ns (6 bits a 10 GBd, medido em 2026-11-12).
+    """
+    spread = np.pi * sum(abs(f.beta2) * L for f, L in zip(fibers, lengths)) * sampling_rate
+    return int(np.ceil((spread + EDGE_SETTLING_TIME) * symbol_rate)) + 1
+
 def resolve(system: SystemConfig, simulation: SimulationConfig) -> Resolved:
     fs = simulation.sampling_rate
     n = int(round(simulation.simulation_window * fs))
     if simulation.force_power_of_two:            # GreatestPrimeFactorLimit = 2
         n = _next_pow2(n)
     grid = TimeGrid(sampling_rate=fs, n_samples=n)
+
+    # tem q fazer uns bons testes aqui p ver se os spans n vão conflitar
+    fibers = tuple(resolve_fiber(s.fiber, system.center_frequency)
+                   for s in system.link.spans)
+    lengths = [s.fiber.length for s in system.link.spans]
 
     offs = system.channel_offsets()
     chans = []
@@ -111,9 +132,7 @@ def resolve(system: SystemConfig, simulation: SimulationConfig) -> Resolved:
             geometry=SignalGeometry(n_symbols=n_sym,
                                     bits_per_symbol=c.modulation.bits_per_symbol,
                                     samples_per_symbol=sps,
-                                    n_pol=c.pol.n_pol)))
-        # tem q fazer uns bons testes aqui p ver se os spans n vão conflitar
-    fibers = tuple(resolve_fiber(s.fiber, system.center_frequency)
-                   for s in system.link.spans)
+                                    n_pol=c.pol.n_pol),
+            edge_guard_symbols=edge_guard_symbols(fibers, lengths, fs, c.symbol_rate)))
     return Resolved(grid=grid, channels=tuple(chans), fibers=fibers,
                     n_samples=n, window=grid.duration)

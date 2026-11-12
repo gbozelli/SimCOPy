@@ -66,8 +66,8 @@ class MZMConfig:
     vbias: float = 2.5                   # V
     insertion_loss_db: float = 6.0
     extinction_ratio_db: float = 30.0
-    s21_bandwidth: float = 40e9          # Hz
-    s21_order: int = 3
+    s21_bandwidth: float | None = None   # Hz; None = banda infinita, como no VPI (decisao M5, 2026-10-22)
+    s21_order: int = 3                   # Bessel (decisao M5)
 
 @dataclass(frozen=True)
 class IQImpairments:
@@ -75,6 +75,7 @@ class IQImpairments:
     curva entre 8 e 15 dBm (piso de 19,12 dB) - ver secao 14.14 e C-25."""
     phase_imbalance_deg: float = 0.0
     skew: float = 0.0                    # s, atraso de I em relacao a Q
+    gain_imbalance_db: float = 0.0       # ganho do braco Q em relacao ao I (decisao 2026-10-22)
 
 @dataclass(frozen=True)
 class PhotodiodeConfig:
@@ -91,28 +92,63 @@ class ADCConfig:
     samples_per_symbol: int = 2
     resolution_bits: int = 12
 
+@dataclass(frozen=True)
+class ElectricalFilterConfig:
+    """Passa-baixas eletrico do acionamento do transmissor IMDD (aula: "nao se usa Nyquist, e sim
+    um filtro de Bessel"). Banda de -3 dB = bandwidth_factor * symbol_rate, aplicada na FFT com a
+    mesma funcao do filtro do fotodetector (kernels/filters.py). Ordem e banda sem padrao: nenhum
+    valor tem base unica na literatura (duvida 50)."""
+    filter_order: int
+    bandwidth_factor: float
+    filter_type: Literal["bessel", "butterworth"] = "bessel"
+
 # ---------------------------------------------------- variantes de canal ------
 @dataclass(frozen=True)
 class DirectModulation:
+    """Laser de modulacao direta: I(t) = I_th*(bias_ratio + modulation_ratio*x(t)), com x(t) o
+    sinal eletrico em [0, 1] (docs/laser.md, passo 8). Sem padroes (duvida 5a)."""
+    laser: RateEquationLaserConfig
+    bias_ratio: float                    # I_b/I_th
+    modulation_ratio: float              # I_m/I_th
     scheme: Literal["direct"] = "direct"
-    laser: CWLaserConfig = field(default_factory=CWLaserConfig)
 
 @dataclass(frozen=True)
 class ExternalModulation:
+    """Laser CW + MZM em push-pull na quadratura (docs/moduladores.md). O sinal eletrico x(t) em
+    [0, 1] vira a tensao de cada braco v = drive_amplitude*V_pi*(2x - 1); com V_b = V_pi/2,
+    drive_amplitude = 0,25 leva o OOK de nulo a pico (notebook 07; duvida 11)."""
     scheme: Literal["external"] = "external"
     laser: CWLaserConfig = field(default_factory=CWLaserConfig)
     mzm: MZMConfig = field(default_factory=MZMConfig)
+    drive_amplitude: float = 0.25        # pico por braco / V_pi
 
 @dataclass(frozen=True)
 class IMDDTransmitter:
+    # Padrao: modulacao externa. A direta exige os parametros do laser de equacoes de taxa,
+    # que nao tem padrao (duvida 5b, opcao B).
     frontend: Union[DirectModulation, ExternalModulation] = field(
-        default_factory=DirectModulation)
-    rolloff: float = 0.2
+        default_factory=ExternalModulation)
+    driver: ElectricalFilterConfig | None = None   # None = NRZ sem filtro
+    rolloff: float = 0.2                 # so a regra de Nyquist usa (duvida 50)
+
+@dataclass(frozen=True)
+class OpticalFilterConfig:
+    """Filtro optico do demux (kernels/wdm.py, bandpass_response; docs/mux_demux.md). Banda de
+    3 dB `bandwidth` [Hz] centrada no canal. "rectangular" e a mascara do professor;
+    "supergaussian" exige a ordem (1 = gaussiana). Sem padroes: tipo e banda estao na duvida 30."""
+    bandwidth: float
+    filter_type: Literal["rectangular", "supergaussian"]
+    filter_order: int | None = None
+
+    def __post_init__(self):
+        if self.filter_type == "supergaussian" and self.filter_order is None:
+            raise ConfigError("optical_filter: filter_type = 'supergaussian' exige filter_order.")
 
 @dataclass(frozen=True)
 class IMDDReceiver:
     photodiode: PhotodiodeConfig = field(default_factory=PhotodiodeConfig)
     adc: ADCConfig = field(default_factory=ADCConfig)
+    optical_filter: OpticalFilterConfig | None = None   # demux; obrigatorio com mais de um canal
 
 @dataclass(frozen=True)
 class CoherentTransmitter:
@@ -193,8 +229,11 @@ class FiberConfig:
 class AmplifierConfig:
     mode: Literal["fixed_gain", "target_output_power"] = "target_output_power"
     gain_db: float | None = None
-    output_power: float | None = None    # W, total do campo agregado
+    output_power: float | None = None    # W por canal (decisao 2026-10-22); total = N canais x isso
     noise_figure_db: float = 5.0
+    # Saturacao do ganho (decisao 2026-11-12): g = g0/(1 + P/Ps), Agrawal, Exercicio 7.2.
+    # None = sem saturacao. So no modo fixed_gain, em que gain_db e o ganho de pequeno sinal.
+    saturation_power: float | None = None   # W
 
 @dataclass(frozen=True)
 class SpanConfig:
@@ -210,11 +249,21 @@ class LinkConfig:
     def n_spans(self): return len(self.spans)
 
 @dataclass(frozen=True)
+class MuxConfig:
+    """Multiplexador WDM (duvida 29, decisao 2026-11-12: as duas formas). Padrao: soma ideal, sem
+    filtro nem perda, como o codigo do professor. Com `optical_filter`, cada entrada passa por um
+    filtro centrado no seu canal antes da soma, e `insertion_loss_db` e a perda do mux, como o
+    WDM_MUX_N_1 do VPI (gaussiano de ordem 3, 70 GHz, 3 dB)."""
+    insertion_loss_db: float = 0.0
+    optical_filter: OpticalFilterConfig | None = None
+
+@dataclass(frozen=True)
 class SystemConfig:
     channels: tuple[ChannelConfig, ...]
     link: LinkConfig
     center_frequency: float = 193.7e12
     channel_spacing: float = 75e9
+    mux: MuxConfig = field(default_factory=MuxConfig)
 
     @property
     def n_channels(self): return len(self.channels)

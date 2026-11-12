@@ -4,8 +4,18 @@ Simulador modular de sistemas de comunicações ópticas (WDM, IMDD e coerente d
 
 ## Para que serve o código que existe hoje
 
-Ainda **não simula um enlace de ponta a ponta**: não há transmissor, receptor nem
-BER. O que existe é a fundação e a fibra. Em termos do `draft.py`:
+**Atualização (2026-11-12):** o sistema IMDD (OOK, modulação direta ou externa, um ou
+vários canais WDM, fibra padrão e compensadora, amplificadores) já roda de ponta a ponta
+a partir de um arquivo YAML ou JSON, até o fator Q e a BER de cada canal:
+
+```
+simcopy run examples/imdd_ook_mzm.yaml -o resultados/mzm
+simcopy run examples/imdd_wdm_4ch.yaml -o resultados/wdm
+simcopy sweep examples/imdd_ook_dml.yaml --param "link.spans[0].fiber.length" --range 20e3 40e3 1e3
+```
+
+Guia: [`docs/sistema_imdd.md`](docs/sistema_imdd.md). O sistema coerente ainda não. O
+texto abaixo descreve a fundação, anterior aos componentes. Em termos do `draft.py`:
 
 | Hoje o pacote faz | No `draft.py` isso era |
 |---|---|

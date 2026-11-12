@@ -20,3 +20,13 @@ class SimContext:
         """Stream determinístico e independente por (canal, bloco, papel)."""
         return np.random.default_rng(np.random.SeedSequence(
             self.root_seed, spawn_key=tuple(_stable_key(k) for k in keys)))
+
+def rng_from_seed(seed: int, *keys: int | str) -> np.random.Generator:
+    """Stream que depende só de `seed` e das chaves, não da semente raiz.
+
+    É o dos bits de cada canal: a semente do canal define os bits (como o RandomNumberSeed do
+    VPI) e a semente raiz define os ruídos (decisão de 2026-11-12). Trocar root_seed muda os
+    ruídos e mantém os bits.
+    """
+    return np.random.default_rng(np.random.SeedSequence(
+        seed, spawn_key=tuple(_stable_key(k) for k in keys)))
