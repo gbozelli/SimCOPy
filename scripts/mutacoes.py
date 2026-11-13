@@ -57,6 +57,10 @@ MUTACOES = [
      "src/simcopy/core/signals.py",
      "return float(np.sum(np.mean(np.abs(self.samples) ** 2, axis=1)))",
      "return float(2 * np.mean(np.abs(self.samples[0]) ** 2))"),
+    ("Laser sem o fator 1/2 da potencia emitida por faceta",
+     "src/simcopy/kernels/laser/conversions.py",
+     "return 0.5 * group_velocity * mirror_loss * photon_energy * photon_density * volume",
+     "return group_velocity * mirror_loss * photon_energy * photon_density * volume"),
 ]
 
 def _aplica(i):
