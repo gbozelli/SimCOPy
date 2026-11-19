@@ -2,9 +2,11 @@
 
 Decisoes de 2026-10-22 aplicadas (docs/amplificadores.md, secao 8): n_sp pela Eq. 7.2.15 invertida
 (A1), S_ASE em cada polarizacao (A2), campo (1, N) promovido a (2, N) (A3), output_power por canal
-(potencia total = n_channels x output_power) e ganho calculado com a potencia total de entrada,
-sinal mais ASE acumulada (A4). h*nu na frequencia central e ASE na banda inteira da grade (A5 e
-A6, recomendacoes ainda sem resposta).
+(potencia total = n_channels x output_power) e ganho calculado com a potencia de entrada, sinal
+mais ASE acumulada (A4). h*nu na frequencia central e ASE na banda inteira da grade (A5 e A6,
+confirmadas em 2026-11-16). No controle por potencia, a potencia de entrada e a da banda ocupada
+pelos canais (`signal_band`): a ASE acumulada fora dela, que depende da taxa de amostragem da
+grade, nao entra na conta do ganho (duvida 24).
 
 Saturacao (decisao de 2026-11-12). Agrawal, Exercicio 7.2: o coeficiente de ganho satura como
 g = g0/(1 + P/Ps). Integrando dP/dz = g0*P/(1 + P/Ps) no comprimento do amplificador:
@@ -29,6 +31,8 @@ class Amplifier:
     frequency: float                  # frequencia central da banda [Hz] (h*nu da ASE)
     n_channels: int = 1               # canais no campo: alvo total = n_channels x output_power
     id: str = "amplifier"
+    # banda ocupada pelos canais [Hz], relativa ao centro da grade (menor, maior); None = grade toda
+    signal_band: tuple[float, float] | None = None
     output_unit: ClassVar[str] = "sqrt(W)"
 
     def __post_init__(self):
@@ -46,11 +50,22 @@ class Amplifier:
                                   f"que gain_db e o ganho de pequeno sinal. No controlado por "
                                   f"potencia o ganho e o que o controle impoe.")
 
+    def input_power(self, x: Waveform) -> float:
+        """Potencia de entrada que o controle por potencia ve [W]: a da banda ocupada pelos
+        canais, ou a total se `signal_band` for None."""
+        if self.signal_band is None:
+            return x.power
+        low, high = self.signal_band
+        f = x.grid.optical_frequency
+        inside = (f >= low) & (f <= high)
+        spectrum = np.abs(np.fft.fft(x.samples, axis=1)) ** 2
+        return float(np.sum(spectrum[:, inside]) / x.grid.n_samples ** 2)
+
     def gain(self, x: Waveform) -> float:
         """Ganho de potencia linear para a entrada x (saturado, se houver saturation_power)."""
         a = self.amplifier
         if a.mode != "fixed_gain":
-            return self.n_channels * a.output_power / x.power
+            return self.n_channels * a.output_power / self.input_power(x)
         g0 = db_to_lin(a.gain_db)
         if a.saturation_power is None or g0 <= 1.0:
             return g0
@@ -63,7 +78,7 @@ class Amplifier:
         g = self.gain(x)
         if g < 1.0:
             raise SignalError(f"{self.id}: o alvo de {self.n_channels * self.amplifier.output_power:.3e} W "
-                              f"exigiria ganho {g:.3f} < 1 (entrada de {x.power:.3e} W).")
+                              f"exigiria ganho {g:.3f} < 1 (entrada de {self.input_power(x):.3e} W).")
         f_n = db_to_lin(self.amplifier.noise_figure_db)
         psd = ase_psd(nsp_from_noise_figure(f_n, g), g, self.frequency) if g > 1.0 else 0.0
         out = amplify(x.samples, g, psd, x.grid.sampling_rate, ctx.rng_for(self.id, "ase"))

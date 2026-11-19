@@ -40,24 +40,33 @@ def _save_json(path: Path, data: dict):
                     encoding="utf-8")
     print(f"gravado: {path}")
 
+def _plottable(result, sid: str) -> bool:
+    """plot_stage serve a estagios com entrada, na grade da simulacao (nao na taxa do DSP)."""
+    st = result.stage(sid)
+    signals = [st.output] + [result.output(i) for i in st.inputs[:1]]
+    return bool(st.inputs) and all(hasattr(s, "grid") or hasattr(s, "data") for s in signals)
+
 def _save_figures(out: Path, result):
     try:
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
-        from .plotting import plot_chain, plot_eye, plot_stage
+        from .plotting import plot_chain, plot_constellation, plot_eye, plot_stage, save_figure
     except ImportError:
         print("matplotlib ausente: graficos nao gravados (pip install -e \".[figures]\").")
         return
     out.mkdir(parents=True, exist_ok=True)
     figs = []
     for ch in result.metrics:
-        figs += [(f"cadeia_ch{ch}", plot_chain(result, channel=ch)),
-                 (f"olho_ch{ch}", plot_eye(result, ch))]
+        figs.append((f"cadeia_ch{ch}", plot_chain(result, channel=ch)))
+        if hasattr(result.metrics[ch], "evm"):          # canal coerente
+            figs.append((f"constelacao_ch{ch}", plot_constellation(result, ch)))
+        else:
+            figs.append((f"olho_ch{ch}", plot_eye(result, ch)))
     figs += [(f"estagio_{k:02d}_{sid}", plot_stage(result, sid))
-             for k, sid in enumerate(result.ids) if result.stage(sid).inputs]
+             for k, sid in enumerate(result.ids) if _plottable(result, sid)]
     for name, fig in figs:
-        fig.savefig(out / f"{name}.png", dpi=110)
+        save_figure(fig, out / f"{name}.pdf")
         plt.close(fig)
     print(f"graficos: {out} ({len(figs)} arquivos)")
 
@@ -118,10 +127,9 @@ def main(argv=None):
             try:
                 import matplotlib
                 matplotlib.use("Agg")
-                from .plotting import plot_sweep
+                from .plotting import plot_sweep, save_figure
                 fig = plot_sweep(s, labels=[Path(a.config).stem], scale=1.0, xlabel=a.param)
-                fig.savefig(out / "varredura.png", dpi=110)
-                print(f"grafico: {out / 'varredura.png'}")
+                print(f"grafico: {save_figure(fig, out / 'varredura.pdf')}")
             except ImportError:
                 print("matplotlib ausente: grafico nao gravado.")
         return 0

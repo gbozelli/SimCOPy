@@ -10,7 +10,8 @@ from dataclasses import dataclass
 import numpy as np
 from ..core.grid import TimeGrid
 from ..core.signals import SignalGeometry
-from ..core.units import (beta2_from_dispersion, gamma_from_n2, effective_length,
+from ..core.units import (beta2_from_dispersion, beta3_from_dispersion, gamma_from_n2,
+                          effective_length,
                           frequency_to_wavelength, db_per_m_to_np_per_m,
                           C_LIGHT, H_PLANCK, Q_ELECTRON)
 from .system import SystemConfig, FiberConfig, RateEquationLaserConfig
@@ -32,6 +33,7 @@ class ResolvedFiber:
     alpha_np: float
     effective_length: float
     dispersion_length: float | None
+    beta3: float = 0.0                # s^3/m; 0 sem dispersion_slope na configuracao
 
 @dataclass(frozen=True)
 class Resolved:
@@ -92,6 +94,8 @@ def resolve_fiber(f: FiberConfig, center_frequency: float,
         alpha_np=db_per_m_to_np_per_m(f.attenuation),
         effective_length=effective_length(f.length, f.attenuation),
         dispersion_length=(pulse_width**2 / abs(b2)) if pulse_width else None,
+        beta3=0.0 if f.dispersion_slope is None
+        else beta3_from_dispersion(f.dispersion, f.dispersion_slope, lam),
     )
 
 EDGE_SETTLING_TIME = 1e-9     # s, memoria do transmissor e dos filtros na borda da janela

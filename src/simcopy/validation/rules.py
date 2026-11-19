@@ -138,9 +138,82 @@ def channel_seeds_are_distinct(system, simulation, res):
         seen.setdefault(c.seed, c.index)
     return v
 
+def coherent_needs_carrier_recovery(system, simulation, res):
+    """O receptor coerente ainda nao tem recuperacao de portadora (docs/sistema_coerente.md,
+    secao 6): a medida so tira uma rotacao constante da constelacao. Com oscilador local livre
+    (ruido de fase proprio) ou com desvio de frequencia, a constelacao gira e a BER medida nao
+    representa o enlace. Aviso, nao erro: o sinal continua valido para ver o batimento."""
+    v = []
+    for c in system.channels:
+        if c.kind != "dcs" or c.rx.dsp is not None:      # com rx.dsp a portadora e recuperada
+            continue
+        causes = []
+        if c.rx.lo_source == "free":
+            causes.append("oscilador local livre (rx.lo_source = 'free')")
+        if c.rx.lo_frequency_offset != 0.0:
+            causes.append(f"desvio de frequencia de {c.rx.lo_frequency_offset/1e6:g} MHz")
+        if causes:
+            v.append(Violation("CoherentNeedsCarrierRecovery", Severity.WARNING,
+                f"Canal {c.index}: {' e '.join(causes)}, e o receptor ainda nao recupera a "
+                f"portadora. A constelacao gira e a BER medida nao representa o enlace.",
+                "Para o homodino ideal: rx.lo_source = 'tx_laser' e rx.lo_frequency_offset = 0."))
+    return v
+
+def coherent_mzm_at_null(system, simulation, res):
+    """No coerente cada MZM do modulador em quadratura trabalha no nulo, V_b = V_pi (Agrawal,
+    secao 10.1.2; o professor usa Vpi = Vbias no `DPQAM_transmitter`). `vbias` continua sendo um
+    parametro com esse significado, e esta regra exige vbias = vpi (duvida 10, opcao a, resposta
+    de 2026-11-16). O padrao de MZMConfig, vbias = vpi/2, e a quadratura do IMDD."""
+    v = []
+    for c in system.channels:
+        if c.kind != "dcs":
+            continue
+        m = c.tx.mzm
+        if abs(m.vbias - m.vpi) > 1e-9 * abs(m.vpi):
+            v.append(Violation("CoherentMZMAtNull", Severity.ERROR,
+                f"Canal {c.index}: tx.mzm.vbias = {m.vbias:g} V e tx.mzm.vpi = {m.vpi:g} V. No "
+                f"coerente cada MZM trabalha no nulo, em que o campo e bipolar.",
+                f"tx.mzm.vbias = {m.vpi:g} (igual a vpi)."))
+    return v
+
+SBS_THRESHOLD = 5e-3          # W
+SBS_LONG_FIBER = 10e3         # m
+
+def imdd_power_below_brillouin(system, simulation, res):
+    """Nota da aula "IMDD < 5 mW" (duvida 42, resposta de 2026-11-16: e potencia, aviso na
+    montagem). Agrawal, secoes 2.6.1 e 6.3: o limiar do espalhamento Brillouin estimulado e da
+    ordem de 5 mW por canal em fibras longas (> 10 km), e sobe para perto de 50 mW em 1 km. O
+    simulador nao tem Brillouin: acima do limiar a potencia que chega ao fim da fibra seria menor
+    do que a simulada. So confere as potencias que a configuracao impoe (launch_power do canal e
+    output_power dos amplificadores, por canal)."""
+    if not any(c.kind == "imdd" for c in system.channels) or not system.link.spans:
+        return []
+    v = []
+    def check(power, where, k):
+        fiber = system.link.spans[k].fiber
+        if power is not None and power > SBS_THRESHOLD and fiber.length > SBS_LONG_FIBER:
+            v.append(Violation("IMDDPowerBelowBrillouin", Severity.WARNING,
+                f"{where} = {1e3 * power:.3g} mW por canal entra em {fiber.length / 1e3:g} km de "
+                f"fibra, acima do limiar de Brillouin (~5 mW em fibras de mais de 10 km). O "
+                f"simulador nao tem esse efeito.",
+                "Agrawal, secoes 2.6.1 e 6.3. Abaixo de 5 mW por canal o aviso some."))
+    booster = system.link.booster
+    if booster is not None and booster.mode == "target_output_power":
+        check(booster.output_power, "link.booster.output_power", 0)
+    elif booster is None:
+        for c in system.channels:
+            if c.kind == "imdd":
+                check(c.launch_power, f"channels[{c.index}].launch_power", 0)
+    for k, span in enumerate(system.link.spans[:-1]):
+        a = span.amplifier
+        if a is not None and a.mode == "target_output_power":
+            check(a.output_power, f"link.spans[{k}].amplifier.output_power", k + 1)
+    return v
+
 ALL = (nyquist_satisfied, integer_samples_per_symbol, channels_do_not_overlap,
        fft_size_is_efficient, ssfm_step_resolves_nonlinearity, window_fits_symbols,
-       dsp_rate_divides_simulation_rate, edge_guard_fits_window, channel_seeds_are_distinct)
+       dsp_rate_divides_simulation_rate, edge_guard_fits_window, channel_seeds_are_distinct,
+       coherent_needs_carrier_recovery, coherent_mzm_at_null, imdd_power_below_brillouin)
 
 def validate(system: SystemConfig, simulation: SimulationConfig, raise_on_error=False):
     res = resolve(system, simulation)

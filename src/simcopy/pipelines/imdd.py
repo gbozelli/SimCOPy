@@ -9,8 +9,8 @@ As condicionais da cascata (modulacao direta ou externa, potencia de lancamento,
 WDM) sao escolhas da montagem, nunca `if` dentro de um bloco (arquitetura, secao 6.2). Os ids sao a
 chave das sementes dos blocos novos e o rotulo de cada estagio no resultado.
 
-Ainda nao entram, e a montagem recusa com ConfigError: PAM4, compensacao de linha e o canal
-coerente.
+Ainda nao entram, e a montagem recusa com ConfigError: compensacao de linha e o canal coerente
+(que tem a sua montagem em pipelines/coherent.py).
 """
 from __future__ import annotations
 from dataclasses import replace
@@ -36,9 +36,9 @@ def check_supported(system: SystemConfig) -> None:
         if c.kind != "imdd":
             raise ConfigError(f"Canal {c.index}: kind = {c.kind!r}. A montagem cobre so IMDD por "
                               f"enquanto; o receptor coerente ainda nao existe.")
-        if c.modulation.name != "OOK":
-            raise ConfigError(f"Canal {c.index}: modulation = {c.modulation.name}. So OOK por "
-                              f"enquanto (duvida 51).")
+        if c.modulation.name not in ("OOK", "PAM4"):
+            raise ConfigError(f"Canal {c.index}: modulation = {c.modulation.name}. So OOK e PAM4 "
+                              f"por enquanto.")
         if system.n_channels > 1 and c.rx.optical_filter is None:
             raise ConfigError(f"Canal {c.index}: com {system.n_channels} canais o receptor precisa "
                               f"do filtro do demux (rx.optical_filter: bandwidth, filter_type).")
@@ -76,13 +76,24 @@ def build_imdd_tx(channel: IMDDChannel, rc: ResolvedChannel, system: SystemConfi
         chain.append((f"{p}.power", PowerControl(channel.launch_power, id=f"{p}.power")))
     return chain
 
+def signal_band(system: SystemConfig) -> tuple[float, float]:
+    """Banda ocupada pelos canais [Hz], relativa ao centro da grade: do canal mais baixo ao mais
+    alto, com uma margem de meio espacamento de canal ou de uma taxa de simbolos, a que for maior
+    (cobre o lobulo principal de um sinal NRZ). E a banda em que o amplificador controlado por
+    potencia mede a entrada (duvida 24, resposta de 2026-11-16)."""
+    offsets = system.channel_offsets()
+    margin = max(system.channel_spacing / 2.0, max(c.symbol_rate for c in system.channels))
+    return (min(offsets) - margin, max(offsets) + margin)
+
 def build_link(system: SystemConfig, simulation: SimulationConfig) -> Chain:
     """Booster (opcional) e, para cada elemento de link.spans, a fibra e o amplificador (opcional).
     Fibra padrao + compensadora + amplificador sao dois elementos: [SMF] e [DCF + amplificador]."""
     fc, n = system.center_frequency, system.n_channels
+    band = signal_band(system)
     chain: Chain = []
     if system.link.booster is not None:
-        chain.append(("link.booster", Amplifier(system.link.booster, fc, n, id="link.booster")))
+        chain.append(("link.booster", Amplifier(system.link.booster, fc, n, id="link.booster",
+                                                signal_band=band)))
     for k, span in enumerate(system.link.spans):
         s = f"link.span{k}"
         chain.append((f"{s}.fiber", Fiber(span.fiber, fc, id=f"{s}.fiber",
@@ -90,7 +101,7 @@ def build_link(system: SystemConfig, simulation: SimulationConfig) -> Chain:
                                           max_phase_deg=simulation.ssfm_max_phase_change_deg)))
         if span.amplifier is not None:
             chain.append((f"{s}.amplifier", Amplifier(span.amplifier, fc, n,
-                                                      id=f"{s}.amplifier")))
+                                                      id=f"{s}.amplifier", signal_band=band)))
     return chain
 
 def build_imdd_rx(channel: IMDDChannel, rc: ResolvedChannel,

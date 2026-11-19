@@ -3,7 +3,7 @@
 from simcopy.config.io import _center_frequency, _num, _laser, _mzm, _pd, _adc, _coherent, _imdd, load
 
 from simcopy.config.simulation import SimulationConfig
-from simcopy.config.system import CoherentChannel, IMDDChannel, LaserConfig, SystemConfig
+from simcopy.config.system import CoherentChannel, IMDDChannel, CWLaserConfig, SystemConfig
 from simcopy.core.units import C_LIGHT
 _INT_KEYS = {"index", "seed", "s21_order", "filter_order", "samples_per_symbol",
              "resolution_bits", "n_symbols", "root_seed"}

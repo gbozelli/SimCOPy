@@ -6,7 +6,7 @@ import yaml
 from ..core.units import C_LIGHT, dbm_to_w
 from .system import (SystemConfig, LinkConfig, SpanConfig, FiberConfig,
                      BirefringenceConfig, AmplifierConfig, CoherentChannel,
-                     IMDDChannel, CoherentTransmitter, CoherentReceiver,
+                     IMDDChannel, CoherentTransmitter, CoherentReceiver, DSPConfig,
                      IMDDTransmitter, IMDDReceiver, DirectModulation,
                      ExternalModulation, CWLaserConfig, MZMConfig, IQImpairments,
                      PhotodiodeConfig, ADCConfig, RateEquationLaserConfig,
@@ -16,7 +16,9 @@ from .system import (SystemConfig, LinkConfig, SpanConfig, FiberConfig,
 from .simulation import SimulationConfig
 
 _INT_KEYS = {"index", "seed", "s21_order", "filter_order", "samples_per_symbol",
-             "resolution_bits", "n_symbols", "root_seed"}
+             "resolution_bits", "n_symbols", "root_seed", "equalizer_taps", "phase_window",
+             "block_length", "optical_filter_order", "cma_iterations", "rde_iterations",
+             "dd_iterations", "test_angles"}
 
 # variáveis com _ n são chamadas externamente, 
 # mas preciso chamá-las para testes
@@ -40,7 +42,14 @@ def _num(x: Any, key=None) -> float:
 
 # o q são essas funções? Elas são chamadas externamente?
 # vc só colocou pq sim?
-def _laser(d): return CWLaserConfig(**(d or {}))
+def _laser(d):
+    """Laser CW: `power` em W ou `power_dbm` (duvida 41, resposta de 2026-11-16), nunca os dois."""
+    d = dict(d or {})
+    if "power_dbm" in d:
+        if "power" in d:
+            raise ConfigError("laser: informe 'power' (W) ou 'power_dbm', nao os dois.")
+        d["power"] = dbm_to_w(d.pop("power_dbm"))
+    return CWLaserConfig(**d)
 def _mzm(d):   return MZMConfig(**(d or {}))
 def _pd(d):    return PhotodiodeConfig(**(d or {}))
 def _adc(d):   return ADCConfig(**(d or {}))
@@ -114,6 +123,14 @@ def _frontend(fe: dict, where: str):
 # já podemos extrair channel daqui?
 # n seria melhor fazer isso em outro lugar? tipo em system.py?
 
+def _dsp(d, where: str) -> DSPConfig:
+    """`dsp: {}` liga o DSP com os padroes de DSPConfig."""
+    d = d or {}
+    _only(d, {"cd_compensation", "frequency_offset", "matched_filter", "equalizer_taps",
+              "phase_window", "block_length", "mode", "step_size", "cma_iterations",
+              "rde_iterations", "dd_iterations", "test_angles", "stokes_demux"}, where)
+    return DSPConfig(**d)
+
 def _coherent(channel: dict) -> CoherentChannel: 
     # precisamos nomear essas variáveis de forma mais clara, esse era um problema do código antigo
     """
@@ -133,9 +150,12 @@ def _coherent(channel: dict) -> CoherentChannel:
         tx=CoherentTransmitter(laser=_laser(tx.get("laser")), mzm=_mzm(tx.get("mzm")),
                                iq=IQImpairments(**(tx.get("iq") or {})),
                                # porque estamos definindo rolloff aqui? Ela não é derivada de YAML?
-                               rolloff=tx.get("rolloff", 0.18)),
+                               rolloff=tx.get("rolloff", 0.18),
+                               **{k: tx[k] for k in ("drive_depth", "predistortion", "pulse") if k in tx}),
 
         rx=CoherentReceiver(lo=_laser(rx.get("lo")),
+                            **{k: rx[k] for k in ("lo_source", "optical_filter_order") if k in rx},
+                            dsp=_dsp(rx["dsp"], f"canal {channel.get('index')}: rx.dsp") if "dsp" in rx else None,
                             # o mesmo aqui para frequência e banda óptica
                             lo_frequency_offset=rx.get("lo_frequency_offset", 500e6),
                             photodiode=_pd(rx.get("photodiode")), adc=_adc(rx.get("adc")),

@@ -1,0 +1,38 @@
+# Coerente digital, DP-64QAM, um canal, sem fibra. O oscilador local e outro laser, a 200 MHz.
+# Rodar:  simcopy run examples/coerente_dp64qam.yaml -o resultados/dp64qam
+# Unidades do SI. Guia: docs/sistema_coerente.md, secao 12.
+#
+# O 64QAM pede SNR acima de ~22 dB para BER de 1e-3, entao o transmissor aqui e mais limpo que o
+# do cenario do VPI (cujo piso e de ~19 dB): lasers de 100 kHz, extincao de 40 dB, sem desbalanco
+# de quadratura. Sao valores de exemplo, sem fonte.
+
+system:
+  center_wavelength: 1550.0e-9
+  channels:
+    - index: 0
+      kind: dcs
+      modulation: 64QAM
+      pol: DP
+      symbol_rate: 32.0e9
+      seed: 1
+      launch_power_dbm: -20.0           # potencia na entrada do receptor (nao ha enlace)
+      tx:
+        laser: {power: 1.0e-3, linewidth: 100.0e3}
+        mzm: {vpi: 5.0, vbias: 5.0, insertion_loss_db: 6.0, extinction_ratio_db: 40.0}
+        rolloff: 0.18
+        pulse: root_raised_cosine
+        drive_depth: 0.45
+      rx:
+        lo: {power: 1.0e-3, linewidth: 100.0e3}
+        lo_frequency_offset: 200.0e6
+        photodiode: {responsivity: 1.0, thermal_noise_density: 10.0e-12, shot_noise: true,
+                     bandwidth_factor: 1.15, filter_type: bessel, filter_order: 4}
+        # DSP com os simbolos conhecidos. Para o receptor cego: mode: blind, phase_window: 81.
+        dsp: {}
+  link:
+    spans: []
+
+simulation:
+  samples_per_symbol: 16
+  n_symbols: 16384
+  root_seed: 1

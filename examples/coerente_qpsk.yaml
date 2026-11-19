@@ -1,0 +1,41 @@
+# Coerente digital, QPSK, sem fibra: laser CW -> modulador IQ -> oscilador local -> hibrida de 90
+# graus + deteccao balanceada (notebook 08; aula, ultimo passo do coerente).
+# Rodar:  simcopy run examples/coerente_qpsk.yaml -o resultados/qpsk
+#         simcopy sweep examples/coerente_qpsk.yaml --param channels[0].launch_power --range 50e-9 250e-9 50e-9
+# Unidades do SI (W, Hz, m, s). Guia: docs/sistema_coerente.md.
+
+system:
+  center_wavelength: 1550.0e-9
+  channels:
+    - index: 0
+      kind: dcs
+      modulation: QPSK
+      pol: SP                           # uma polarizacao; a dupla ainda nao entra
+      symbol_rate: 10.0e9
+      seed: 1
+      # Potencia na entrada do receptor (nao ha enlace). -41 dBm deixa a BER perto de 1e-3, onde
+      # da para contar erros com 2^15 simbolos.
+      launch_power_dbm: -41.0
+      tx:
+        laser: {power: 1.0e-3, linewidth: 500.0e3}
+        # MZM ideal, como no notebook: sem perda de insercao e extincao infinita. Cada MZM fica
+        # no nulo (V_b = V_pi), e a regra de validacao exige vbias = vpi no coerente (duvida 10, opcao a).
+        mzm: {vpi: 5.0, vbias: 5.0, insertion_loss_db: 0.0, extinction_ratio_db: .inf}
+        rolloff: 0.18                   # cosseno levantado (Nyquist)
+        # Campo de cada MZM de -0,4 a 0,4 nos simbolos. Entre os simbolos o pulso de Nyquist
+        # chega a 2,1x o nivel do simbolo: com 0,4 o pico fica em 0,85 e nada e ceifado.
+        drive_depth: 0.4
+        predistortion: true
+      rx:
+        lo: {power: 1.0e-3, linewidth: 500.0e3}
+        lo_source: tx_laser             # homodino ideal: o oscilador local e copia do laser do TX
+        lo_frequency_offset: 0.0
+        photodiode: {responsivity: 1.0, thermal_noise_density: 10.0e-12, shot_noise: true,
+                     bandwidth_factor: 1.15, filter_type: bessel, filter_order: 4}
+  link:
+    spans: []                           # sem fibra
+
+simulation:
+  samples_per_symbol: 16
+  n_symbols: 32768
+  root_seed: 1
