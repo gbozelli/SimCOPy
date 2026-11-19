@@ -1,5 +1,7 @@
 # Planejamento: 5 semanas para o sistema (TX, enlace e RX)
 
+> Substituído por `docs/proximos_passos.md` (2026-11-19). Fica como registro do plano original.
+
 Plano para entregar a parte da aula que monta o sistema de comunicação a partir dos componentes
 (`docs/04-class/context.md`, linhas 27–47). Marcação igual à dos guias: **[Fato: fonte]**,
 **[Dedução]**, **[Proposta]**, **[Dúvida]**, **[Decidido: Gabriel, data]**.

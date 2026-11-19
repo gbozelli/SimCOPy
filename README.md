@@ -14,8 +14,60 @@ simcopy run examples/imdd_wdm_4ch.yaml -o resultados/wdm
 simcopy sweep examples/imdd_ook_dml.yaml --param "link.spans[0].fiber.length" --range 20e3 40e3 1e3
 ```
 
-Guia: [`docs/sistema_imdd.md`](docs/sistema_imdd.md). O sistema coerente ainda não. O
-texto abaixo descreve a fundação, anterior aos componentes. Em termos do `draft.py`:
+Guia: [`docs/sistema_imdd.md`](docs/sistema_imdd.md).
+
+**Atualização (2026-11-14):** primeira rodada do sistema coerente digital: BPSK e QPSK de
+uma polarização, sem fibra, com oscilador local, híbrida de 90° e detecção balanceada, até
+a BER contada, a EVM e o fator Q (`simcopy run examples/coerente_qpsk.yaml`). Guia:
+[`docs/sistema_coerente.md`](docs/sistema_coerente.md).
+
+**Atualização (2026-11-15):** 16QAM, dupla polarização, vários canais, fibra e DSP com os
+símbolos conhecidos (compensação de dispersão, desvio de frequência, polarização, fase e
+equalizador). O cenário de 4 canais DP-16QAM do VPI (`examples/400zr_4ch_75ghz.yaml`) foi
+comparado com as constelações do VPI em 125 e 140 km: a SNR fica de 0,03 a 0,16 dB acima
+([`docs/comparacao_vpi.md`](docs/comparacao_vpi.md)).
+
+**Atualização (2026-11-16):** DSP cego (`rx.dsp.mode: blind`: espaço de Stokes, equalizador
+adaptativo, busca cega de fase e ajuste por decisão), ADC com quantização, 64QAM, PAM4 no
+IMDD (`examples/imdd_pam4_mzm.yaml`), inclinação da dispersão na fibra, e MI e GMI nas
+métricas do coerente. Guias: seção 12 de [`docs/sistema_coerente.md`](docs/sistema_coerente.md)
+e seção 11 de [`docs/sistema_imdd.md`](docs/sistema_imdd.md). Com o DSP cego e a janela de
+fase de 21, a SNR fica de 0,21 a 0,33 dB acima da do VPI em 125 e 140 km, e a queda de baixa
+potência do VPI aparece 1 dB abaixo (seção 9 de [`docs/comparacao_vpi.md`](docs/comparacao_vpi.md)).
+Ainda sem recuperação de relógio, código corretor de erros e testes automáticos do que entrou
+desde o IMDD. A revisão dos módulos novos está na seção 9 de
+[`docs/revisao_2026-11-14.md`](docs/revisao_2026-11-14.md).
+
+**Respostas às dúvidas (2026-11-16):** todas as dúvidas de
+[`docs/duvidas_abertas.md`](docs/duvidas_abertas.md) têm resposta, e as que pediam código foram
+aplicadas: `vbias = vpi` exigido no coerente, campo ao longo de z na fibra (`Fiber.along`), passo
+limitado com PMD, avisos de PMD com campo escalar e de potência acima do limiar de Brillouin no
+IMDD, potência do laser em dBm, OOK como formato padrão do IMDD, ruído térmico padrão do Agrawal
+(5,76 pA/√Hz) e amplificador controlado por potência medindo só a banda dos canais. O sinal do
+desbalanço de 5° do cenário do VPI foi corrigido (−5°, excursão de 0,51) e a comparação refeita em
+120, 125, 130, 135 e 140 km: seção 10 de [`docs/comparacao_vpi.md`](docs/comparacao_vpi.md). Os
+documentos do pacote (`docs/decisoes.md`, `historico.md`, `roadmap.md`, `arquitetura.md`) vieram
+para o repositório. Para discutir: [`docs/proposta_ideal_real.md`](docs/proposta_ideal_real.md).
+O exemplo `coerente_dp16qam.yaml` e os notebooks 09 e 10 ainda usam +5° e 0,47.
+
+**Planos (2026-11-16):**
+[`docs/plano_replicar_vpi.md`](docs/plano_replicar_vpi.md) (hipóteses para fechar as diferenças
+que sobram para o VPI) e [`docs/plano_validacao_cruzada.md`](docs/plano_validacao_cruzada.md)
+(conferir bloco a bloco contra outros simuladores e validar os dados). Do primeiro, a etapa A
+e os testes 1 e 2 estão feitos ([`docs/replicacao_vpi_diario.md`](docs/replicacao_vpi_diario.md)): com
+o skew de uma amostra e a janela de fase de 43, o receptor cego fica a −0,04 a +0,14 dB do VPI,
+com média de +0,04 dB. Desde 2026-11-17 o cenário (`examples/400zr_4ch_75ghz.yaml`) usa essa
+configuração, e o notebook 09 muda de números quando for reexecutado. O segundo plano ainda não
+começou.
+
+**Reprodução do VPI (2026-11-19):** o notebook 09 passou a ser só de 16QAM e da reprodução do VPI,
+com o DSP cego (que veio do notebook 10) e a comparação em BER e SER com todos os conjuntos de dados
+do grupo, lidos por `scripts/catalogo_vpi.py`. Onde o VPI converge, a BER do simcopy fica de 0,85 a
+1,07 vez a dele. Nas bordas o DSP do VPI perde a fase, e as hipóteses para isso vêm uma por seção no
+fim do notebook (seção 13 de [`docs/comparacao_vpi.md`](docs/comparacao_vpi.md)). O notebook 10
+ficou com ADC, 64QAM, MI e GMI, PAM4 e inclinação da dispersão.
+
+O texto abaixo descreve a fundação, anterior aos componentes. Em termos do `draft.py`:
 
 | Hoje o pacote faz | No `draft.py` isso era |
 |---|---|
