@@ -1,0 +1,8267 @@
+{
+"source": "simcopy, scripts/experimentos/equalizador_vpi.py sobre os sinais de resultados/replica_vpi/skew1amostra/sinais (2^14 simbolos, semente 0)",
+"points": [
+{
+"variant": "simcopy+conjunta",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.0021534910934858926,
+"ser": 0.00861396437394357,
+"snr_db": 15.700251849801884,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.0025354310232739564,
+"ser": 0.010141724093095826,
+"snr_db": 15.621780406457404,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.07494149005330906,
+"ser": 0.1571317123911065,
+"snr_db": 4.95038471161009,
+"rotated_fraction": 0.2916666666666667
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.002909244571577168,
+"ser": 0.011474450656611623,
+"snr_db": 15.378218235012787,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.0036243661422441817,
+"ser": 0.014237420361461448,
+"snr_db": 15.27531896167975,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.012994083994279027,
+"ser": 0.03591860616304772,
+"snr_db": 11.84794274933303,
+"rotated_fraction": 0.03333333333333333
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.002771096086334677,
+"ser": 0.010986867767520479,
+"snr_db": 15.41739650220614,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.0032342998309712653,
+"ser": 0.012807177220127421,
+"snr_db": 15.326969169882494,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.07165030555194384,
+"ser": 0.1500780132622546,
+"snr_db": 4.797286415361531,
+"rotated_fraction": 0.24166666666666667
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.0030311402938499547,
+"ser": 0.01189702249382395,
+"snr_db": 15.338996506329845,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.0036649980496684434,
+"ser": 0.014399947991158497,
+"snr_db": 15.238292054389376,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.013140358861006372,
+"ser": 0.03669873878559355,
+"snr_db": 11.844812519116886,
+"rotated_fraction": 0.03333333333333333
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.002901118190092316,
+"ser": 0.011409439604732804,
+"snr_db": 15.353386672207247,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.0037950201534260822,
+"ser": 0.014920036406189052,
+"snr_db": 15.252516540667383,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.012961578468339618,
+"ser": 0.03601612274086595,
+"snr_db": 11.844663901717071,
+"rotated_fraction": 0.03333333333333333
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.0022266285268495644,
+"ser": 0.008906514107398258,
+"snr_db": 15.664742816136805,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.0026329476010921856,
+"ser": 0.010499284878429334,
+"snr_db": 15.580248026160568,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 10,
+"ber": 0.0035187231829411,
+"ser": 0.013977376153946171,
+"snr_db": 15.380566222810664,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0011945780782733064,
+"ser": 0.004778312313093226,
+"snr_db": 16.236038135612354,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.00134085294500065,
+"ser": 0.0053634117800026,
+"snr_db": 16.185945782592718,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0019990898452736964,
+"ser": 0.007996359381094786,
+"snr_db": 16.074352839916273,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0014871278117279938,
+"ser": 0.005948511246911975,
+"snr_db": 15.941633322082085,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0018771941230009102,
+"ser": 0.007508776492003641,
+"snr_db": 15.881742852371817,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.002259134052788974,
+"ser": 0.009036536211155896,
+"snr_db": 15.760189301686417,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0016171499154856326,
+"ser": 0.0064685996619425305,
+"snr_db": 15.955374784376312,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0018609413600312052,
+"ser": 0.007443765440124821,
+"snr_db": 15.891729470160625,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0024622935899102846,
+"ser": 0.00981666883370173,
+"snr_db": 15.77591634915807,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.001836562215576648,
+"ser": 0.0073137433363671825,
+"snr_db": 15.855230209753888,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0021047328045767782,
+"ser": 0.008386425692367703,
+"snr_db": 15.795489111376416,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.00271421141594071,
+"ser": 0.010791834611884021,
+"snr_db": 15.661328726849998,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0018690677415160576,
+"ser": 0.007443765440124821,
+"snr_db": 15.8682624512547,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0020153426082434012,
+"ser": 0.008028864907034196,
+"snr_db": 15.80792383700119,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.0027060850344558574,
+"ser": 0.01075932908594461,
+"snr_db": 15.67602677432135,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.001243336367182421,
+"ser": 0.004973345468729684,
+"snr_db": 16.198694608447433,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.001413990378364322,
+"ser": 0.005655961513457288,
+"snr_db": 16.145260902959556,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 12,
+"ber": 0.002088480041607073,
+"ser": 0.008321414640488883,
+"snr_db": 16.01971561846917,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0009589130152125861,
+"ser": 0.0038356520608503445,
+"snr_db": 16.344356094369914,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0011133142634247822,
+"ser": 0.004453257053699129,
+"snr_db": 16.310850352162156,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0015358861006371082,
+"ser": 0.006143544402548433,
+"snr_db": 16.2097685563887,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0013246001820309452,
+"ser": 0.005265895202184371,
+"snr_db": 16.042336860804532,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0016090235340007802,
+"ser": 0.0064035886100637105,
+"snr_db": 16.004867834659976,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.002218502145364712,
+"ser": 0.008808997529580028,
+"snr_db": 15.89824385390286,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0014952541932128462,
+"ser": 0.005948511246911975,
+"snr_db": 16.006817907383816,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0017715511636978286,
+"ser": 0.007053699128851905,
+"snr_db": 15.962361324211457,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.002332271486152646,
+"ser": 0.009296580418671175,
+"snr_db": 15.858290533241616,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0016577818229098946,
+"ser": 0.006566116239760759,
+"snr_db": 15.911196468267264,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0020397217526979586,
+"ser": 0.008061370432973605,
+"snr_db": 15.86986125217846,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0024947991158496947,
+"ser": 0.009946690937459368,
+"snr_db": 15.756064026444355,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.001665908204394747,
+"ser": 0.006598621765700169,
+"snr_db": 15.893263080807266,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.002007216226758549,
+"ser": 0.007931348329215967,
+"snr_db": 15.852912499518395,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0026492003640618904,
+"ser": 0.010564295930308153,
+"snr_db": 15.738594521056035,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0010401768300611104,
+"ser": 0.004160707320244442,
+"snr_db": 16.306052804650754,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.0011620725523338968,
+"ser": 0.004648290209335587,
+"snr_db": 16.26753438689066,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 13,
+"ber": 0.08018300611103887,
+"ser": 0.16204004680795736,
+"snr_db": 4.707203619728476,
+"rotated_fraction": 0.30833333333333335
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0010970615004550774,
+"ser": 0.00438824600182031,
+"snr_db": 16.28784961639058,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0012189572227278638,
+"ser": 0.004875828890911455,
+"snr_db": 16.28290397618327,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.001682160967364452,
+"ser": 0.006728643869457808,
+"snr_db": 16.21619415734137,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0014058639968794694,
+"ser": 0.005623455987517878,
+"snr_db": 16.00307145424449,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0015846443895462228,
+"ser": 0.006338577558184891,
+"snr_db": 15.987034373585534,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.002088480041607073,
+"ser": 0.008158887010791835,
+"snr_db": 15.919542148937875,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.001357105707970355,
+"ser": 0.00542842283188142,
+"snr_db": 16.074406345628272,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0015196333376674034,
+"ser": 0.006078533350669614,
+"snr_db": 16.06506895669871,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0020153426082434012,
+"ser": 0.007833831751397737,
+"snr_db": 15.983620359578563,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0016984137303341568,
+"ser": 0.006793654921336627,
+"snr_db": 15.907182885908796,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.002023468989728254,
+"ser": 0.008061370432973605,
+"snr_db": 15.884683705804521,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.024541672084254323,
+"ser": 0.05493433883760239,
+"snr_db": 9.247521909716765,
+"rotated_fraction": 0.09166666666666666
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0016740345858795996,
+"ser": 0.006663632817578988,
+"snr_db": 15.925681219238918,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0019096996489403198,
+"ser": 0.00760629306982187,
+"snr_db": 15.909337531855169,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0022672604342738266,
+"ser": 0.008808997529580028,
+"snr_db": 15.840053251490389,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0011214406449096346,
+"ser": 0.0044857625796385385,
+"snr_db": 16.25374568561895,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0012270836042127162,
+"ser": 0.004908334416850865,
+"snr_db": 16.24372791044283,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 14,
+"ber": 0.0017146664933038616,
+"ser": 0.0068586659732154465,
+"snr_db": 16.17320263438535,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0014058639968794694,
+"ser": 0.005623455987517878,
+"snr_db": 16.096760140251888,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.001625276296970485,
+"ser": 0.00650110518788194,
+"snr_db": 16.104479439621894,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0017552984007281238,
+"ser": 0.007021193602912495,
+"snr_db": 16.104322855645634,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0019015732674554674,
+"ser": 0.00760629306982187,
+"snr_db": 15.779538505495738,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.002120985567546483,
+"ser": 0.008451436744246522,
+"snr_db": 15.781975450569902,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0023485242491223506,
+"ser": 0.009329085944610583,
+"snr_db": 15.761894238840735,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0020966064230919256,
+"ser": 0.008353920166428292,
+"snr_db": 15.729442694757127,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0024054089195163176,
+"ser": 0.009556624626186451,
+"snr_db": 15.726402016771637,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0026329476010921856,
+"ser": 0.010466779352489923,
+"snr_db": 15.700583187621701,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.002234754908334417,
+"ser": 0.008939019633337668,
+"snr_db": 15.644357088552617,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0025679365492133665,
+"ser": 0.010174229619035236,
+"snr_db": 15.634937955480343,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0029986347679105446,
+"ser": 0.01189702249382395,
+"snr_db": 15.600101648137972,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0022266285268495644,
+"ser": 0.008906514107398258,
+"snr_db": 15.638707417542637,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0025760629306982186,
+"ser": 0.010206735144974645,
+"snr_db": 15.630205416500203,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.00298238200494084,
+"ser": 0.01186451696788454,
+"snr_db": 15.590908725864512,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0014952541932128462,
+"ser": 0.005981016772851385,
+"snr_db": 16.051333847773748,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.001722792874788714,
+"ser": 0.0068586659732154465,
+"snr_db": 16.061269512680912,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 15,
+"ber": 0.0018609413600312052,
+"ser": 0.007443765440124821,
+"snr_db": 16.049017446346227,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.002657326745546743,
+"ser": 0.010596801456247562,
+"snr_db": 15.623876609035714,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.002811727993758939,
+"ser": 0.011214406449096347,
+"snr_db": 15.655462301813554,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.002958002860486283,
+"ser": 0.011799505916005721,
+"snr_db": 15.682559239674541,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.0034862176570016903,
+"ser": 0.013879859576127942,
+"snr_db": 15.322189857588404,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.0038356520608503445,
+"ser": 0.01524509166558315,
+"snr_db": 15.345628694144198,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.0039738005460928354,
+"ser": 0.015765180080613703,
+"snr_db": 15.343856184292985,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.0030555194383045116,
+"ser": 0.012189572227278638,
+"snr_db": 15.39445834564911,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.0033480691717591993,
+"ser": 0.013294760109218567,
+"snr_db": 15.422972262440801,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.003575607853335067,
+"ser": 0.01420491483552204,
+"snr_db": 15.432186715998903,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.0036649980496684434,
+"ser": 0.014627486672734365,
+"snr_db": 15.226761680397615,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.0042013392276687034,
+"ser": 0.016675334806917175,
+"snr_db": 15.242418677393353,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.004420751527759719,
+"ser": 0.017520478481341827,
+"snr_db": 15.231755828403317,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.0035431023273956573,
+"ser": 0.01410739825770381,
+"snr_db": 15.25991076465759,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.003933168638668574,
+"ser": 0.015602652450916656,
+"snr_db": 15.279340890250436,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.004306982186971785,
+"ser": 0.017065401118190094,
+"snr_db": 15.270424388900324,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.002811727993758939,
+"ser": 0.011214406449096347,
+"snr_db": 15.582344320970414,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.0030311402938499547,
+"ser": 0.012092055649460408,
+"snr_db": 15.610905379822256,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 16,
+"ber": 0.0031692887790924456,
+"ser": 0.012644649590430374,
+"snr_db": 15.620368176849427,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.0051114939539721755,
+"ser": 0.02028344818619165,
+"snr_db": 14.930032223102199,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.005542192172669354,
+"ser": 0.02194123000910155,
+"snr_db": 14.961572914412816,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.09008906514107398,
+"ser": 0.18882460018203095,
+"snr_db": 4.245140751698409,
+"rotated_fraction": 0.3416666666666667
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.006322324795215187,
+"ser": 0.02509426602522429,
+"snr_db": 14.592881575649699,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.006679885580548693,
+"ser": 0.02623195943310363,
+"snr_db": 14.610705035914794,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.11785691067481471,
+"ser": 0.24821219607333248,
+"snr_db": 3.123270602583848,
+"rotated_fraction": 0.45
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.006330451176700039,
+"ser": 0.02506176049928488,
+"snr_db": 14.582631229489627,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.006793654921336627,
+"ser": 0.026784553374073594,
+"snr_db": 14.599339478991872,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.15457190222337797,
+"ser": 0.3185541542062151,
+"snr_db": 0.7262264827281223,
+"rotated_fraction": 0.4166666666666667
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.006590495384215317,
+"ser": 0.0261344428552854,
+"snr_db": 14.532727998431682,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.006964308932518528,
+"ser": 0.027532180470680016,
+"snr_db": 14.53921029246986,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.10073462488623065,
+"ser": 0.21307372253283058,
+"snr_db": 3.838564824559583,
+"rotated_fraction": 0.375
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.006590495384215317,
+"ser": 0.0261344428552854,
+"snr_db": 14.543844908609502,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.007159342088154987,
+"ser": 0.028344818619165258,
+"snr_db": 14.557236522425248,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.0075331556364581975,
+"ser": 0.029905083864256922,
+"snr_db": 14.58445455944961,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.005347159017032896,
+"ser": 0.021258613964373944,
+"snr_db": 14.875540005516497,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.0056722142764269925,
+"ser": 0.022526329476010923,
+"snr_db": 14.904949474084763,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 17,
+"ber": 0.09026784553374073,
+"ser": 0.18960473280457676,
+"snr_db": 4.231161444334772,
+"rotated_fraction": 0.3416666666666667
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.0073706280067611495,
+"ser": 0.02928747887140814,
+"snr_db": 14.271418381810319,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.009004030685216487,
+"ser": 0.03575607853335067,
+"snr_db": 14.131806493874482,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.20302951501755298,
+"ser": 0.4205890001300221,
+"snr_db": -0.08497626615828952,
+"rotated_fraction": 0.5916666666666667
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.00981666883370173,
+"ser": 0.03877909244571577,
+"snr_db": 13.925886788053315,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.05080613704329736,
+"ser": 0.12124561175399819,
+"snr_db": 7.008515024704126,
+"rotated_fraction": 0.15833333333333333
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.2251982837082304,
+"ser": 0.465089065141074,
+"snr_db": -0.8729061937060978,
+"rotated_fraction": 0.675
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.009069041737095307,
+"ser": 0.035853595111168896,
+"snr_db": 13.99890135120672,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.11697926147445066,
+"ser": 0.2506826160447276,
+"snr_db": 3.2506476354746865,
+"rotated_fraction": 0.43333333333333335
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.07169906384085295,
+"ser": 0.16746846963983877,
+"snr_db": 5.548530530455448,
+"rotated_fraction": 0.225
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.009231569366792355,
+"ser": 0.03643869457807827,
+"snr_db": 13.972046037860986,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.011271291119490313,
+"ser": 0.04446755948511247,
+"snr_db": 13.807683222157634,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.09688272006241061,
+"ser": 0.21684436354180212,
+"snr_db": 4.1817652239649785,
+"rotated_fraction": 0.15833333333333333
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.009020283448186192,
+"ser": 0.03565856195553244,
+"snr_db": 14.008755068220038,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.010799960993368872,
+"ser": 0.04261474450656612,
+"snr_db": 13.85520286649924,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.22243531400338057,
+"ser": 0.46060330256143545,
+"snr_db": -0.3908807827962823,
+"rotated_fraction": 0.7583333333333333
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.007695683266155246,
+"ser": 0.03052268885710571,
+"snr_db": 14.225819818756733,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.1097792874788714,
+"ser": 0.2329020933558705,
+"snr_db": 3.4931175654991735,
+"rotated_fraction": 0.4083333333333333
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 7,
+"ber": 0.1635515537641399,
+"ser": 0.3428357820829541,
+"snr_db": 0.6677404085781479,
+"rotated_fraction": 0.44166666666666665
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.005412170068911715,
+"ser": 0.02142114159407099,
+"snr_db": 14.714278804026497,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.006720517487972955,
+"ser": 0.026622025744376544,
+"snr_db": 14.583056601822424,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.19176635027954753,
+"ser": 0.39448706280067614,
+"snr_db": 1.11263368524948,
+"rotated_fraction": 0.575
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.006590495384215317,
+"ser": 0.02603692627746717,
+"snr_db": 14.455569268511788,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.008167013392276688,
+"ser": 0.03224548173189442,
+"snr_db": 14.316666804320025,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.2407115459628137,
+"ser": 0.4946365882199974,
+"snr_db": 0.07308800308820652,
+"rotated_fraction": 0.8166666666666667
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.007175594851124691,
+"ser": 0.02821479651540762,
+"snr_db": 14.369225905812913,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.03473215446625926,
+"ser": 0.08734234819919386,
+"snr_db": 8.36725264739567,
+"rotated_fraction": 0.10833333333333334
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.11305421921726694,
+"ser": 0.24307632297490572,
+"snr_db": 3.4477308794340495,
+"rotated_fraction": 0.23333333333333334
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.006224808217396957,
+"ser": 0.02457417761019373,
+"snr_db": 14.538427078120224,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.00757378754388246,
+"ser": 0.029840072812378104,
+"snr_db": 14.400548011944263,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.20384215316603824,
+"ser": 0.42270185931608373,
+"snr_db": 0.6847008416452565,
+"rotated_fraction": 0.7833333333333333
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.00626544012482122,
+"ser": 0.02476921076583019,
+"snr_db": 14.549331987829845,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.007500650110518788,
+"ser": 0.029645039656741645,
+"snr_db": 14.408991894836763,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.13528799895982316,
+"ser": 0.28292809777662203,
+"snr_db": 2.645950983869164,
+"rotated_fraction": 0.5083333333333333
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.005566571317123911,
+"ser": 0.022038746586919778,
+"snr_db": 14.672511505291064,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.00676927577688207,
+"ser": 0.026817058900013003,
+"snr_db": 14.536055128694656,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 120,
+"power_dbm": 8,
+"ber": 0.21190352359901182,
+"ser": 0.43381874918736185,
+"snr_db": 0.6608879100815548,
+"rotated_fraction": 0.10833333333333334
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.0032500325817802684,
+"ser": 0.0129675485468526,
+"snr_db": 15.255509090643557,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.003950540857552457,
+"ser": 0.01567183630913593,
+"snr_db": 15.167569111907968,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.020037794865111428,
+"ser": 0.051414049263651763,
+"snr_db": 10.241012847938906,
+"rotated_fraction": 0.058823529411764705
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.00435781311090838,
+"ser": 0.017333507102828098,
+"snr_db": 14.958455390321273,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.004854685260002606,
+"ser": 0.019255832138668057,
+"snr_db": 14.867811323908974,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.013953147399973935,
+"ser": 0.040466571093444544,
+"snr_db": 11.783062014518158,
+"rotated_fraction": 0.025210084033613446
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.00425192232503584,
+"ser": 0.01694252573960641,
+"snr_db": 14.994547374508706,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.005025739606412095,
+"ser": 0.019907467744037535,
+"snr_db": 14.897583306033548,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.014140492636517659,
+"ser": 0.04092271601720318,
+"snr_db": 11.772945793313793,
+"rotated_fraction": 0.025210084033613446
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.0043822494461097355,
+"ser": 0.017463834223901995,
+"snr_db": 14.967538540978893,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.005066466831747687,
+"ser": 0.02013554020591685,
+"snr_db": 14.868155157645194,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.006500065163560537,
+"ser": 0.025707024631825882,
+"snr_db": 14.691492989910824,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.004292649550371432,
+"ser": 0.017105434640948783,
+"snr_db": 14.976786177540705,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.0050746122768148055,
+"ser": 0.02010295842564838,
+"snr_db": 14.880322944863916,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.0065163560536947735,
+"ser": 0.025576697510751988,
+"snr_db": 14.697109894957013,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.0034455232633911117,
+"ser": 0.013749511273295973,
+"snr_db": 15.216540140937342,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.004023849863156523,
+"ser": 0.015965072331552196,
+"snr_db": 15.126050007278423,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 10,
+"ber": 0.005204939397888701,
+"ser": 0.020656848690212434,
+"snr_db": 14.956448610575766,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0016861071288935226,
+"ser": 0.006744428515574091,
+"snr_db": 15.919995474324049,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0019956340414440245,
+"ser": 0.007982536165776098,
+"snr_db": 15.872352798231855,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0027205786524175683,
+"ser": 0.010817151049133325,
+"snr_db": 15.754304906903634,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.002158542942786394,
+"ser": 0.008536426430340154,
+"snr_db": 15.668639175235713,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0025902515313436726,
+"ser": 0.010230679004300795,
+"snr_db": 15.614842348918629,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.00345366870845823,
+"ser": 0.013586602371953603,
+"snr_db": 15.477221748314056,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.002288870063860289,
+"ser": 0.009057734914635737,
+"snr_db": 15.62652309967766,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0027613058777531604,
+"ser": 0.010980059950475693,
+"snr_db": 15.574967176547958,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0036491593900690733,
+"ser": 0.014335983318128503,
+"snr_db": 15.432143171376492,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0025006516356053696,
+"ser": 0.00993744298188453,
+"snr_db": 15.576089715684954,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.002997523784699596,
+"ser": 0.011762022676919066,
+"snr_db": 15.514578182193702,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0038853772970155087,
+"ser": 0.015248273165645771,
+"snr_db": 15.368293168031652,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.002370324514531474,
+"ser": 0.009448716277857422,
+"snr_db": 15.59579054993594,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0028997784438941744,
+"ser": 0.011468786654502803,
+"snr_db": 15.53125353240217,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0038283591815456795,
+"ser": 0.015052782484034927,
+"snr_db": 15.382815224057573,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0016616707936921674,
+"ser": 0.00664668317476867,
+"snr_db": 15.886354653394182,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0020852339371823275,
+"ser": 0.00834093574872931,
+"snr_db": 15.836889354352866,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 12,
+"ber": 0.0027124332073504495,
+"ser": 0.010817151049133325,
+"snr_db": 15.714889815260936,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0013114166558060732,
+"ser": 0.005245666623224293,
+"snr_db": 16.084466747101718,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0016127981232894565,
+"ser": 0.006451192493157826,
+"snr_db": 16.05727355373712,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0021503974977192756,
+"ser": 0.008569008210608627,
+"snr_db": 15.932851953031415,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.001865306920370129,
+"ser": 0.007461227681480516,
+"snr_db": 15.793293296154518,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.002109670272383683,
+"ser": 0.00834093574872931,
+"snr_db": 15.768529402742583,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0025902515313436726,
+"ser": 0.010295842564837742,
+"snr_db": 15.655576563624278,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0019467613710413138,
+"ser": 0.007787045484165255,
+"snr_db": 15.755355311500237,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0021748338329206306,
+"ser": 0.008666753551414049,
+"snr_db": 15.726522876732641,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0027613058777531604,
+"ser": 0.010980059950475693,
+"snr_db": 15.611232116655525,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0019223250358399583,
+"ser": 0.007656718363091359,
+"snr_db": 15.69136875384668,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.002427342630001303,
+"ser": 0.009644206959468266,
+"snr_db": 15.656923260624803,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0030301055649680697,
+"ser": 0.011990095138798383,
+"snr_db": 15.518085539824023,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.002142252052652157,
+"ser": 0.008536426430340154,
+"snr_db": 15.690419853024089,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0023784699595985927,
+"ser": 0.009448716277857422,
+"snr_db": 15.65657773284963,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0030301055649680697,
+"ser": 0.012055258699335332,
+"snr_db": 15.523083305666256,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0013602893262087841,
+"ser": 0.005441157304835137,
+"snr_db": 16.04394220885397,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0016535253486250488,
+"ser": 0.006614101394500195,
+"snr_db": 16.012630065637495,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 13,
+"ber": 0.0021503974977192756,
+"ser": 0.008569008210608627,
+"snr_db": 15.887004708596582,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.0013521438811416656,
+"ser": 0.005408575524566662,
+"snr_db": 16.1166282260394,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.0016616707936921674,
+"ser": 0.006614101394500195,
+"snr_db": 16.098806978018175,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.0022399973934575787,
+"ser": 0.00892740779356184,
+"snr_db": 16.0098021921886,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.001775707024631826,
+"ser": 0.007102828098527304,
+"snr_db": 15.85048989080827,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.00212596116251792,
+"ser": 0.008471262869803205,
+"snr_db": 15.824092269319918,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.002614687866545028,
+"ser": 0.010393587905643164,
+"snr_db": 15.738069619621381,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.0018408705851687736,
+"ser": 0.007363482340675094,
+"snr_db": 15.851309723883052,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.002199270168121986,
+"ser": 0.008764498892219471,
+"snr_db": 15.82917975159787,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.002663560536947739,
+"ser": 0.010491333246448586,
+"snr_db": 15.724670090864896,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.002060797601980972,
+"ser": 0.008243190407923888,
+"snr_db": 15.725206040710628,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.0023214518441287634,
+"ser": 0.009253225596246578,
+"snr_db": 15.697967382722727,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.0032093053564446763,
+"ser": 0.012609148963899388,
+"snr_db": 15.588352679679655,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.0019630522611755507,
+"ser": 0.007852209044702203,
+"snr_db": 15.750542244085377,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.002280724618793171,
+"ser": 0.00909031669490421,
+"snr_db": 15.730249544573965,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.059274403753421086,
+"ser": 0.12387592858073765,
+"snr_db": 5.968478534319274,
+"rotated_fraction": 0.2184873949579832
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.0014417437768799687,
+"ser": 0.005766975107519875,
+"snr_db": 16.08310130489019,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.0016942525739606412,
+"ser": 0.006711846735305617,
+"snr_db": 16.06604872809517,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 14,
+"ber": 0.0021503974977192756,
+"ser": 0.008569008210608627,
+"snr_db": 15.975213906803942,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0017512706894304705,
+"ser": 0.007005082757721882,
+"snr_db": 15.929416757591543,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0020119249315782616,
+"ser": 0.008015117946044571,
+"snr_db": 15.93295997488988,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.002419197184934185,
+"ser": 0.009644206959468266,
+"snr_db": 15.896657835290691,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0021666883878535123,
+"ser": 0.008666753551414049,
+"snr_db": 15.637983389547669,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0026228333116121464,
+"ser": 0.010458751466180112,
+"snr_db": 15.636348359263843,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0030219601199009513,
+"ser": 0.012022676919066859,
+"snr_db": 15.588000214333821,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0020445067118467354,
+"ser": 0.008178026847386942,
+"snr_db": 15.672280833727383,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0025495243060080805,
+"ser": 0.010165515443763847,
+"snr_db": 15.67973358669862,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0029893783396324775,
+"ser": 0.011859768017724488,
+"snr_db": 15.633211245933952,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0024843607454711324,
+"ser": 0.009872279421347583,
+"snr_db": 15.521509759557773,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.00292421477909553,
+"ser": 0.011631695555845171,
+"snr_db": 15.511489404708492,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.00345366870845823,
+"ser": 0.013716929493027498,
+"snr_db": 15.45020845170029,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.002337742734263,
+"ser": 0.009318389156783527,
+"snr_db": 15.572054531830766,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.002891632998827056,
+"ser": 0.011501368434771276,
+"snr_db": 15.56377367871171,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.003380359702854164,
+"ser": 0.013423693470611234,
+"snr_db": 15.511404325488433,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0018734523654372476,
+"ser": 0.00749380946174899,
+"snr_db": 15.889192442141155,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.002068943047048091,
+"ser": 0.008243190407923888,
+"snr_db": 15.89505499067627,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 15,
+"ber": 0.0024110517398670665,
+"ser": 0.00961162517919979,
+"snr_db": 15.859204212037671,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.0028671966636257006,
+"ser": 0.011436204874234327,
+"snr_db": 15.513880549449974,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.003046396455102307,
+"ser": 0.012153004040140754,
+"snr_db": 15.539439761653082,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.0032174508015117946,
+"ser": 0.01280463964551023,
+"snr_db": 15.564583436675044,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.003641013945001955,
+"ser": 0.014466310439202398,
+"snr_db": 15.234045739601541,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.004007558973022286,
+"ser": 0.01593249055128372,
+"snr_db": 15.244007252308485,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.00404014075329076,
+"ser": 0.016062817672357618,
+"snr_db": 15.26064376007177,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.003486250488726704,
+"ser": 0.013847256614101395,
+"snr_db": 15.288918657448656,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.0036491593900690733,
+"ser": 0.014433728658933925,
+"snr_db": 15.305590844437662,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.0038120682914114428,
+"ser": 0.015183109605108823,
+"snr_db": 15.330891192803604,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.003950540857552457,
+"ser": 0.01567183630913593,
+"snr_db": 15.126563591300696,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.004537012902384986,
+"ser": 0.01801772448846605,
+"snr_db": 15.12623618189737,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.00456959468265346,
+"ser": 0.018115469829271473,
+"snr_db": 15.127500588569553,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.0038446500716799166,
+"ser": 0.015248273165645771,
+"snr_db": 15.14213407673399,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.004488140231982275,
+"ser": 0.01785481558712368,
+"snr_db": 15.139642882864168,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.00446370389678092,
+"ser": 0.017757070246318257,
+"snr_db": 15.148753659502141,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.0030301055649680697,
+"ser": 0.012087840479603805,
+"snr_db": 15.47272029071075,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.0032011599113775575,
+"ser": 0.012772057865241757,
+"snr_db": 15.496579189980721,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 16,
+"ber": 0.003225596246578913,
+"ser": 0.012869803206047178,
+"snr_db": 15.518098085426317,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.005652938876580216,
+"ser": 0.022514010165515443,
+"snr_db": 14.843434058318262,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.005742538772318519,
+"ser": 0.022839827968200183,
+"snr_db": 14.877210546954885,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.01169685911638212,
+"ser": 0.034667014205656196,
+"snr_db": 12.384609923847254,
+"rotated_fraction": 0.01680672268907563
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.0068421738563795124,
+"ser": 0.027238368304444156,
+"snr_db": 14.541698393290812,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.007167991659064251,
+"ser": 0.02854163951518311,
+"snr_db": 14.557953812631258,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.11797048090707676,
+"ser": 0.24941352795516747,
+"snr_db": 3.1366666778764953,
+"rotated_fraction": 0.453781512605042
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.0064267561579564704,
+"ser": 0.02544637038967809,
+"snr_db": 14.610012466678445,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.006785155740909684,
+"ser": 0.02684738694122247,
+"snr_db": 14.632755489773515,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.11762837221425779,
+"ser": 0.2478821842825492,
+"snr_db": 3.1271772975630836,
+"rotated_fraction": 0.453781512605042
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.007078391763325948,
+"ser": 0.028085494591424474,
+"snr_db": 14.458187414556141,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.007567118467353056,
+"ser": 0.030040401407532908,
+"snr_db": 14.468953428242122,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.00781962726443373,
+"ser": 0.03098527303531865,
+"snr_db": 14.523002079981168,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.006972500977453408,
+"ser": 0.02762934966766584,
+"snr_db": 14.4958332172599,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.007233155219601199,
+"ser": 0.028671966636257006,
+"snr_db": 14.514581787312085,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.1180356444676137,
+"ser": 0.24996741821973154,
+"snr_db": 3.1164439457578985,
+"rotated_fraction": 0.453781512605042
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.005799556887788349,
+"ser": 0.023100482210347974,
+"snr_db": 14.79601671517912,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.005856575003258178,
+"ser": 0.023263391111690342,
+"snr_db": 14.82185319721528,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 17,
+"ber": 0.005995047569399192,
+"ser": 0.023849863156522873,
+"snr_db": 14.907198106998614,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.011517659324905513,
+"ser": 0.04541900169425257,
+"snr_db": 13.852760981648256,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.012470676397758373,
+"ser": 0.04923106998566402,
+"snr_db": 13.846331158184732,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.18902319822755115,
+"ser": 0.3922846344324254,
+"snr_db": 0.1087658288591724,
+"rotated_fraction": 0.5546218487394958
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.013830965723967158,
+"ser": 0.05441157304835136,
+"snr_db": 13.521086129480855,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.014857291802424084,
+"ser": 0.05815847777922586,
+"snr_db": 13.499007499254725,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.10968656327381728,
+"ser": 0.24410269777140622,
+"snr_db": 3.67528082021546,
+"rotated_fraction": 0.10084033613445378
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.014246383422390199,
+"ser": 0.056105825622312006,
+"snr_db": 13.490578282527135,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.015126091489638994,
+"ser": 0.059429167209696335,
+"snr_db": 13.454667248992962,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.1930551935357748,
+"ser": 0.40678352665189627,
+"snr_db": 0.9988893660824212,
+"rotated_fraction": 0.6470588235294118
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.014221947087188843,
+"ser": 0.056040662061775055,
+"snr_db": 13.470304370668476,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.0153052912811156,
+"ser": 0.06027629349667666,
+"snr_db": 13.443492974880929,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.14748142838524697,
+"ser": 0.3170858855727877,
+"snr_db": 1.1353081626968915,
+"rotated_fraction": 0.4369747899159664
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.014376710543464094,
+"ser": 0.05669229766714453,
+"snr_db": 13.448546403231967,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.01546005473739085,
+"ser": 0.06069985664016682,
+"snr_db": 13.42320926928072,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.10688453017072853,
+"ser": 0.23823797732308094,
+"snr_db": 3.8261195045456713,
+"rotated_fraction": 0.36134453781512604
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.0119086406881272,
+"ser": 0.046950345366870844,
+"snr_db": 13.797813734572632,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.012755766975107519,
+"ser": 0.05030626873452365,
+"snr_db": 13.78636423842006,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 18,
+"ber": 0.18337025935097093,
+"ser": 0.3821842825491985,
+"snr_db": 0.22885460813473393,
+"rotated_fraction": 0.5546218487394958
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.017235761762022676,
+"ser": 0.06754203049654633,
+"snr_db": 13.067028093352437,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.16850482210347972,
+"ser": 0.3648181936661019,
+"snr_db": 1.789479968762743,
+"rotated_fraction": 0.2605042016806723
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.20816499413527956,
+"ser": 0.4463052261175551,
+"snr_db": 0.819241004912088,
+"rotated_fraction": 0.6638655462184874
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.023084191320213738,
+"ser": 0.08930665971588687,
+"snr_db": 12.502863702509796,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.22509937442981884,
+"ser": 0.476964681350189,
+"snr_db": -0.37586954846366954,
+"rotated_fraction": 0.7058823529411765
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.2944578391763326,
+"ser": 0.6155349928320083,
+"snr_db": -1.3093107806953674,
+"rotated_fraction": 0.6554621848739496
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.021666883878535124,
+"ser": 0.08464746513749512,
+"snr_db": 12.60729148912337,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.11383259481298058,
+"ser": 0.26655154437638473,
+"snr_db": 2.7592415616316806,
+"rotated_fraction": 0.29411764705882354
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.29937768799687214,
+"ser": 0.6193796429036883,
+"snr_db": -2.517484830804959,
+"rotated_fraction": 0.5546218487394958
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.022628046396455104,
+"ser": 0.08774273426300012,
+"snr_db": 12.550515413285869,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.1948634823406751,
+"ser": 0.42092401928841394,
+"snr_db": -0.21017452108652881,
+"rotated_fraction": 0.44537815126050423
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.3234882053955428,
+"ser": 0.667079369216734,
+"snr_db": -2.1061349243598873,
+"rotated_fraction": 0.6302521008403361
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.02217190147269647,
+"ser": 0.08591815456796559,
+"snr_db": 12.58253604292822,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.15533363742994918,
+"ser": 0.34862504887267043,
+"snr_db": 1.9403652412241645,
+"rotated_fraction": 0.453781512605042
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.3333034667014206,
+"ser": 0.685227420826274,
+"snr_db": -2.359067677637326,
+"rotated_fraction": 0.8319327731092437
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.01712987097615014,
+"ser": 0.06711846735305617,
+"snr_db": 13.024833103121829,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.08268441287631956,
+"ser": 0.20063860289326207,
+"snr_db": 5.143306341706379,
+"rotated_fraction": 0.25210084033613445
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 6,
+"ber": 0.2743793170858856,
+"ser": 0.5702137364785612,
+"snr_db": -1.2314685663747689,
+"rotated_fraction": 0.6386554621848739
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.011452495764368565,
+"ser": 0.04528867457317868,
+"snr_db": 13.710666036318614,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.013488857031148181,
+"ser": 0.0533689560797602,
+"snr_db": 13.548716466453378,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.2633259481298058,
+"ser": 0.544343802945393,
+"snr_db": -0.9046551119906439,
+"rotated_fraction": 0.3697478991596639
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.01408347452104783,
+"ser": 0.05522611755506321,
+"snr_db": 13.347427603988578,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.06570930535644467,
+"ser": 0.16075850384465007,
+"snr_db": 6.070216459484245,
+"rotated_fraction": 0.19327731092436976
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.2588296624527564,
+"ser": 0.5339176332594813,
+"snr_db": -1.5288189627116306,
+"rotated_fraction": 0.5210084033613446
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.013839111169034276,
+"ser": 0.05431382770754594,
+"snr_db": 13.385487042844638,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.0937296363873322,
+"ser": 0.21526782223380686,
+"snr_db": 4.373296414284776,
+"rotated_fraction": 0.31932773109243695
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.22139319692427994,
+"ser": 0.4670598201485729,
+"snr_db": 0.05488269504775833,
+"rotated_fraction": 0.29411764705882354
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.014197510751987488,
+"ser": 0.05568226247882184,
+"snr_db": 13.31603694996816,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.06094421999218037,
+"ser": 0.15254789521699466,
+"snr_db": 6.464736182503027,
+"rotated_fraction": 0.16806722689075632
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.19903395021503975,
+"ser": 0.4249315782614362,
+"snr_db": 0.9995588563046182,
+"rotated_fraction": 0.47058823529411764
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.014099765411182068,
+"ser": 0.0553564446761371,
+"snr_db": 13.344266863034857,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.12684087058516877,
+"ser": 0.27860680307572006,
+"snr_db": 2.981450137110503,
+"rotated_fraction": 0.44537815126050423
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.31834028411312393,
+"ser": 0.6488335722663886,
+"snr_db": -2.1137830581968817,
+"rotated_fraction": 0.8319327731092437
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.011721295451583475,
+"ser": 0.04636387332203832,
+"snr_db": 13.668610125811984,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.014002020070376646,
+"ser": 0.05542160823667405,
+"snr_db": 13.496359160171352,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 7,
+"ber": 0.26409161996611497,
+"ser": 0.543594421999218,
+"snr_db": -0.902680167956005,
+"rotated_fraction": 0.8235294117647058
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.007184282549198488,
+"ser": 0.028346148833572265,
+"snr_db": 14.29021973553385,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.009179916590642512,
+"ser": 0.036230939658542946,
+"snr_db": 14.14648211050662,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.15842076111038708,
+"ser": 0.331682523133064,
+"snr_db": 1.9852278362968243,
+"rotated_fraction": 0.44537815126050423
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.00908217124983709,
+"ser": 0.03554672227290499,
+"snr_db": 13.96070961318257,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.10861950997002476,
+"ser": 0.23504496285677048,
+"snr_db": 3.511528830803971,
+"rotated_fraction": 0.40336134453781514
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.10032744689169816,
+"ser": 0.22403232112602633,
+"snr_db": 3.987673228847087,
+"rotated_fraction": 0.3445378151260504
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.009432425387723185,
+"ser": 0.03688257526391242,
+"snr_db": 13.915796628762605,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.06662159520396195,
+"ser": 0.15300404014075328,
+"snr_db": 5.729905218559735,
+"rotated_fraction": 0.2184873949579832
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.09631174247360876,
+"ser": 0.2153329857943438,
+"snr_db": 4.016326235013609,
+"rotated_fraction": 0.33613445378151263
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.008951844128763195,
+"ser": 0.035057995568877884,
+"snr_db": 14.00987778241788,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.011069659846213997,
+"ser": 0.04333376775707025,
+"snr_db": 13.847769459001052,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.1085869281897563,
+"ser": 0.2385312133454972,
+"snr_db": 3.674025080130781,
+"rotated_fraction": 0.3865546218487395
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.008756353447152353,
+"ser": 0.03427603284243451,
+"snr_db": 14.012126584247365,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.06605141404926365,
+"ser": 0.15101655154437638,
+"snr_db": 5.77802041799138,
+"rotated_fraction": 0.2184873949579832
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.26087416916460315,
+"ser": 0.5338198879186759,
+"snr_db": -1.383655131990771,
+"rotated_fraction": 0.7058823529411765
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.007420500456144924,
+"ser": 0.02929102046135801,
+"snr_db": 14.251303548874613,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.009359116382119118,
+"ser": 0.03704548416525479,
+"snr_db": 14.105328494615287,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 125,
+"power_dbm": 8,
+"ber": 0.19706275250879707,
+"ser": 0.4117359572527043,
+"snr_db": 0.9497039766809224,
+"rotated_fraction": 0.35294117647058826
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.0051763553233180925,
+"ser": 0.020640104506858263,
+"snr_db": 14.806269938359646,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.006286740692357936,
+"ser": 0.025146962769431742,
+"snr_db": 14.690660395103915,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.10279229261920314,
+"ser": 0.21966035271064663,
+"snr_db": 3.75649707661133,
+"rotated_fraction": 0.3277310924369748
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.006343892880470281,
+"ser": 0.025146962769431742,
+"snr_db": 14.512880274611648,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.007756368386675375,
+"ser": 0.030796864794252123,
+"snr_db": 14.388320763057115,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.06791312867406923,
+"ser": 0.15248203788373613,
+"snr_db": 5.65291660289278,
+"rotated_fraction": 0.23529411764705882
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.0062050947093403004,
+"ser": 0.024591770084911823,
+"snr_db": 14.540834333356296,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.0075359242325277595,
+"ser": 0.029947746570868714,
+"snr_db": 14.414399561236834,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.20039190071848464,
+"ser": 0.4152188112344873,
+"snr_db": 0.865937953587036,
+"rotated_fraction": 0.7226890756302521
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.006286740692357936,
+"ser": 0.02488569562377531,
+"snr_db": 14.51793472494427,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.007601241018941868,
+"ser": 0.030111038536903983,
+"snr_db": 14.391222312308505,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.11058948399738733,
+"ser": 0.23821032005225343,
+"snr_db": 3.4391276362738776,
+"rotated_fraction": 0.35294117647058826
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.006058131939908557,
+"ser": 0.0240365774003919,
+"snr_db": 14.539615443879061,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.007437949052906597,
+"ser": 0.02958850424559112,
+"snr_db": 14.417887942305024,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.2068582625734814,
+"ser": 0.42642064010450687,
+"snr_db": 0.7409176844108516,
+"rotated_fraction": 0.6386554621848739
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.005355976485956891,
+"ser": 0.021358589157413455,
+"snr_db": 14.763675714150132,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.00643370346178968,
+"ser": 0.02573481384715872,
+"snr_db": 14.647632805423342,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 10,
+"ber": 0.06709666884389288,
+"ser": 0.14983670803396473,
+"snr_db": 5.645944604280846,
+"rotated_fraction": 0.226890756302521
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.002555519268451992,
+"ser": 0.01015676028739386,
+"snr_db": 15.512274178456957,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.0030617243631613326,
+"ser": 0.012214239059438275,
+"snr_db": 15.44995433337641,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.06233670803396473,
+"ser": 0.13171129980404964,
+"snr_db": 5.768383128996112,
+"rotated_fraction": 0.23529411764705882
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.0032250163291966034,
+"ser": 0.012769431743958197,
+"snr_db": 15.25115906552837,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.003919007184846506,
+"ser": 0.01557805355976486,
+"snr_db": 15.176376715679623,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.005478445460483344,
+"ser": 0.02161985630306989,
+"snr_db": 14.971912472865203,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.00321685173089484,
+"ser": 0.012802090137165252,
+"snr_db": 15.23559121497476,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.004172109732201176,
+"ser": 0.01659046374918354,
+"snr_db": 15.157757332339436,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.06632919660352711,
+"ser": 0.14157413455258,
+"snr_db": 5.6320697592526265,
+"rotated_fraction": 0.23529411764705882
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.003559764859568909,
+"ser": 0.014206401045068583,
+"snr_db": 15.158887421427744,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.004294578706727629,
+"ser": 0.017080339647289354,
+"snr_db": 15.08055468908651,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.1407903331156107,
+"ser": 0.2904964075767472,
+"snr_db": 2.4017426571293505,
+"rotated_fraction": 0.2773109243697479
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.003527106466361855,
+"ser": 0.014075767472240366,
+"snr_db": 15.194977153072147,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.004261920313520575,
+"ser": 0.016917047681254082,
+"snr_db": 15.116246057694458,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.09323971260613978,
+"ser": 0.19546048334421948,
+"snr_db": 4.131294680335357,
+"rotated_fraction": 0.3445378151260504
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.002686152841280209,
+"ser": 0.010744611365120836,
+"snr_db": 15.473358978837355,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.003184193337687786,
+"ser": 0.012736773350751143,
+"snr_db": 15.408507387704836,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 12,
+"ber": 0.026232854343566297,
+"ser": 0.06234487263226649,
+"snr_db": 9.141325340304647,
+"rotated_fraction": 0.09243697478991597
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.001902351404310908,
+"ser": 0.0075767472240365775,
+"snr_db": 15.805547782539506,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.002188112344872632,
+"ser": 0.008719790986283475,
+"snr_db": 15.765367764626642,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.16748856956237754,
+"ser": 0.3377531025473547,
+"snr_db": 1.6332427385033985,
+"rotated_fraction": 0.4117647058823529
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.0024575440888308297,
+"ser": 0.009797517962116264,
+"snr_db": 15.505110973550096,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.002939255388634879,
+"ser": 0.011724363161332463,
+"snr_db": 15.458647185042917,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.12112181580666231,
+"ser": 0.24970607446113652,
+"snr_db": 2.978002472386997,
+"rotated_fraction": 0.4789915966386555
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.0024575440888308297,
+"ser": 0.00976485956890921,
+"snr_db": 15.602545981793822,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.002743305029392554,
+"ser": 0.010940561724363161,
+"snr_db": 15.557426265036035,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.1209666884389288,
+"ser": 0.24888961463096015,
+"snr_db": 2.974084000807375,
+"rotated_fraction": 0.4789915966386555
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.0026534944480731547,
+"ser": 0.010581319399085565,
+"snr_db": 15.441901530510485,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.0030780535597648598,
+"ser": 0.012279555845852384,
+"snr_db": 15.393100758441374,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.004033311561071195,
+"ser": 0.01580666231221424,
+"snr_db": 15.256576676664672,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.0026453298497713914,
+"ser": 0.01054866100587851,
+"snr_db": 15.467909960228472,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.0030780535597648598,
+"ser": 0.012279555845852384,
+"snr_db": 15.420330810359697,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.0038291966035271063,
+"ser": 0.015055519268451991,
+"snr_db": 15.294796059359076,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.0018941868060091444,
+"ser": 0.007544088830829523,
+"snr_db": 15.7685071280104,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.0021554539516655783,
+"ser": 0.008621815806662313,
+"snr_db": 15.722850688964055,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 13,
+"ber": 0.06630470280862182,
+"ser": 0.1395819725669497,
+"snr_db": 5.398625950033187,
+"rotated_fraction": 0.25210084033613445
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0018533638145003266,
+"ser": 0.007413455258001306,
+"snr_db": 15.848029258607399,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.00234323971260614,
+"ser": 0.009340300457217504,
+"snr_db": 15.815486684492562,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0027759634225996083,
+"ser": 0.011103853690398433,
+"snr_db": 15.738736710934182,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0023677335075114304,
+"ser": 0.009438275636838668,
+"snr_db": 15.56111139007477,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.002669823644676682,
+"ser": 0.010646636185499674,
+"snr_db": 15.522991238982996,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0034944480731548006,
+"ser": 0.01387981711299804,
+"snr_db": 15.430456852695759,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0024575440888308297,
+"ser": 0.009732201175702155,
+"snr_db": 15.596205248043278,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0028004572175048988,
+"ser": 0.011103853690398433,
+"snr_db": 15.556619904214223,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0034781188765512735,
+"ser": 0.013781841933376877,
+"snr_db": 15.473826370928458,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0028576094056172435,
+"ser": 0.011365120836054865,
+"snr_db": 15.430569101865967,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0032413455258001305,
+"ser": 0.012900065316786414,
+"snr_db": 15.389962285344737,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.008336054866100588,
+"ser": 0.024918354016982364,
+"snr_db": 13.357255180964582,
+"rotated_fraction": 0.01680672268907563
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.002702482037883736,
+"ser": 0.01077726975832789,
+"snr_db": 15.468590898655183,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.00321685173089484,
+"ser": 0.012802090137165252,
+"snr_db": 15.421511530101164,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.004025146962769432,
+"ser": 0.016067929457870674,
+"snr_db": 15.320373172111704,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.001918680600914435,
+"ser": 0.00767472240365774,
+"snr_db": 15.80839908890515,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0023269105160026128,
+"ser": 0.009307642064010451,
+"snr_db": 15.77639991165138,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 14,
+"ber": 0.0028821032005225343,
+"ser": 0.011528412802090137,
+"snr_db": 15.693849419905547,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.002188112344872632,
+"ser": 0.008719790986283475,
+"snr_db": 15.734080648404527,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0024085564990202484,
+"ser": 0.009601567602873938,
+"snr_db": 15.736854234204507,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0027841280209013716,
+"ser": 0.011103853690398433,
+"snr_db": 15.700146890358088,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0026616590463749185,
+"ser": 0.010581319399085565,
+"snr_db": 15.450762646081754,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0030453951665578055,
+"ser": 0.012116263879817114,
+"snr_db": 15.446676318688684,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.055568256041802745,
+"ser": 0.1166231221423906,
+"snr_db": 6.223285689039643,
+"rotated_fraction": 0.21008403361344538
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.002718811234487263,
+"ser": 0.010842586544742,
+"snr_db": 15.42032453348501,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0030780535597648598,
+"ser": 0.012214239059438275,
+"snr_db": 15.415446587322863,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.05562540822991509,
+"ser": 0.11688438928804702,
+"snr_db": 6.2344900672024135,
+"rotated_fraction": 0.21008403361344538
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0030127367733507513,
+"ser": 0.01201828870019595,
+"snr_db": 15.330933716913789,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0032658393207054214,
+"ser": 0.012965382103200522,
+"snr_db": 15.321096739865459,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0973138471587198,
+"ser": 0.20101241018941868,
+"snr_db": 3.900112728589174,
+"rotated_fraction": 0.3697478991596639
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0030127367733507513,
+"ser": 0.011985630306988897,
+"snr_db": 15.302058979251276,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0035107772697583277,
+"ser": 0.013912475506205094,
+"snr_db": 15.290470763283,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.045509470934030044,
+"ser": 0.09951012410189419,
+"snr_db": 7.012760210199605,
+"rotated_fraction": 0.15966386554621848
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0022534291312867405,
+"ser": 0.008981058131939909,
+"snr_db": 15.697065005064882,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.0025636838667537558,
+"ser": 0.010189418680600915,
+"snr_db": 15.695377755675644,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 15,
+"ber": 0.002922926192031352,
+"ser": 0.011659046374918354,
+"snr_db": 15.654530686912622,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.0032495101241018943,
+"ser": 0.012932723709993469,
+"snr_db": 15.373089607793649,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.0035107772697583277,
+"ser": 0.013977792292619202,
+"snr_db": 15.387030233326172,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.0038863487916394514,
+"ser": 0.015414761593729589,
+"snr_db": 15.365217235289002,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.0041394513389941216,
+"ser": 0.016492488569562376,
+"snr_db": 15.093286859320479,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.004351730894839974,
+"ser": 0.017276290006531678,
+"snr_db": 15.098679093101602,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.004735467015022861,
+"ser": 0.01884389288047028,
+"snr_db": 15.086396349261628,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.004016982364467668,
+"ser": 0.015937295885042457,
+"snr_db": 15.053799337423786,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.004490529065969954,
+"ser": 0.01773350751143044,
+"snr_db": 15.061095241916293,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.06353690398432398,
+"ser": 0.1359568909209667,
+"snr_db": 5.745645541491625,
+"rotated_fraction": 0.23529411764705882
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.0044578706727629,
+"ser": 0.017700849118223384,
+"snr_db": 14.971943194936621,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.004817112998040497,
+"ser": 0.019105160026126715,
+"snr_db": 14.971715635495935,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.005298824297844546,
+"ser": 0.02106466361854997,
+"snr_db": 14.95613493725222,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.004335401698236447,
+"ser": 0.01721097322011757,
+"snr_db": 14.99949056928611,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.004759960809928151,
+"ser": 0.01884389288047028,
+"snr_db": 15.001722759384826,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.005323318092749837,
+"ser": 0.02116263879817113,
+"snr_db": 14.981946261297976,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.003306662312214239,
+"ser": 0.013161332462442847,
+"snr_db": 15.33502452504341,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.0036495754408883085,
+"ser": 0.014565643370346179,
+"snr_db": 15.349437195057689,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 16,
+"ber": 0.06254898758981058,
+"ser": 0.1321032005225343,
+"snr_db": 5.77603676435665,
+"rotated_fraction": 0.23529411764705882
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.006107119529719138,
+"ser": 0.024363161332462444,
+"snr_db": 14.747936799745908,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.00657250163291966,
+"ser": 0.026159372958850423,
+"snr_db": 14.774054745286145,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.02869856303069889,
+"ser": 0.07171783148269105,
+"snr_db": 9.021270604685094,
+"rotated_fraction": 0.09243697478991597
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.007315480078380144,
+"ser": 0.029033311561071196,
+"snr_db": 14.478801758627837,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.0074951012410189415,
+"ser": 0.029653821032005225,
+"snr_db": 14.491851302432403,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.0636185499673416,
+"ser": 0.1413128674069236,
+"snr_db": 5.941450850108566,
+"rotated_fraction": 0.2184873949579832
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.007078706727629001,
+"ser": 0.02805355976485957,
+"snr_db": 14.468591347498933,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.007780862181580666,
+"ser": 0.030568256041802744,
+"snr_db": 14.4782003564657,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.008091116917047681,
+"ser": 0.03203788373612018,
+"snr_db": 14.482554671508751,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.007723709993468321,
+"ser": 0.030764206401045067,
+"snr_db": 14.387738739217449,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.00792782495101241,
+"ser": 0.031286740692357935,
+"snr_db": 14.398982580902075,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.11567602873938602,
+"ser": 0.2430764206401045,
+"snr_db": 3.3387718251645406,
+"rotated_fraction": 0.42857142857142855
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.007764532984977139,
+"ser": 0.030862181580666233,
+"snr_db": 14.385867871655691,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.008164598301763554,
+"ser": 0.032233834095362505,
+"snr_db": 14.397550985132547,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.150898105813194,
+"ser": 0.3136185499673416,
+"snr_db": 0.8423540682689835,
+"rotated_fraction": 0.42016806722689076
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.0061561071195297195,
+"ser": 0.024526453298497713,
+"snr_db": 14.706270059322495,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.006654147615937296,
+"ser": 0.026420640104506857,
+"snr_db": 14.724246348523282,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 17,
+"ber": 0.10347811887655127,
+"ser": 0.21806009144350097,
+"snr_db": 3.754050836126743,
+"rotated_fraction": 0.05042016806722689
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.012099934683213586,
+"ser": 0.04797517962116264,
+"snr_db": 13.788392494637247,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.10463749183540169,
+"ser": 0.23128674069235794,
+"snr_db": 3.7446977316053927,
+"rotated_fraction": 0.37815126050420167
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.11461463096015675,
+"ser": 0.24928151534944482,
+"snr_db": 1.7763657021682142,
+"rotated_fraction": 0.25210084033613445
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.013920640104506858,
+"ser": 0.05512736773350751,
+"snr_db": 13.503184900931078,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.014949379490529066,
+"ser": 0.05868713259307642,
+"snr_db": 13.4915996212832,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.12567766165904637,
+"ser": 0.2719137818419334,
+"snr_db": 3.0587749944768188,
+"rotated_fraction": 0.2857142857142857
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.01413291966035271,
+"ser": 0.05574787720444154,
+"snr_db": 13.450936332969082,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.01546374918354017,
+"ser": 0.06038536903984324,
+"snr_db": 13.441906313405077,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.19057805355976487,
+"ser": 0.39830176355323316,
+"snr_db": 0.7235842592297681,
+"rotated_fraction": 0.4957983193277311
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.014410516002612672,
+"ser": 0.05679294578706728,
+"snr_db": 13.436627628386951,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.01592096668843893,
+"ser": 0.06244284781188766,
+"snr_db": 13.420462091512452,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.09230078380143697,
+"ser": 0.2091443500979752,
+"snr_db": 4.554591047450854,
+"rotated_fraction": 0.3025210084033613
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.01461463096015676,
+"ser": 0.05757674722403658,
+"snr_db": 13.427111030072464,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.1251796211626388,
+"ser": 0.27527759634225996,
+"snr_db": 3.080571447750332,
+"rotated_fraction": 0.453781512605042
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.17688602220770738,
+"ser": 0.3740039190071848,
+"snr_db": 1.1900918962226972,
+"rotated_fraction": 0.5966386554621849
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.01222240365774004,
+"ser": 0.04836708033964729,
+"snr_db": 13.74686221890098,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.013430764206401045,
+"ser": 0.0531352057478772,
+"snr_db": 13.730990233936996,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 18,
+"ber": 0.14640757674722404,
+"ser": 0.31195297191378185,
+"snr_db": 0.9936965908190061,
+"rotated_fraction": 0.37815126050420167
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.017202808621815807,
+"ser": 0.06730894839973874,
+"snr_db": 13.048717875562364,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.07236283474853038,
+"ser": 0.1813847158719791,
+"snr_db": 5.761728060426399,
+"rotated_fraction": 0.21008403361344538
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.34188438928804704,
+"ser": 0.6998040496407577,
+"snr_db": -2.3559249501155626,
+"rotated_fraction": 0.6638655462184874
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.02286903984323971,
+"ser": 0.08922273024167211,
+"snr_db": 12.50808045355303,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.15940561724363161,
+"ser": 0.3585564990202482,
+"snr_db": 2.1635694462802326,
+"rotated_fraction": 0.5210084033613446
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.3032086871325931,
+"ser": 0.6341606792945788,
+"snr_db": -2.1019236899794516,
+"rotated_fraction": 0.453781512605042
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.023211952971913783,
+"ser": 0.09056172436316133,
+"snr_db": 12.531275399811294,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.24281515349444807,
+"ser": 0.5103853690398432,
+"snr_db": -1.9499449939059699,
+"rotated_fraction": 0.3865546218487395
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.23085401698236446,
+"ser": 0.4939255388634879,
+"snr_db": -0.5855222605210815,
+"rotated_fraction": 0.5546218487394958
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.02113814500326584,
+"ser": 0.08265839320705422,
+"snr_db": 12.693063779173706,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.17358752449379491,
+"ser": 0.3808621815806662,
+"snr_db": 1.6751577920390304,
+"rotated_fraction": 0.3277310924369748
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.2881776616590464,
+"ser": 0.5998367080339647,
+"snr_db": -1.833245036621529,
+"rotated_fraction": 0.5882352941176471
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.0213259307642064,
+"ser": 0.08350751143043762,
+"snr_db": 12.676831791526693,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.18536087524493794,
+"ser": 0.40212279555845853,
+"snr_db": 0.034634877185877266,
+"rotated_fraction": 0.46218487394957986
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.3033556499020248,
+"ser": 0.6255715218811234,
+"snr_db": -2.365474973527086,
+"rotated_fraction": 0.5882352941176471
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.01755388634879164,
+"ser": 0.06884389288047028,
+"snr_db": 13.002109403652986,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.11185499673416067,
+"ser": 0.2568582625734814,
+"snr_db": 3.690544116825701,
+"rotated_fraction": 0.3697478991596639
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 7,
+"ber": 0.1509634225996081,
+"ser": 0.3389288047028086,
+"snr_db": 2.122625339521738,
+"rotated_fraction": 0.453781512605042
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.01185499673416068,
+"ser": 0.046864794252122796,
+"snr_db": 13.650426541767022,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.06736610058785107,
+"ser": 0.15940561724363161,
+"snr_db": 4.885770246417111,
+"rotated_fraction": 0.15966386554621848
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.17481221423905943,
+"ser": 0.3729261920313521,
+"snr_db": 0.5981396669828077,
+"rotated_fraction": 0.4957983193277311
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.015235140431090791,
+"ser": 0.059568909209666884,
+"snr_db": 13.27502488297779,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.13762246897452646,
+"ser": 0.3031025473546701,
+"snr_db": 2.1864297353364917,
+"rotated_fraction": 0.12605042016806722
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.22853527106466362,
+"ser": 0.47926192031352055,
+"snr_db": -0.7873127698575206,
+"rotated_fraction": 0.5462184873949579
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.015700522534291314,
+"ser": 0.06110385369039843,
+"snr_db": 13.219829470506726,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.1381041802743305,
+"ser": 0.3049314173742652,
+"snr_db": 2.171825914346111,
+"rotated_fraction": 0.12605042016806722
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.30023677335075116,
+"ser": 0.6169823644676682,
+"snr_db": -2.210224069522029,
+"rotated_fraction": 0.4957983193277311
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.014124755062050947,
+"ser": 0.055421293272371,
+"snr_db": 13.386468924145694,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.03275636838667537,
+"ser": 0.09647289353363815,
+"snr_db": 9.54298123178964,
+"rotated_fraction": 0.06722689075630252
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.2515022860875245,
+"ser": 0.5239712606139778,
+"snr_db": -0.484916298935512,
+"rotated_fraction": 0.3949579831932773
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.01438602220770738,
+"ser": 0.05649902024820379,
+"snr_db": 13.382794408681766,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.06419007184846505,
+"ser": 0.1577073807968648,
+"snr_db": 6.116449146353833,
+"rotated_fraction": 0.19327731092436976
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.2601404310907903,
+"ser": 0.5430111038536904,
+"snr_db": -1.1585145735950144,
+"rotated_fraction": 0.5210084033613446
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.012075440888308295,
+"ser": 0.047811887655127366,
+"snr_db": 13.60457632574565,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.06763553233180927,
+"ser": 0.16032005225342913,
+"snr_db": 4.882219985001443,
+"rotated_fraction": 0.15966386554621848
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 8,
+"ber": 0.29958360548661006,
+"ser": 0.6117570215545395,
+"snr_db": -2.1129916580732906,
+"rotated_fraction": 0.46218487394957986
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.00818092749836708,
+"ser": 0.032527759634225994,
+"snr_db": 14.208762540778139,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.01015676028739386,
+"ser": 0.040365774003919004,
+"snr_db": 14.048110035585793,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.2743713259307642,
+"ser": 0.5556172436316134,
+"snr_db": -1.5968461936962766,
+"rotated_fraction": 0.6890756302521008
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.010050620509470934,
+"ser": 0.03964728935336381,
+"snr_db": 13.900588475196498,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.012369366427171784,
+"ser": 0.04859568909209667,
+"snr_db": 13.718221461240631,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.19969790986283475,
+"ser": 0.4175375571521881,
+"snr_db": 0.14662125755463545,
+"rotated_fraction": 0.12605042016806722
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.010254735467015023,
+"ser": 0.040790333115610714,
+"snr_db": 13.909897836593295,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.012206074461136512,
+"ser": 0.048269105160026124,
+"snr_db": 13.734051460032784,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.2618958197256695,
+"ser": 0.5404310907903331,
+"snr_db": -0.27677170302633924,
+"rotated_fraction": 0.2773109243697479
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.01015676028739386,
+"ser": 0.04007184846505552,
+"snr_db": 13.894398178716793,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.052841280209013713,
+"ser": 0.1282495101241019,
+"snr_db": 6.778803622684516,
+"rotated_fraction": 0.15966386554621848
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.253592423252776,
+"ser": 0.5220770738079686,
+"snr_db": -0.8215675110332101,
+"rotated_fraction": 0.6722689075630253
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.01024657086871326,
+"ser": 0.040496407576747225,
+"snr_db": 13.902721043313772,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.11531678641410843,
+"ser": 0.2510777269758328,
+"snr_db": 3.300815996219117,
+"rotated_fraction": 0.42857142857142855
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.22113814500326584,
+"ser": 0.4572828216851731,
+"snr_db": -0.2915213334028478,
+"rotated_fraction": 0.5462184873949579
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.008442194644023513,
+"ser": 0.03350751143043762,
+"snr_db": 14.165676797291002,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.010442521227955585,
+"ser": 0.041508817766165905,
+"snr_db": 14.000528922987685,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 130,
+"power_dbm": 9,
+"ber": 0.2212606139777923,
+"ser": 0.4574787720444154,
+"snr_db": -0.18721104632674457,
+"rotated_fraction": 0.5966386554621849
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.008103064431639603,
+"ser": 0.0321503404924044,
+"snr_db": 14.224415952779859,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.12035096909376637,
+"ser": 0.25550026191723413,
+"snr_db": 1.855250739423977,
+"rotated_fraction": 0.3025210084033613
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.21597531430068098,
+"ser": 0.44748559455212156,
+"snr_db": 0.5348044281671183,
+"rotated_fraction": 0.37815126050420167
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.01007562860136197,
+"ser": 0.03961498166579361,
+"snr_db": 13.9147581684671,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.012801204819277108,
+"ser": 0.05025536930330016,
+"snr_db": 13.719369773818627,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.18447158198009428,
+"ser": 0.38999476165531693,
+"snr_db": 0.5639691951629487,
+"rotated_fraction": 0.5294117647058824
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.009338986380303824,
+"ser": 0.03676663174436878,
+"snr_db": 14.00494320972811,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.03920573598742797,
+"ser": 0.10015060240963855,
+"snr_db": 8.03005684567633,
+"rotated_fraction": 0.11764705882352941
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.27118255631220534,
+"ser": 0.555330015715034,
+"snr_db": -1.923978398165957,
+"rotated_fraction": 0.6386554621848739
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.01001833420639078,
+"ser": 0.03954950235725511,
+"snr_db": 13.90961120593309,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.015371267679413306,
+"ser": 0.054184127815610265,
+"snr_db": 12.608528657525097,
+"rotated_fraction": 0.01680672268907563
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.27540597171293874,
+"ser": 0.5638423258250392,
+"snr_db": -1.68061581703967,
+"rotated_fraction": 0.5966386554621849
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.009854635935044527,
+"ser": 0.038861969617600835,
+"snr_db": 13.9236342818417,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.015420377160817181,
+"ser": 0.05454426401257203,
+"snr_db": 12.626499795876676,
+"rotated_fraction": 0.01680672268907563
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.15954033525405972,
+"ser": 0.3371856993190152,
+"snr_db": 1.4086609014201201,
+"rotated_fraction": 0.46218487394957986
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.008242207962283919,
+"ser": 0.03267417496071241,
+"snr_db": 14.181651411594538,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.010517613933996858,
+"ser": 0.04131744368779466,
+"snr_db": 13.960458305891182,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 10,
+"ber": 0.253584992142483,
+"ser": 0.519447354635935,
+"snr_db": -0.2782173735986198,
+"rotated_fraction": 0.8067226890756303
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.003535882661079099,
+"ser": 0.014045311681508642,
+"snr_db": 15.145625394308812,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.004493517548454689,
+"ser": 0.017875851231011,
+"snr_db": 15.06600238153303,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.10097727867993714,
+"ser": 0.21241487689889996,
+"snr_db": 3.772728329429171,
+"rotated_fraction": 0.17647058823529413
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.004779989523310634,
+"ser": 0.01895625982189628,
+"snr_db": 14.869663140098751,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.005663960188580408,
+"ser": 0.022459402828706128,
+"snr_db": 14.772649694627633,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.09888194080670508,
+"ser": 0.20927187008905185,
+"snr_db": 3.7718673511815837,
+"rotated_fraction": 0.36134453781512604
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.004730880041906757,
+"ser": 0.018759821896280775,
+"snr_db": 14.906755116330388,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.005598480880041907,
+"ser": 0.022197485594552122,
+"snr_db": 14.81804716007484,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.24638226820324777,
+"ser": 0.4993124672603457,
+"snr_db": -0.028379254849317647,
+"rotated_fraction": 0.773109243697479
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.004779989523310634,
+"ser": 0.019021739130434784,
+"snr_db": 14.843972268317327,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.005925877422734416,
+"ser": 0.023474332111052907,
+"snr_db": 14.743879935022697,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.09887375589313777,
+"ser": 0.2098611838658984,
+"snr_db": 1.6735923423559602,
+"rotated_fraction": 0.15126050420168066
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.00479635935044526,
+"ser": 0.019087218438973284,
+"snr_db": 14.852033286028039,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.005974986904138293,
+"ser": 0.023736249345206916,
+"snr_db": 14.755433647094547,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.09879190675746465,
+"ser": 0.20966474594028287,
+"snr_db": 1.6890464192557482,
+"rotated_fraction": 0.14285714285714285
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.003715950759559979,
+"ser": 0.014732844421162912,
+"snr_db": 15.108183577657764,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.004575366684127816,
+"ser": 0.01817050811943426,
+"snr_db": 15.021072214560043,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 12,
+"ber": 0.11093831849135673,
+"ser": 0.2339903090623363,
+"snr_db": 3.368123297748997,
+"rotated_fraction": 0.42857142857142855
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.002905644316396019,
+"ser": 0.011589837611314824,
+"snr_db": 15.398251200363784,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.003535882661079099,
+"ser": 0.014078051335777894,
+"snr_db": 15.33022601028062,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.07507202723939235,
+"ser": 0.1570193818753274,
+"snr_db": 5.047400330975453,
+"rotated_fraction": 0.2857142857142857
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.003846909376636983,
+"ser": 0.015256678889470927,
+"snr_db": 15.122186027369665,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.004444408067050812,
+"ser": 0.017646673651126245,
+"snr_db": 15.045261941511969,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.005672145102147722,
+"ser": 0.022328444211629127,
+"snr_db": 14.889571146367746,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.003986052907281299,
+"ser": 0.01581325301204819,
+"snr_db": 15.088045081723342,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.00464903090623363,
+"ser": 0.018432425353588265,
+"snr_db": 15.015102239373906,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.006138685175484547,
+"ser": 0.024194604504976427,
+"snr_db": 14.862113763489637,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.003945128339444735,
+"ser": 0.015649554740701937,
+"snr_db": 15.075201302662123,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.004583551597695129,
+"ser": 0.01817050811943426,
+"snr_db": 15.000489116896427,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.07164254845468832,
+"ser": 0.15295966474594028,
+"snr_db": 5.302472519193296,
+"rotated_fraction": 0.2605042016806723
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.003871464117338921,
+"ser": 0.015387637506547931,
+"snr_db": 15.090644186939375,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.00437892875851231,
+"ser": 0.017352016762702985,
+"snr_db": 15.020061981244698,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.15340983499214247,
+"ser": 0.3164287585123101,
+"snr_db": 2.018162019181315,
+"rotated_fraction": 0.5966386554621849
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.0029465688842325827,
+"ser": 0.01178627553693033,
+"snr_db": 15.359045692312689,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.0034704033525405974,
+"ser": 0.013816134101623887,
+"snr_db": 15.29335491196095,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 13,
+"ber": 0.10211498166579361,
+"ser": 0.21218569931901518,
+"snr_db": 3.761858825430483,
+"rotated_fraction": 0.3865546218487395
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.0025209533787323205,
+"ser": 0.01001833420639078,
+"snr_db": 15.507972972146543,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.0029547537977998952,
+"ser": 0.011753535882661079,
+"snr_db": 15.46394852865735,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.0037977998952331065,
+"ser": 0.015092980618124672,
+"snr_db": 15.358364497215927,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.00329852016762703,
+"ser": 0.013063122053431115,
+"snr_db": 15.219092867196231,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.0038632792037716084,
+"ser": 0.015256678889470927,
+"snr_db": 15.16770894418145,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.004845468831849136,
+"ser": 0.01918543740178104,
+"snr_db": 15.042061052766476,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.00329852016762703,
+"ser": 0.013063122053431115,
+"snr_db": 15.255591189763871,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.0037241356731272917,
+"ser": 0.014732844421162912,
+"snr_db": 15.210655641005498,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.004624476165531692,
+"ser": 0.018301466736511264,
+"snr_db": 15.093013755626332,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.0036422865374541643,
+"ser": 0.014438187532739654,
+"snr_db": 15.15077564478674,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.004157936092194866,
+"ser": 0.01646804609743321,
+"snr_db": 15.109293609540334,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.004837283918281823,
+"ser": 0.019152697747511785,
+"snr_db": 14.99719793790685,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.0035113279203771606,
+"ser": 0.01394709271870089,
+"snr_db": 15.16910915937212,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.004157936092194866,
+"ser": 0.01646804609743321,
+"snr_db": 15.128564614499549,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.004861838658983761,
+"ser": 0.01928365636458879,
+"snr_db": 15.016240197642748,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.0025782477737035098,
+"ser": 0.010280251440544787,
+"snr_db": 15.469214910083103,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.003052972760607648,
+"ser": 0.01214641173389209,
+"snr_db": 15.422835148302168,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 14,
+"ber": 0.003912388685175484,
+"ser": 0.015551335777894186,
+"snr_db": 15.319928224693232,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.002831980094290204,
+"ser": 0.011327920377160816,
+"snr_db": 15.504669465091872,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.003200301204819277,
+"ser": 0.012768465165007858,
+"snr_db": 15.48762963134439,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.003986052907281299,
+"ser": 0.01574777370350969,
+"snr_db": 15.427127327461035,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.003527697747511786,
+"ser": 0.014078051335777894,
+"snr_db": 15.253437855454507,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.0038796490309062335,
+"ser": 0.015453116815086433,
+"snr_db": 15.23372904086929,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.004632661079099005,
+"ser": 0.018334206390780514,
+"snr_db": 15.168462832478333,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.003625916710319539,
+"ser": 0.014470927187008905,
+"snr_db": 15.227640548326853,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.003936943425877423,
+"ser": 0.01568229439497119,
+"snr_db": 15.204366617928361,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.10097727867993714,
+"ser": 0.2084533787323206,
+"snr_db": 3.77133570806809,
+"rotated_fraction": 0.3865546218487395
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.00374869041382923,
+"ser": 0.014962022001047669,
+"snr_db": 15.173877853447262,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.0040679020429544265,
+"ser": 0.016206128863279205,
+"snr_db": 15.147598714074107,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.0048863933996857,
+"ser": 0.019381875327396544,
+"snr_db": 15.089578484442523,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.00374869041382923,
+"ser": 0.014929282346778419,
+"snr_db": 15.169829946921245,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.004215230487166055,
+"ser": 0.01679544264012572,
+"snr_db": 15.1419399083865,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.0046572158198009425,
+"ser": 0.018465165007857515,
+"snr_db": 15.082192421500757,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.002872904662126768,
+"ser": 0.011491618648507071,
+"snr_db": 15.466506085575865,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.0033067050811943425,
+"ser": 0.01319408067050812,
+"snr_db": 15.45204547469923,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 15,
+"ber": 0.004051532215819801,
+"ser": 0.015976951283394446,
+"snr_db": 15.384941751532342,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.0038223546359350447,
+"ser": 0.015191199580932426,
+"snr_db": 15.167429659470029,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.004346189104243059,
+"ser": 0.017286537454164485,
+"snr_db": 15.156940908709803,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.07084861183865898,
+"ser": 0.14886720796228392,
+"snr_db": 4.987978897064654,
+"rotated_fraction": 0.24369747899159663
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.004788174436877946,
+"ser": 0.018759821896280775,
+"snr_db": 14.868256261311,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.005516631744368779,
+"ser": 0.02177187008905186,
+"snr_db": 14.840949898714896,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.030095927187008906,
+"ser": 0.07055395495023573,
+"snr_db": 8.860533195609918,
+"rotated_fraction": 0.09243697478991597
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.004501702462022001,
+"ser": 0.017744892613933996,
+"snr_db": 14.917116593284682,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.005107386066003143,
+"ser": 0.020233106338397068,
+"snr_db": 14.886598239497772,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.10571634363541121,
+"ser": 0.2197158198009429,
+"snr_db": 3.61253469806956,
+"rotated_fraction": 0.36134453781512604
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.0052301597695128335,
+"ser": 0.02065872184389733,
+"snr_db": 14.753257498699897,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.006073205866946045,
+"ser": 0.024063645887899422,
+"snr_db": 14.718943993859966,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.12297014143530645,
+"ser": 0.25844683080146674,
+"snr_db": 2.9380852925215697,
+"rotated_fraction": 0.47058823529411764
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.005238344683080147,
+"ser": 0.020789680460974333,
+"snr_db": 14.772521441289584,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.0059095075955997904,
+"ser": 0.023441592456783657,
+"snr_db": 14.742891179563621,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.12281462807752751,
+"ser": 0.2581194342587742,
+"snr_db": 2.926729385416122,
+"rotated_fraction": 0.47058823529411764
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.0038878339444735465,
+"ser": 0.015453116815086433,
+"snr_db": 15.134113430224833,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.004526257202723939,
+"ser": 0.018006809848088005,
+"snr_db": 15.11666142282728,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 16,
+"ber": 0.07080768727082241,
+"ser": 0.14948926139339969,
+"snr_db": 5.318054213285194,
+"rotated_fraction": 0.2605042016806723
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.0066952592980618125,
+"ser": 0.026650078575170245,
+"snr_db": 14.626280962338605,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.006883512310110005,
+"ser": 0.027337611314824515,
+"snr_db": 14.653469024250123,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.007431901519119958,
+"ser": 0.029531168150864328,
+"snr_db": 14.681618674089904,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.007710188580408591,
+"ser": 0.030578837087480357,
+"snr_db": 14.362951502689008,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.008135804085908853,
+"ser": 0.0322812991094814,
+"snr_db": 14.37190494091982,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.008798782084861184,
+"ser": 0.03496595075955998,
+"snr_db": 14.378793237625887,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.007513750654793086,
+"ser": 0.029825825039287584,
+"snr_db": 14.396643219968254,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.008201283394447355,
+"ser": 0.03254321634363541,
+"snr_db": 14.40586871054467,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.008536864850707176,
+"ser": 0.03378732320586694,
+"snr_db": 14.438845934222332,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.008209468308014667,
+"ser": 0.03254321634363541,
+"snr_db": 14.253511827342294,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.008880631220534311,
+"ser": 0.03516238868517548,
+"snr_db": 14.24436316159586,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.11829655578837088,
+"ser": 0.25235725510738605,
+"snr_db": 3.144902480807981,
+"rotated_fraction": 0.4369747899159664
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.008176728653745417,
+"ser": 0.03247773703509691,
+"snr_db": 14.283063885594927,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.008839706652697748,
+"ser": 0.03499869041382923,
+"snr_db": 14.271656679734084,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.00929806181246726,
+"ser": 0.036963069669984285,
+"snr_db": 14.29600618651576,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.006678889470927187,
+"ser": 0.026617338920900995,
+"snr_db": 14.590555828464314,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.007210908852802515,
+"ser": 0.028679937139863804,
+"snr_db": 14.603471925156873,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 17,
+"ber": 0.007759298061812467,
+"ser": 0.030808014667365113,
+"snr_db": 14.63424490555723,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.012580212152959664,
+"ser": 0.049731534834992146,
+"snr_db": 13.69830809471562,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.013496922472498691,
+"ser": 0.053267417496071244,
+"snr_db": 13.705751792714358,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.24492535358826611,
+"ser": 0.5037977998952331,
+"snr_db": 0.029718450507622455,
+"rotated_fraction": 0.6722689075630253
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.014953837087480356,
+"ser": 0.0590950759559979,
+"snr_db": 13.392412641256046,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.01660718962807753,
+"ser": 0.06544656888423259,
+"snr_db": 13.331530456248878,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.2509003404924044,
+"ser": 0.5170246202200105,
+"snr_db": -0.35100648492901276,
+"rotated_fraction": 0.2605042016806723
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.014855618124672603,
+"ser": 0.05857124148768989,
+"snr_db": 13.396733121888062,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.016287977998952333,
+"ser": 0.0641042430591933,
+"snr_db": 13.37032905896149,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.18033001571503404,
+"ser": 0.3824646411733892,
+"snr_db": 1.4377134437069052,
+"rotated_fraction": 0.6722689075630253
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.015633184913567313,
+"ser": 0.061877946568884235,
+"snr_db": 13.320419740551479,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.017335646935568362,
+"ser": 0.06813122053431116,
+"snr_db": 13.255339179644851,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.1523294264012572,
+"ser": 0.32873886851754847,
+"snr_db": 2.1189020941050787,
+"rotated_fraction": 0.5378151260504201
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.015796883184913568,
+"ser": 0.0624345206914615,
+"snr_db": 13.31009985737774,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.017507530120481927,
+"ser": 0.06872053431115767,
+"snr_db": 13.258421675175294,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.11608662912519643,
+"ser": 0.25821765322158197,
+"snr_db": 3.382575699086421,
+"rotated_fraction": 0.3865546218487395
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.012923978522786799,
+"ser": 0.05120481927710843,
+"snr_db": 13.653150112668103,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.013930722891566265,
+"ser": 0.055100838135149294,
+"snr_db": 13.636668285421841,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 18,
+"ber": 0.18957078313253012,
+"ser": 0.3944146149816658,
+"snr_db": 1.2528756078667174,
+"rotated_fraction": 0.7142857142857143
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.017286537454164485,
+"ser": 0.06780382399161865,
+"snr_db": 13.071784069739856,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.2120547407019382,
+"ser": 0.44535751702462023,
+"snr_db": 0.731527324570309,
+"rotated_fraction": 0.46218487394957986
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.2639716474594028,
+"ser": 0.5521215295966475,
+"snr_db": -0.9709526704252252,
+"rotated_fraction": 0.48739495798319327
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.022631286013619696,
+"ser": 0.08748035620743845,
+"snr_db": 12.576638646211551,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.19957274751178627,
+"ser": 0.42748166579360924,
+"snr_db": 0.9439530970713246,
+"rotated_fraction": 0.5378151260504201
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.35233597433211106,
+"ser": 0.7169329491880566,
+"snr_db": -3.0774225965894964,
+"rotated_fraction": 0.4369747899159664
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.02332700366684128,
+"ser": 0.09000130958617077,
+"snr_db": 12.533616534566963,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.12271640911471975,
+"ser": 0.2862427972760608,
+"snr_db": 3.402519023369347,
+"rotated_fraction": 0.37815126050420167
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.2850396149816658,
+"ser": 0.5946503404924044,
+"snr_db": -1.6024008692654674,
+"rotated_fraction": 0.7058823529411765
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.02188645887899424,
+"ser": 0.08453378732320586,
+"snr_db": 12.684740533255457,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.02638816134101624,
+"ser": 0.1017875851231011,
+"snr_db": 12.340174557877488,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.2279416579360922,
+"ser": 0.4894578313253012,
+"snr_db": -0.24052788283239537,
+"rotated_fraction": 0.48739495798319327
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.022082896804609745,
+"ser": 0.08502488213724463,
+"snr_db": 12.657726099178198,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.169493190151912,
+"ser": 0.3711367207962284,
+"snr_db": 1.7803254516188662,
+"rotated_fraction": 0.5966386554621849
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.305747446306967,
+"ser": 0.6323991618648507,
+"snr_db": -2.3043320662123143,
+"rotated_fraction": 0.7142857142857143
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.017736707700366686,
+"ser": 0.06921162912519643,
+"snr_db": 13.025830237884888,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.0457209271870089,
+"ser": 0.13076217915138816,
+"snr_db": 8.086279711574932,
+"rotated_fraction": 0.10084033613445378
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 8,
+"ber": 0.24863311943425878,
+"ser": 0.5225903614457831,
+"snr_db": -1.3065735662657358,
+"rotated_fraction": 0.3865546218487395
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.011769905709795704,
+"ser": 0.046621267679413304,
+"snr_db": 13.641915866314624,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.019594683080146672,
+"ser": 0.06813122053431116,
+"snr_db": 12.04901336854553,
+"rotated_fraction": 0.01680672268907563
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.26216278156102674,
+"ser": 0.5387637506547931,
+"snr_db": -1.5929283278554471,
+"rotated_fraction": 0.5462184873949579
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.015436746987951807,
+"ser": 0.060568360398114196,
+"snr_db": 13.22232512431578,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.11485889209009953,
+"ser": 0.2565479308538502,
+"snr_db": 1.4283638818579216,
+"rotated_fraction": 0.17647058823529413
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.3166906757464641,
+"ser": 0.649391042430592,
+"snr_db": -1.859165186514273,
+"rotated_fraction": 0.5126050420168067
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.014953837087480356,
+"ser": 0.05870220010476689,
+"snr_db": 13.283237923439986,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.1921162912519644,
+"ser": 0.4067574646411734,
+"snr_db": 1.1699839583085676,
+"rotated_fraction": 0.7142857142857143
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.2609432294394971,
+"ser": 0.5421031953902566,
+"snr_db": -0.343630801509494,
+"rotated_fraction": 0.5126050420168067
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.015207569408067051,
+"ser": 0.05929151388161341,
+"snr_db": 13.262954974330539,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.1440872184389733,
+"ser": 0.3129583551597695,
+"snr_db": 2.4770736805816003,
+"rotated_fraction": 0.5042016806722689
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.32108597433211106,
+"ser": 0.6537454164484023,
+"snr_db": -2.8468291658429736,
+"rotated_fraction": 0.48739495798319327
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.014986576741749608,
+"ser": 0.05853850183342064,
+"snr_db": 13.272889335515138,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.1565855814562598,
+"ser": 0.33479570455735985,
+"snr_db": 0.06529415741072095,
+"rotated_fraction": 0.33613445378151263
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.1619712545835516,
+"ser": 0.3536537454164484,
+"snr_db": 1.57893263080052,
+"rotated_fraction": 0.31932773109243695
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.011974528548978522,
+"ser": 0.04743975903614458,
+"snr_db": 13.597433670052846,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.015109350445259299,
+"ser": 0.05952069146149817,
+"snr_db": 13.360501558043756,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 135,
+"power_dbm": 9,
+"ber": 0.2877979308538502,
+"ser": 0.5896739130434783,
+"snr_db": -1.1622858791780115,
+"rotated_fraction": 0.453781512605042
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.01160901811499081,
+"ser": 0.045648464163822525,
+"snr_db": 13.652428930960088,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.030889012864268837,
+"ser": 0.08729325282226306,
+"snr_db": 9.423449008459013,
+"rotated_fraction": 0.06722689075630252
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.22395149645576268,
+"ser": 0.464951430821738,
+"snr_db": -0.2939684748565174,
+"rotated_fraction": 0.31932773109243695
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.014611774744027304,
+"ser": 0.05710160147020215,
+"snr_db": 13.256888401348881,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.034810645838802834,
+"ser": 0.10229062746127593,
+"snr_db": 9.23792174519205,
+"rotated_fraction": 0.06722689075630252
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.24917957469152008,
+"ser": 0.51919795221843,
+"snr_db": -0.7241916935724263,
+"rotated_fraction": 0.2773109243697479
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.01474304279338409,
+"ser": 0.0576594906799685,
+"snr_db": 13.262798449178002,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.0576102651614597,
+"ser": 0.14682331320556577,
+"snr_db": 6.646891217652538,
+"rotated_fraction": 0.16806722689075632
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.2520920845366238,
+"ser": 0.5232016277238121,
+"snr_db": -1.5747980011761178,
+"rotated_fraction": 0.4957983193277311
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.014029272775006563,
+"ser": 0.054738776581779995,
+"snr_db": 13.341893068053663,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.07364957994224205,
+"ser": 0.1758663691257548,
+"snr_db": 4.488578412602007,
+"rotated_fraction": 0.16806722689075632
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.18233132055657653,
+"ser": 0.3898661065896561,
+"snr_db": -0.20490861965552495,
+"rotated_fraction": 0.4117647058823529
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.013807757941716986,
+"ser": 0.05395116828563928,
+"snr_db": 13.377907586344906,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.033317471777369385,
+"ser": 0.09658046731425571,
+"snr_db": 9.29438264237691,
+"rotated_fraction": 0.06722689075630252
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.2393426752428459,
+"ser": 0.49835914938304016,
+"snr_db": -0.0839448310264211,
+"rotated_fraction": 0.35294117647058826
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.01210947755316356,
+"ser": 0.04758466789183513,
+"snr_db": 13.607052304255307,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.1521724862168548,
+"ser": 0.3251181412444211,
+"snr_db": 2.1426390440223035,
+"rotated_fraction": 0.35294117647058826
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 10,
+"ber": 0.2876739301653977,
+"ser": 0.5882121291677606,
+"snr_db": -1.5951057793774936,
+"rotated_fraction": 0.6638655462184874
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.007982738251509582,
+"ser": 0.03170123391966395,
+"snr_db": 14.207100839895217,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.009902533473352586,
+"ser": 0.039216329745339985,
+"snr_db": 14.06581998712011,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.20717379889734838,
+"ser": 0.42606327119979,
+"snr_db": -0.4920246557670682,
+"rotated_fraction": 0.33613445378151263
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.009393869782095039,
+"ser": 0.03714885796797059,
+"snr_db": 13.953170663519053,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.01572755316355999,
+"ser": 0.05431215542137044,
+"snr_db": 12.37481998440283,
+"rotated_fraction": 0.01680672268907563
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.07983558676818063,
+"ser": 0.1855473877658178,
+"snr_db": 4.99775809108859,
+"rotated_fraction": 0.23529411764705882
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.010025597269624573,
+"ser": 0.039610133893410344,
+"snr_db": 13.938289648186668,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.05999770280913626,
+"ser": 0.14006300866369126,
+"snr_db": 6.24606772594991,
+"rotated_fraction": 0.19327731092436976
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.19662312943029667,
+"ser": 0.4119847729062746,
+"snr_db": 1.0022702429414834,
+"rotated_fraction": 0.5714285714285714
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.009795878183250197,
+"ser": 0.03865844053557364,
+"snr_db": 13.928180976002135,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.015883433972171172,
+"ser": 0.05457469152008401,
+"snr_db": 12.349272164571868,
+"rotated_fraction": 0.01680672268907563
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.2373736545024941,
+"ser": 0.4891703859280651,
+"snr_db": 0.19835492227855195,
+"rotated_fraction": 0.25210084033613445
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.010017393016539774,
+"ser": 0.039314780782357575,
+"snr_db": 13.927490289810727,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.012068456287739565,
+"ser": 0.047289314780782354,
+"snr_db": 13.759790348320598,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.265440404305592,
+"ser": 0.5446967708059858,
+"snr_db": -0.6790670249736169,
+"rotated_fraction": 0.44537815126050423
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.008105802047781569,
+"ser": 0.03212785508007351,
+"snr_db": 14.16425055591808,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.010107639800472565,
+"ser": 0.03987266999212392,
+"snr_db": 14.025488366549144,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 11,
+"ber": 0.23881760304541874,
+"ser": 0.4940601207666054,
+"snr_db": 0.1077664840227972,
+"rotated_fraction": 0.680672268907563
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.006103964295090575,
+"ser": 0.024284589131005514,
+"snr_db": 14.660511696907562,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.007088474665266474,
+"ser": 0.02812417957469152,
+"snr_db": 14.576948898589858,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.17849173011289052,
+"ser": 0.3662378577054345,
+"snr_db": -0.40086817092912147,
+"rotated_fraction": 0.35294117647058826
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.007277172486216855,
+"ser": 0.028846153846153848,
+"snr_db": 14.366395083418936,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.008745733788395904,
+"ser": 0.03449067996849567,
+"snr_db": 14.26540427675548,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.12570556576529274,
+"ser": 0.267360199527435,
+"snr_db": 2.973319518721294,
+"rotated_fraction": 0.46218487394957986
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.0073510107639800475,
+"ser": 0.028977421895510634,
+"snr_db": 14.34908938545561,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.008721121029141507,
+"ser": 0.03449067996849567,
+"snr_db": 14.242778776526517,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.04556642163297454,
+"ser": 0.11292333945917564,
+"snr_db": 7.410384964032225,
+"rotated_fraction": 0.14285714285714285
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.0073510107639800475,
+"ser": 0.02910868994486742,
+"snr_db": 14.33574879194029,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.00868830401680231,
+"ser": 0.03445786295615647,
+"snr_db": 14.229045402481777,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.08244453924914676,
+"ser": 0.18472696245733788,
+"snr_db": 4.819131259308056,
+"rotated_fraction": 0.2857142857142857
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.007342806510895248,
+"ser": 0.029043055920189027,
+"snr_db": 14.348630932097386,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.008639078498293516,
+"ser": 0.0341625098451037,
+"snr_db": 14.243368539916315,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.1338441848254135,
+"ser": 0.285212654239958,
+"snr_db": 2.7028838623931986,
+"rotated_fraction": 0.5042016806722689
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.0060711472827513786,
+"ser": 0.024153321081648728,
+"snr_db": 14.620588299065929,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.007137700183775269,
+"ser": 0.028386715673405092,
+"snr_db": 14.530803804981133,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 12,
+"ber": 0.1093791021265424,
+"ser": 0.2322459963244946,
+"snr_db": 3.539954733536497,
+"rotated_fraction": 0.40336134453781514
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.004118535048569179,
+"ser": 0.016342872144919928,
+"snr_db": 14.991486435506008,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.005029207140981885,
+"ser": 0.019985560514570753,
+"snr_db": 14.916391221055225,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.10405454187450774,
+"ser": 0.2179049619322657,
+"snr_db": 2.2336394755690825,
+"rotated_fraction": 0.2689075630252101
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.005242517721186663,
+"ser": 0.02080598582305067,
+"snr_db": 14.740282842938283,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.0061778025728537675,
+"ser": 0.024448674192701497,
+"snr_db": 14.65748836206767,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.007761223418220005,
+"ser": 0.03074954056182725,
+"snr_db": 14.479412339888922,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.004676424258335521,
+"ser": 0.018574428983985296,
+"snr_db": 14.823112401417177,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.0055624835914938305,
+"ser": 0.022020215279600946,
+"snr_db": 14.742034331727696,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.02119158571803623,
+"ser": 0.057429771593594116,
+"snr_db": 10.248320723751723,
+"rotated_fraction": 0.058823529411764705
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.0053409687582042535,
+"ser": 0.021199789971121027,
+"snr_db": 14.70397350188383,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.006415725912312943,
+"ser": 0.025433184562877395,
+"snr_db": 14.616118248797074,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.04856097400892623,
+"ser": 0.11226699921239171,
+"snr_db": 6.942202747244871,
+"rotated_fraction": 0.16806722689075632
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.005217904961932265,
+"ser": 0.02070753478603308,
+"snr_db": 14.744218876527743,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.006062943029666579,
+"ser": 0.024054870044631138,
+"snr_db": 14.658235208930574,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.06968692570228406,
+"ser": 0.15286164347597794,
+"snr_db": 5.416220779920841,
+"rotated_fraction": 0.25210084033613445
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.004241598844841166,
+"ser": 0.01690076135468627,
+"snr_db": 14.954971227866478,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.0458781832501969,
+"ser": 0.10209372538724075,
+"snr_db": 7.016066495071619,
+"rotated_fraction": 0.16806722689075632
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 13,
+"ber": 0.046854489367288005,
+"ser": 0.10609740089262273,
+"snr_db": 6.9945474821326865,
+"rotated_fraction": 0.16806722689075632
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.003281701233919664,
+"ser": 0.013093987923339458,
+"snr_db": 15.227444139985595,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.0038806117091100024,
+"ser": 0.015456812811761617,
+"snr_db": 15.19003695186769,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.004774875295353111,
+"ser": 0.018935416119716462,
+"snr_db": 15.057146067961424,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.004381071147282751,
+"ser": 0.017360199527435023,
+"snr_db": 14.930955404024802,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.004906143344709898,
+"ser": 0.019526122341822,
+"snr_db": 14.883045957418963,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.006087555788920977,
+"ser": 0.024087687056970335,
+"snr_db": 14.74872781229196,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.004504134943554739,
+"ser": 0.01785245471252297,
+"snr_db": 14.938386671231441,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.005053819900236282,
+"ser": 0.02011682856392754,
+"snr_db": 14.889799476602722,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.00605473877658178,
+"ser": 0.023989236019952745,
+"snr_db": 14.760767260057975,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.004701037017589919,
+"ser": 0.01864006300866369,
+"snr_db": 14.853576643122102,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.005193292202677868,
+"ser": 0.020576266736676292,
+"snr_db": 14.79753906904277,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.006415725912312943,
+"ser": 0.025433184562877395,
+"snr_db": 14.668959290328864,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.004627198739826726,
+"ser": 0.018311892885271724,
+"snr_db": 14.89874165815521,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.005185087949593069,
+"ser": 0.020641900761354685,
+"snr_db": 14.846527713150122,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.006325479128380152,
+"ser": 0.02500656340246784,
+"snr_db": 14.72155369676109,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.0033965607771068522,
+"ser": 0.013553426096088212,
+"snr_db": 15.188448968495113,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.003921632974533998,
+"ser": 0.0156208978734576,
+"snr_db": 15.143200132418809,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 14,
+"ber": 0.004963573116303492,
+"ser": 0.01972302441585718,
+"snr_db": 15.02644164203663,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.0035360330795484378,
+"ser": 0.014111315305854554,
+"snr_db": 15.225248591875275,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.004036492517721186,
+"ser": 0.01611315305854555,
+"snr_db": 15.202488857332831,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.004815896560777107,
+"ser": 0.01916513520609084,
+"snr_db": 15.119055922558475,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.004381071147282751,
+"ser": 0.01739301653977422,
+"snr_db": 14.98208732280957,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.0048815305854555,
+"ser": 0.019362037280126018,
+"snr_db": 14.951434151358558,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.11778846153846154,
+"ser": 0.24563533735888685,
+"snr_db": 3.115842211386251,
+"rotated_fraction": 0.453781512605042
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.004504134943554739,
+"ser": 0.017918088737201365,
+"snr_db": 14.940879086826255,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.005029207140981885,
+"ser": 0.019952743502231557,
+"snr_db": 14.904001991145567,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.13457436334996062,
+"ser": 0.27976503019165133,
+"snr_db": 2.533293314248253,
+"rotated_fraction": 0.5210084033613446
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.0047830795484379105,
+"ser": 0.019033867156734052,
+"snr_db": 14.88779491960601,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.005291743239695458,
+"ser": 0.02097007088474665,
+"snr_db": 14.848688219369304,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.006268049356786558,
+"ser": 0.02480966132843266,
+"snr_db": 14.758072829325625,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.004717445523759517,
+"ser": 0.01873851404568128,
+"snr_db": 14.883255990456885,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.0052261092150170645,
+"ser": 0.020740351798372275,
+"snr_db": 14.846891285595058,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.05500951693357837,
+"ser": 0.12043843528485167,
+"snr_db": 6.391055240305001,
+"rotated_fraction": 0.19327731092436976
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.0037247309004988186,
+"ser": 0.014833289577316881,
+"snr_db": 15.191095599368829,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.004093922289314781,
+"ser": 0.01631005513258073,
+"snr_db": 15.165794151648802,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 15,
+"ber": 0.004971777369388291,
+"ser": 0.019755841428196377,
+"snr_db": 15.072942130836118,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.004520543449724337,
+"ser": 0.018016539774218954,
+"snr_db": 15.00213819264114,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.00507843265949068,
+"ser": 0.02021527960094513,
+"snr_db": 14.99615682171761,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.005332764505119454,
+"ser": 0.021199789971121027,
+"snr_db": 14.989898223580402,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.005907062221055395,
+"ser": 0.023365712785508006,
+"snr_db": 14.678845327994887,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.006489564190076135,
+"ser": 0.025531635599894985,
+"snr_db": 14.661881030595808,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.007039249146757679,
+"ser": 0.02792727750065634,
+"snr_db": 14.641581847429716,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.005907062221055395,
+"ser": 0.023365712785508006,
+"snr_db": 14.682405424370533,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.0063418876345497505,
+"ser": 0.02510501443948543,
+"snr_db": 14.664255185101421,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.006949002362824888,
+"ser": 0.027402205303229194,
+"snr_db": 14.634287770613126,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.0059562877395641905,
+"ser": 0.02352979784720399,
+"snr_db": 14.626485379726432,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.006924389603570491,
+"ser": 0.02723812024153321,
+"snr_db": 14.60840269940131,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.007367419270149646,
+"ser": 0.029043055920189027,
+"snr_db": 14.56929611378629,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.005898857967970596,
+"ser": 0.023365712785508006,
+"snr_db": 14.647772298776808,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.006489564190076135,
+"ser": 0.02556445261223418,
+"snr_db": 14.624612748320786,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.007063861906012076,
+"ser": 0.02792727750065634,
+"snr_db": 14.594745346619547,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.004536951955893935,
+"ser": 0.018114990811236544,
+"snr_db": 14.968923702724968,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.005012798634812287,
+"ser": 0.019952743502231557,
+"snr_db": 14.960460425591535,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 16,
+"ber": 0.005488645313730638,
+"ser": 0.021823313205565766,
+"snr_db": 14.944273802124151,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.007400236282488842,
+"ser": 0.029469677080598583,
+"snr_db": 14.4749074595911,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.048741467576791805,
+"ser": 0.11252953531110528,
+"snr_db": 6.916460303417333,
+"rotated_fraction": 0.16806722689075632
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.13838934103439224,
+"ser": 0.2900039380414807,
+"snr_db": 2.4812172594842163,
+"rotated_fraction": 0.5294117647058824
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.008926227356261486,
+"ser": 0.03537673930165398,
+"snr_db": 14.172547061461703,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.009681018640063009,
+"ser": 0.038166185350485694,
+"snr_db": 14.153213715035584,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.09678557364137569,
+"ser": 0.20953662378577054,
+"snr_db": 4.10411213071133,
+"rotated_fraction": 0.3445378151260504
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.008803163559989498,
+"ser": 0.03485166710422683,
+"snr_db": 14.182591745889098,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.057692307692307696,
+"ser": 0.13123523234444737,
+"snr_db": 6.303284025163601,
+"rotated_fraction": 0.19327731092436976
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.1414577316881071,
+"ser": 0.2967970595956944,
+"snr_db": 2.3947225826922733,
+"rotated_fraction": 0.14285714285714285
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.009557954843791022,
+"ser": 0.037772381202415335,
+"snr_db": 14.088684335069226,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.09904174323969546,
+"ser": 0.2138684694145445,
+"snr_db": 3.956661662055368,
+"rotated_fraction": 0.025210084033613446
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.19947000525072198,
+"ser": 0.41365844053557366,
+"snr_db": 0.910912445757558,
+"rotated_fraction": 0.5546218487394958
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.009615384615384616,
+"ser": 0.0381005513258073,
+"snr_db": 14.106225456871366,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.05870143082173799,
+"ser": 0.1345825676030454,
+"snr_db": 6.293883825027505,
+"rotated_fraction": 0.19327731092436976
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.1425406930953006,
+"ser": 0.3010304541874508,
+"snr_db": 2.392274120278954,
+"rotated_fraction": 0.14285714285714285
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.007720202152796009,
+"ser": 0.030716723549488054,
+"snr_db": 14.434237939730117,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.0488317143607246,
+"ser": 0.11285770543449725,
+"snr_db": 6.92100595415579,
+"rotated_fraction": 0.16806722689075632
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 17,
+"ber": 0.15987627986348124,
+"ser": 0.3337490154896298,
+"snr_db": 1.8403825404306335,
+"rotated_fraction": 0.6218487394957983
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.013110396429509057,
+"ser": 0.05191651352060908,
+"snr_db": 13.599582499555297,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.014414872669992125,
+"ser": 0.05680624835914938,
+"snr_db": 13.594982619154063,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.15587260435809924,
+"ser": 0.3326332370700971,
+"snr_db": 2.042134054239871,
+"rotated_fraction": 0.5798319327731093
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.015292727750065634,
+"ser": 0.06012076660540824,
+"snr_db": 13.335457240439796,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.05610068259385666,
+"ser": 0.14173667629299028,
+"snr_db": 6.741563605686438,
+"rotated_fraction": 0.16806722689075632
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.148201627723812,
+"ser": 0.3201955893935416,
+"snr_db": 0.8621121482190128,
+"rotated_fraction": 0.33613445378151263
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.015382974533998424,
+"ser": 0.0605145707534786,
+"snr_db": 13.32296985956674,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.01649875295353111,
+"ser": 0.06497768443160934,
+"snr_db": 13.298341551012081,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.18713080861118403,
+"ser": 0.3928196377001838,
+"snr_db": 1.1799875130880895,
+"rotated_fraction": 0.42857142857142855
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.01551424258335521,
+"ser": 0.06113809398792334,
+"snr_db": 13.26973201905258,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.017253544237332632,
+"ser": 0.06779994749278026,
+"snr_db": 13.246513422293225,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.18724566815437121,
+"ser": 0.3962982410081386,
+"snr_db": 1.2741764330559577,
+"rotated_fraction": 0.6974789915966386
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.015768574428983984,
+"ser": 0.062122604358099236,
+"snr_db": 13.26889491509971,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.05686367813074298,
+"ser": 0.14478865844053557,
+"snr_db": 6.7331486714515805,
+"rotated_fraction": 0.16806722689075632
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.32456845628773956,
+"ser": 0.6585718036229982,
+"snr_db": -1.8920139885036344,
+"rotated_fraction": 0.6050420168067226
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.013397545287477029,
+"ser": 0.05313074297715936,
+"snr_db": 13.558754255845338,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.014275400367550537,
+"ser": 0.05624835914938304,
+"snr_db": 13.560846144449457,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 18,
+"ber": 0.16776877133105803,
+"ser": 0.3572459963244946,
+"snr_db": 1.7412394990444604,
+"rotated_fraction": 0.4957983193277311
+},
+{
+"variant": "simcopy+conjunta",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.017138684694145444,
+"ser": 0.06734050932003151,
+"snr_db": 13.070995666404361,
+"rotated_fraction": 0.0
+},
+{
+"variant": "simcopy+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.11649218955106327,
+"ser": 0.265686531898136,
+"snr_db": 3.505376182577862,
+"rotated_fraction": 0.33613445378151263
+},
+{
+"variant": "simcopy+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.21019296403255447,
+"ser": 0.4501181412444211,
+"snr_db": -0.23425605355624116,
+"rotated_fraction": 0.4957983193277311
+},
+{
+"variant": "raio_0.001_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.0224632449461801,
+"ser": 0.08745733788395904,
+"snr_db": 12.564135597218453,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.23585586768180625,
+"ser": 0.4999671829876608,
+"snr_db": 0.1145751539105924,
+"rotated_fraction": 0.8151260504201681
+},
+{
+"variant": "raio_0.001_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.26714688894723027,
+"ser": 0.5651089524809662,
+"snr_db": -0.9556612991325547,
+"rotated_fraction": 0.6470588235294118
+},
+{
+"variant": "raio_0.001_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.0224550406930953,
+"ser": 0.08775269099501182,
+"snr_db": 12.608911228822556,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.24347761879758467,
+"ser": 0.5145379364662641,
+"snr_db": -0.5991887886111243,
+"rotated_fraction": 0.4957983193277311
+},
+{
+"variant": "raio_0.001_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.338113678130743,
+"ser": 0.6933250196902074,
+"snr_db": -2.1800615322971644,
+"rotated_fraction": 0.5462184873949579
+},
+{
+"variant": "raio_0.0003_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.021404896298241008,
+"ser": 0.08348647939091625,
+"snr_db": 12.69721442218765,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.07309989498556052,
+"ser": 0.19092937778944605,
+"snr_db": 6.135580489856372,
+"rotated_fraction": 0.20168067226890757
+},
+{
+"variant": "raio_0.0003_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.36376017327382515,
+"ser": 0.7396298241008139,
+"snr_db": -2.3405244010171846,
+"rotated_fraction": 0.6050420168067226
+},
+{
+"variant": "raio_0.0003_congelada+conjunta",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.021995602520346547,
+"ser": 0.08578367025466002,
+"snr_db": 12.67809958558636,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.20840443686006827,
+"ser": 0.4496587030716723,
+"snr_db": 0.8607119642099974,
+"rotated_fraction": 0.6554621848739496
+},
+{
+"variant": "raio_0.0003_congelada+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.3506661853504857,
+"ser": 0.7162312943029666,
+"snr_db": -2.789670706175861,
+"rotated_fraction": 0.3949579831932773
+},
+{
+"variant": "raio_lms_corrente+conjunta",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.017483263323707008,
+"ser": 0.06865318981359937,
+"snr_db": 13.021092160698938,
+"rotated_fraction": 0.0
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_32",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.17100124704646888,
+"ser": 0.36965082698871093,
+"snr_db": 1.7377811268525198,
+"rotated_fraction": 0.5630252100840336
+},
+{
+"variant": "raio_lms_corrente+dois_estagios_21",
+"length_km": 140,
+"power_dbm": 9,
+"ber": 0.3289167104226831,
+"ser": 0.6754397479653452,
+"snr_db": -2.305836903478683,
+"rotated_fraction": 0.7142857142857143
+}
+]
+}

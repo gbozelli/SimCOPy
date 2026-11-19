@@ -1,0 +1,1067 @@
+{
+ "source": "simcopy",
+ "points": [
+  {
+   "length_km": 80,
+   "power_dbm": 0,
+   "ber": 0.004880071446797652,
+   "bit_errors": 612,
+   "n_bits": 125408,
+   "snr_db": 14.878514035673325,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 1,
+   "ber": 0.003197563153865782,
+   "bit_errors": 401,
+   "n_bits": 125408,
+   "snr_db": 15.326039913763825,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 2,
+   "ber": 0.0018738836437866802,
+   "bit_errors": 235,
+   "n_bits": 125408,
+   "snr_db": 15.81046848708941,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 3,
+   "ber": 0.0013316534830313856,
+   "bit_errors": 167,
+   "n_bits": 125408,
+   "snr_db": 16.216685304856234,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 4,
+   "ber": 0.0008292931870375095,
+   "bit_errors": 104,
+   "n_bits": 125408,
+   "snr_db": 16.510639519139524,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 5,
+   "ber": 0.00042262056647103855,
+   "bit_errors": 53,
+   "n_bits": 125408,
+   "snr_db": 16.801071123705285,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 6,
+   "ber": 0.00032693289104363356,
+   "bit_errors": 41,
+   "n_bits": 125408,
+   "snr_db": 17.05212493236261,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 7,
+   "ber": 0.00022327124266394488,
+   "bit_errors": 28,
+   "n_bits": 125408,
+   "snr_db": 17.269339833174634,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 8,
+   "ber": 0.00019934932380709364,
+   "bit_errors": 25,
+   "n_bits": 125408,
+   "snr_db": 17.384734447177696,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 9,
+   "ber": 0.00015150548609339117,
+   "bit_errors": 19,
+   "n_bits": 125408,
+   "snr_db": 17.529812585396517,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 10,
+   "ber": 5.581781066598622e-05,
+   "bit_errors": 7,
+   "n_bits": 125408,
+   "snr_db": 17.579101140370955,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 11,
+   "ber": 9.568767542740494e-05,
+   "bit_errors": 12,
+   "n_bits": 125408,
+   "snr_db": 17.582918948736204,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 80,
+   "power_dbm": 12,
+   "ber": 0.00011163562133197244,
+   "bit_errors": 14,
+   "n_bits": 125408,
+   "snr_db": 17.534514504574638,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 0,
+   "ber": 0.0829622285788584,
+   "bit_errors": 10209,
+   "n_bits": 123056,
+   "snr_db": 8.795700630489447,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 1,
+   "ber": 0.06319074242621246,
+   "bit_errors": 7776,
+   "n_bits": 123056,
+   "snr_db": 9.817849121461435,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 2,
+   "ber": 0.04730366662332597,
+   "bit_errors": 5821,
+   "n_bits": 123056,
+   "snr_db": 10.708042220340186,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 3,
+   "ber": 0.03500845143674425,
+   "bit_errors": 4308,
+   "n_bits": 123056,
+   "snr_db": 11.571594387016964,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 4,
+   "ber": 0.024777337147315042,
+   "bit_errors": 3049,
+   "n_bits": 123056,
+   "snr_db": 12.295623771714222,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 5,
+   "ber": 0.017577363151735796,
+   "bit_errors": 2163,
+   "n_bits": 123056,
+   "snr_db": 13.015330355291859,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 6,
+   "ber": 0.011620725523338968,
+   "bit_errors": 1430,
+   "n_bits": 123056,
+   "snr_db": 13.643878985784777,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 7,
+   "ber": 0.0073706280067611495,
+   "bit_errors": 907,
+   "n_bits": 123056,
+   "snr_db": 14.263397958604685,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 8,
+   "ber": 0.005412170068911715,
+   "bit_errors": 666,
+   "n_bits": 123056,
+   "snr_db": 14.706206977277507,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 9,
+   "ber": 0.0032911845013652323,
+   "bit_errors": 405,
+   "n_bits": 123056,
+   "snr_db": 15.23431786390714,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 10,
+   "ber": 0.0021534910934858926,
+   "bit_errors": 265,
+   "n_bits": 123056,
+   "snr_db": 15.694760493029209,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 11,
+   "ber": 0.0014708750487582888,
+   "bit_errors": 181,
+   "n_bits": 123056,
+   "snr_db": 16.007419555885573,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 12,
+   "ber": 0.0011945780782733064,
+   "bit_errors": 147,
+   "n_bits": 123056,
+   "snr_db": 16.234902701084813,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 13,
+   "ber": 0.0009589130152125861,
+   "bit_errors": 118,
+   "n_bits": 123056,
+   "snr_db": 16.342414366016712,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 14,
+   "ber": 0.0010970615004550774,
+   "bit_errors": 135,
+   "n_bits": 123056,
+   "snr_db": 16.287908253967892,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 15,
+   "ber": 0.0014058639968794694,
+   "bit_errors": 173,
+   "n_bits": 123056,
+   "snr_db": 16.094082427093937,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 16,
+   "ber": 0.002657326745546743,
+   "bit_errors": 327,
+   "n_bits": 123056,
+   "snr_db": 15.6149923209472,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 17,
+   "ber": 0.0051114939539721755,
+   "bit_errors": 629,
+   "n_bits": 123056,
+   "snr_db": 14.9178651163992,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 18,
+   "ber": 0.011157521778702379,
+   "bit_errors": 1373,
+   "n_bits": 123056,
+   "snr_db": 13.881281538494308,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 19,
+   "ber": 0.02373716031725393,
+   "bit_errors": 2921,
+   "n_bits": 123056,
+   "snr_db": 12.468906279763257,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 20,
+   "ber": 0.044922636848264204,
+   "bit_errors": 5528,
+   "n_bits": 123056,
+   "snr_db": 10.75823487490685,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 0,
+   "ber": 0.3235615144011469,
+   "bit_errors": 39723,
+   "n_bits": 122768,
+   "snr_db": -10.515026167082475,
+   "phase_slips": 14
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 1,
+   "ber": 0.13966994656588036,
+   "bit_errors": 17147,
+   "n_bits": 122768,
+   "snr_db": 3.0833377157654143,
+   "phase_slips": 2
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 2,
+   "ber": 0.06265476345627526,
+   "bit_errors": 7692,
+   "n_bits": 122768,
+   "snr_db": 9.885802794752006,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 3,
+   "ber": 0.04634758243190408,
+   "bit_errors": 5690,
+   "n_bits": 122768,
+   "snr_db": 10.792739310881398,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 4,
+   "ber": 0.034365632738172815,
+   "bit_errors": 4219,
+   "n_bits": 122768,
+   "snr_db": 11.57450238733084,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 5,
+   "ber": 0.024273426300013033,
+   "bit_errors": 2980,
+   "n_bits": 122768,
+   "snr_db": 12.349152503443324,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 6,
+   "ber": 0.017235761762022676,
+   "bit_errors": 2116,
+   "n_bits": 122768,
+   "snr_db": 13.030925836612573,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 7,
+   "ber": 0.011452495764368565,
+   "bit_errors": 1406,
+   "n_bits": 122768,
+   "snr_db": 13.69143934266761,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 8,
+   "ber": 0.007184282549198488,
+   "bit_errors": 882,
+   "n_bits": 122768,
+   "snr_db": 14.280934177202106,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 9,
+   "ber": 0.004830248924801251,
+   "bit_errors": 593,
+   "n_bits": 122768,
+   "snr_db": 14.805367812794632,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 10,
+   "ber": 0.0032500325817802684,
+   "bit_errors": 399,
+   "n_bits": 122768,
+   "snr_db": 15.249013933243987,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 11,
+   "ber": 0.002386615404665711,
+   "bit_errors": 293,
+   "n_bits": 122768,
+   "snr_db": 15.637968214015878,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 12,
+   "ber": 0.0016861071288935226,
+   "bit_errors": 207,
+   "n_bits": 122768,
+   "snr_db": 15.915410546456705,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 13,
+   "ber": 0.0013114166558060732,
+   "bit_errors": 161,
+   "n_bits": 122768,
+   "snr_db": 16.081441461302106,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 14,
+   "ber": 0.0013521438811416656,
+   "bit_errors": 166,
+   "n_bits": 122768,
+   "snr_db": 16.113054150699423,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 15,
+   "ber": 0.0017512706894304705,
+   "bit_errors": 215,
+   "n_bits": 122768,
+   "snr_db": 15.926867999645008,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 16,
+   "ber": 0.0028671966636257006,
+   "bit_errors": 352,
+   "n_bits": 122768,
+   "snr_db": 15.509027613405964,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 17,
+   "ber": 0.005652938876580216,
+   "bit_errors": 694,
+   "n_bits": 122768,
+   "snr_db": 14.832438337609835,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 18,
+   "ber": 0.011517659324905513,
+   "bit_errors": 1414,
+   "n_bits": 122768,
+   "snr_db": 13.819717056719835,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 19,
+   "ber": 0.023304118337025934,
+   "bit_errors": 2861,
+   "n_bits": 122768,
+   "snr_db": 12.470264610555082,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 125,
+   "power_dbm": 20,
+   "ber": 0.04501172944089665,
+   "bit_errors": 5526,
+   "n_bits": 122768,
+   "snr_db": 10.71960154961487,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 0,
+   "ber": 0.3466770084911822,
+   "bit_errors": 42461,
+   "n_bits": 122480,
+   "snr_db": -7.545057737162066,
+   "phase_slips": 8
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 1,
+   "ber": 0.1038291966035271,
+   "bit_errors": 12717,
+   "n_bits": 122480,
+   "snr_db": 7.804353235910131,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 2,
+   "ber": 0.28236446766819073,
+   "bit_errors": 34584,
+   "n_bits": 122480,
+   "snr_db": -0.9213089117304865,
+   "phase_slips": 2
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 3,
+   "ber": 0.06313683866753755,
+   "bit_errors": 7733,
+   "n_bits": 122480,
+   "snr_db": 9.83846489523165,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 4,
+   "ber": 0.04664435009797518,
+   "bit_errors": 5713,
+   "n_bits": 122480,
+   "snr_db": 10.768870895349716,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 5,
+   "ber": 0.03472403657740039,
+   "bit_errors": 4253,
+   "n_bits": 122480,
+   "snr_db": 11.554639196518238,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 6,
+   "ber": 0.024877531025473548,
+   "bit_errors": 3047,
+   "n_bits": 122480,
+   "snr_db": 12.32292767413436,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 7,
+   "ber": 0.017202808621815807,
+   "bit_errors": 2107,
+   "n_bits": 122480,
+   "snr_db": 13.012215809851353,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 8,
+   "ber": 0.01185499673416068,
+   "bit_errors": 1452,
+   "n_bits": 122480,
+   "snr_db": 13.6329149951238,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 9,
+   "ber": 0.00818092749836708,
+   "bit_errors": 1002,
+   "n_bits": 122480,
+   "snr_db": 14.199664867425286,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 10,
+   "ber": 0.0051763553233180925,
+   "bit_errors": 634,
+   "n_bits": 122480,
+   "snr_db": 14.7928071698507,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 11,
+   "ber": 0.0032495101241018943,
+   "bit_errors": 398,
+   "n_bits": 122480,
+   "snr_db": 15.202472978052485,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 12,
+   "ber": 0.002555519268451992,
+   "bit_errors": 313,
+   "n_bits": 122480,
+   "snr_db": 15.51034072203727,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 13,
+   "ber": 0.001902351404310908,
+   "bit_errors": 233,
+   "n_bits": 122480,
+   "snr_db": 15.802789236348245,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 14,
+   "ber": 0.0018533638145003266,
+   "bit_errors": 227,
+   "n_bits": 122480,
+   "snr_db": 15.846160072746041,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 15,
+   "ber": 0.002188112344872632,
+   "bit_errors": 268,
+   "n_bits": 122480,
+   "snr_db": 15.729375599286584,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 16,
+   "ber": 0.0032495101241018943,
+   "bit_errors": 398,
+   "n_bits": 122480,
+   "snr_db": 15.364120109810047,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 17,
+   "ber": 0.006107119529719138,
+   "bit_errors": 748,
+   "n_bits": 122480,
+   "snr_db": 14.729015943735764,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 18,
+   "ber": 0.012099934683213586,
+   "bit_errors": 1482,
+   "n_bits": 122480,
+   "snr_db": 13.752077948268886,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 19,
+   "ber": 0.023840627041149576,
+   "bit_errors": 2920,
+   "n_bits": 122480,
+   "snr_db": 12.423210559925106,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 130,
+   "power_dbm": 20,
+   "ber": 0.045876877857609404,
+   "bit_errors": 5619,
+   "n_bits": 122480,
+   "snr_db": 10.668187643755909,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 0,
+   "ber": 0.3670360790990047,
+   "bit_errors": 44843,
+   "n_bits": 122176,
+   "snr_db": -13.528347803795773,
+   "phase_slips": 26
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 1,
+   "ber": 0.37087480356207436,
+   "bit_errors": 45312,
+   "n_bits": 122176,
+   "snr_db": -13.974591017971045,
+   "phase_slips": 16
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 2,
+   "ber": 0.3585483237297014,
+   "bit_errors": 43806,
+   "n_bits": 122176,
+   "snr_db": -14.948188407283627,
+   "phase_slips": 11
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 3,
+   "ber": 0.2545098873755893,
+   "bit_errors": 31095,
+   "n_bits": 122176,
+   "snr_db": -0.7616567730312127,
+   "phase_slips": 2
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 4,
+   "ber": 0.0632693818753274,
+   "bit_errors": 7730,
+   "n_bits": 122176,
+   "snr_db": 9.835682754267447,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 5,
+   "ber": 0.047693491356731274,
+   "bit_errors": 5827,
+   "n_bits": 122176,
+   "snr_db": 10.70121789483415,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 6,
+   "ber": 0.03422112362493452,
+   "bit_errors": 4181,
+   "n_bits": 122176,
+   "snr_db": 11.551082212951089,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 7,
+   "ber": 0.025536930330015715,
+   "bit_errors": 3120,
+   "n_bits": 122176,
+   "snr_db": 12.278515463568151,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 8,
+   "ber": 0.017286537454164485,
+   "bit_errors": 2112,
+   "n_bits": 122176,
+   "snr_db": 13.037276843546277,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 9,
+   "ber": 0.011769905709795704,
+   "bit_errors": 1438,
+   "n_bits": 122176,
+   "snr_db": 13.614030203693003,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 10,
+   "ber": 0.008103064431639603,
+   "bit_errors": 990,
+   "n_bits": 122176,
+   "snr_db": 14.210546472745003,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 11,
+   "ber": 0.005271084337349397,
+   "bit_errors": 644,
+   "n_bits": 122176,
+   "snr_db": 14.737242846689558,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 12,
+   "ber": 0.003535882661079099,
+   "bit_errors": 432,
+   "n_bits": 122176,
+   "snr_db": 15.140903907450674,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 13,
+   "ber": 0.002905644316396019,
+   "bit_errors": 355,
+   "n_bits": 122176,
+   "snr_db": 15.395481625494618,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 14,
+   "ber": 0.0025209533787323205,
+   "bit_errors": 308,
+   "n_bits": 122176,
+   "snr_db": 15.501515391080638,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 15,
+   "ber": 0.002831980094290204,
+   "bit_errors": 346,
+   "n_bits": 122176,
+   "snr_db": 15.499886658559458,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 16,
+   "ber": 0.0038223546359350447,
+   "bit_errors": 467,
+   "n_bits": 122176,
+   "snr_db": 15.15722036565293,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 17,
+   "ber": 0.0066952592980618125,
+   "bit_errors": 818,
+   "n_bits": 122176,
+   "snr_db": 14.608588185690836,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 18,
+   "ber": 0.012580212152959664,
+   "bit_errors": 1537,
+   "n_bits": 122176,
+   "snr_db": 13.660132234834183,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 19,
+   "ber": 0.024669329491880564,
+   "bit_errors": 3014,
+   "n_bits": 122176,
+   "snr_db": 12.35886174487312,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 135,
+   "power_dbm": 20,
+   "ber": 0.04626931639601886,
+   "bit_errors": 5653,
+   "n_bits": 122176,
+   "snr_db": 10.646790483661125,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 0,
+   "ber": 0.38326988710947757,
+   "bit_errors": 46716,
+   "n_bits": 121888,
+   "snr_db": -12.430568681698297,
+   "phase_slips": 42
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 1,
+   "ber": 0.33950840115515885,
+   "bit_errors": 41382,
+   "n_bits": 121888,
+   "snr_db": -5.799822907712978,
+   "phase_slips": 26
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 2,
+   "ber": 0.3788559989498556,
+   "bit_errors": 46178,
+   "n_bits": 121888,
+   "snr_db": -13.547183874797861,
+   "phase_slips": 30
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 3,
+   "ber": 0.3113760173273825,
+   "bit_errors": 37953,
+   "n_bits": 121888,
+   "snr_db": -5.914519114846205,
+   "phase_slips": 10
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 4,
+   "ber": 0.1974435547387766,
+   "bit_errors": 24066,
+   "n_bits": 121888,
+   "snr_db": 0.5236248882160064,
+   "phase_slips": 2
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 5,
+   "ber": 0.2585160147020215,
+   "bit_errors": 31510,
+   "n_bits": 121888,
+   "snr_db": -0.7297747601233386,
+   "phase_slips": 2
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 6,
+   "ber": 0.04660836177474403,
+   "bit_errors": 5681,
+   "n_bits": 121888,
+   "snr_db": 10.751269677940357,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 7,
+   "ber": 0.034630152270937256,
+   "bit_errors": 4221,
+   "n_bits": 121888,
+   "snr_db": 11.564465269595711,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 8,
+   "ber": 0.02499015489629824,
+   "bit_errors": 3046,
+   "n_bits": 121888,
+   "snr_db": 12.321993506214689,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 9,
+   "ber": 0.017138684694145444,
+   "bit_errors": 2089,
+   "n_bits": 121888,
+   "snr_db": 13.023399937988575,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 10,
+   "ber": 0.01160901811499081,
+   "bit_errors": 1415,
+   "n_bits": 121888,
+   "snr_db": 13.62833171959906,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 11,
+   "ber": 0.007982738251509582,
+   "bit_errors": 973,
+   "n_bits": 121888,
+   "snr_db": 14.196672731291379,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 12,
+   "ber": 0.006103964295090575,
+   "bit_errors": 744,
+   "n_bits": 121888,
+   "snr_db": 14.648908874448042,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 13,
+   "ber": 0.004118535048569179,
+   "bit_errors": 502,
+   "n_bits": 121888,
+   "snr_db": 14.98861887975435,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 14,
+   "ber": 0.003281701233919664,
+   "bit_errors": 400,
+   "n_bits": 121888,
+   "snr_db": 15.225814005465415,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 15,
+   "ber": 0.0035360330795484378,
+   "bit_errors": 431,
+   "n_bits": 121888,
+   "snr_db": 15.220547160337832,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 16,
+   "ber": 0.004520543449724337,
+   "bit_errors": 551,
+   "n_bits": 121888,
+   "snr_db": 14.993379733222334,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 17,
+   "ber": 0.007400236282488842,
+   "bit_errors": 902,
+   "n_bits": 121888,
+   "snr_db": 14.45926506474713,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 18,
+   "ber": 0.013110396429509057,
+   "bit_errors": 1598,
+   "n_bits": 121888,
+   "snr_db": 13.562182428182787,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 19,
+   "ber": 0.0253839590443686,
+   "bit_errors": 3094,
+   "n_bits": 121888,
+   "snr_db": 12.286155992249853,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 140,
+   "power_dbm": 20,
+   "ber": 0.046345825676030454,
+   "bit_errors": 5649,
+   "n_bits": 121888,
+   "snr_db": 10.65013716124252,
+   "phase_slips": 0
+  }
+ ]
+}

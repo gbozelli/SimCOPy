@@ -1,0 +1,118 @@
+{
+ "source": "simcopy",
+ "config": "examples/400zr_4ch_75ghz.yaml com phase_imbalance_deg = 0 (receptor cego, janela de 43, skew de uma amostra)",
+ "n_symbols": 16384,
+ "dsp_options": {},
+ "points": [
+  {
+   "length_km": 120,
+   "power_dbm": 7,
+   "ber": 0.006111038876609023,
+   "ser": 0.024184111298920816,
+   "snr_db": 14.573880644543088,
+   "bit_errors": 752,
+   "n_bits": 123056,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 8,
+   "ber": 0.004120075412820179,
+   "ser": 0.016057729814068392,
+   "snr_db": 15.053273072721353,
+   "bit_errors": 507,
+   "n_bits": 123056,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 9,
+   "ber": 0.002251007671304122,
+   "ser": 0.009101547263034717,
+   "snr_db": 15.6219357917259,
+   "bit_errors": 277,
+   "n_bits": 123056,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 10,
+   "ber": 0.00134085294500065,
+   "ser": 0.005363411780002601,
+   "snr_db": 16.09256323512177,
+   "bit_errors": 165,
+   "n_bits": 123056,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 11,
+   "ber": 0.0008045117670003901,
+   "ser": 0.0032830581198803797,
+   "snr_db": 16.474784936238294,
+   "bit_errors": 99,
+   "n_bits": 123056,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 12,
+   "ber": 0.000650110518788194,
+   "ser": 0.0025679365492133665,
+   "snr_db": 16.71196144842495,
+   "bit_errors": 80,
+   "n_bits": 123056,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 13,
+   "ber": 0.0004875828890911455,
+   "ser": 0.0019178260304251724,
+   "snr_db": 16.853312949770768,
+   "bit_errors": 60,
+   "n_bits": 123056,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 14,
+   "ber": 0.0005850994669093746,
+   "ser": 0.0022753868157586793,
+   "snr_db": 16.8018743806917,
+   "bit_errors": 72,
+   "n_bits": 123056,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 15,
+   "ber": 0.000975165778182291,
+   "ser": 0.0038681575867897545,
+   "snr_db": 16.5505693131213,
+   "bit_errors": 120,
+   "n_bits": 123056,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 16,
+   "ber": 0.0016740345858795996,
+   "ser": 0.006663632817578988,
+   "snr_db": 16.06196838303013,
+   "bit_errors": 206,
+   "n_bits": 123056,
+   "phase_slips": 0
+  },
+  {
+   "length_km": 120,
+   "power_dbm": 17,
+   "ber": 0.004046937979456508,
+   "ser": 0.016057729814068392,
+   "snr_db": 15.259581856755108,
+   "bit_errors": 498,
+   "n_bits": 123056,
+   "phase_slips": 0
+  }
+ ]
+}
