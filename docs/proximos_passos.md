@@ -109,7 +109,7 @@ Já abertas: #5 a #10 (núcleo, configuração, fibra), #14 (laser), #15 (MZM), 
 
 ## 6. Integração e publicação
 
-- PR do branch `laser` para o `main` (dúvida 47).
+- O branch `laser` já entrou no `main` (PRs #22 e #24). O trabalho desta etapa vai num branch novo, com o seu PR.
 - CI com `pytest`; mutações em série (`scripts/mutacoes.py`).
 - `CITATION.cff`, `CHANGELOG.md`, `__all__` explícito, documentação com mkdocs (D-12).
 
