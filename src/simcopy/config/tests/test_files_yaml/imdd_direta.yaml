@@ -1,0 +1,34 @@
+# Canal IMDD com modulacao direta (laser de equacoes de taxa).
+# Parametros do laser copiados de examples/imdd_ook_dml.yaml.
+
+system:
+  channels:
+    - index: 0
+      kind: imdd
+      modulation: OOK
+      symbol_rate: 10.0e9
+      seed: 1
+      tx:
+        frontend:
+          scheme: direct
+          bias_ratio: 1.2
+          modulation_ratio: 1.8
+          laser:
+            cavity_length: 300.0e-6
+            cavity_width: 3.0e-6
+            cavity_height: 0.2e-6
+            group_index: 3.4
+            mirror_loss: 2410.0
+            internal_loss: 1510.0
+            differential_gain: 4.0e-20
+            transparency_density: 1.25e+24
+            confinement: 1.0
+            carrier_lifetime: 2.1e-9
+            spontaneous_emission_factor: 1.5
+            gain_compression: 1.8e-23
+            linewidth_enhancement: 3.0
+  link:
+    spans:
+      - fiber: {length: 20.0e3}
+
+simulation: {samples_per_symbol: 16, n_symbols: 1024}

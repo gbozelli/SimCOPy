@@ -1,0 +1,61 @@
+# Canal coerente com todos os campos preenchidos.
+# Os valores sao diferentes dos padroes de proposito: se o io.py ignorar uma chave,
+# o teste percebe. Nao representam um cenario fisico de referencia.
+
+system:
+  center_frequency: 193.4e12
+  channel_spacing: 100.0e9
+  mux:
+    insertion_loss_db: 3.0
+    optical_filter: {bandwidth: 80.0e9, filter_type: supergaussian, filter_order: 2}
+  channels:
+    - index: 0
+      kind: dcs
+      modulation: QPSK
+      pol: SP
+      symbol_rate: 32.0e9
+      seed: 1234
+      launch_power_dbm: 3.0
+      tx:
+        laser: {power: 2.0e-3, linewidth: 100.0e3}
+        mzm: {vpi: 4.0, vbias: 2.0, insertion_loss_db: 5.0, extinction_ratio_db: 25.0}
+        iq: {phase_imbalance_deg: 5.0, skew: 1.0e-12, gain_imbalance_db: 0.5}
+        rolloff: 0.25
+        drive_depth: 0.8
+        predistortion: false
+        pulse: root_raised_cosine
+      rx:
+        lo: {power: 5.0e-3, linewidth: 200.0e3}
+        lo_source: free
+        lo_frequency_offset: 100.0e6
+        optical_bandwidth: 50.0e9
+        optical_filter_order: 4
+        photodiode: {responsivity: 0.8, dark_current: 1.0e-9}
+        adc: {samples_per_symbol: 4, resolution_bits: 8, full_scale_rms: 3.0}
+        dsp: {mode: blind, equalizer_taps: 9, phase_window: 43}
+  link:
+    booster: {mode: fixed_gain, gain_db: 10.0, noise_figure_db: 4.0}
+    spans:
+      - fiber:
+          length: 80.0e3
+          attenuation: 0.22e-3
+          dispersion: 17.0e-6
+          n2: 2.5e-20
+          effective_area: 85.0e-12
+          dispersion_slope: 0.08e3
+          birefringence:
+            pmd_coefficient_ps_sqrt_km: 0.2
+            correlation_length: 100.0
+            enabled: false
+        amplifier: {mode: target_output_power, output_power_dbm: 0.0, noise_figure_db: 6.0}
+
+simulation:
+  samples_per_symbol: 8
+  n_symbols: 2048
+  root_seed: 7
+  force_power_of_two: false
+  ssfm_max_step: 1.0e3
+  ssfm_max_phase_change_deg: 0.2
+  broadening_margin: 1.5
+  shot_noise: false
+  thermal_noise: false

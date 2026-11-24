@@ -8,10 +8,26 @@
 defaults:
   dcs_tx: &dcs_tx
     laser: {power: 1.0e-3, linewidth: 500.0e3}
-    mzm:   {vpi: 5.0, insertion_loss_db: 6.0, extinction_ratio_db: 30.0,
+    mzm:   {vpi: 5.0, vbias: 5.0, insertion_loss_db: 6.0, extinction_ratio_db: 30.0,
             s21_bandwidth: 40.0e9, s21_order: 3}
-    iq:    {phase_imbalance_deg: 5.0, skew: 0.75e-12}      # PhaseShift = -90+5 ; Skew
+    # PhaseShift = -90+5 do VPI: 85 graus entre os bracos, que no simcopy e -5 (com +5 seriam
+    # 95). O sinal saiu da comparacao dos dados do VPI com e sem os 5 graus (duvida 64,
+    # respondida em 2026-11-16; docs/comparacao_vpi.md, secao 10).
+    # Skew: o arquivo do VPI diz SkewX = SkewY = 0,75 ps. A imagem de quadratura que depende da
+    # frequencia, medida nas constelacoes do VPI, equivale a 1,07 ps no simcopy. Aqui fica uma
+    # amostra da grade do VPI a 16 amostras por simbolo, 1/(16*59,84 GHz) = 1,044 ps: a explicacao
+    # mais simples (o VPI arredondaria o atraso para amostras inteiras), ainda nao confirmada com o
+    # grupo. Fecha o piso com o VPI (docs/replicacao_vpi_diario.md, teste 1). Ate 2026-11-16: 0,75 ps.
+    iq:    {phase_imbalance_deg: -5.0, skew: 1.04445e-12}  # PhaseShift = -90+5 ; Skew
     rolloff: 0.18
+    pulse: root_raised_cosine      # NyquistResponse = squareRootRaisedCosine
+    # Excursao do campo de cada MZM nos niveis externos. O arquivo do VPI nao traz o valor: 0,51
+    # foi ajustado para reproduzir o deslocamento constante medido nas constelacoes do VPI
+    # (0,077 do valor rms com os 5 graus e 0,073 sem eles), que vem da extincao de 30 dB e
+    # depende da excursao (docs/comparacao_vpi.md, secoes 3 e 10). E um parametro calibrado,
+    # nao uma verificacao. Ate 2026-11-16 o arquivo tinha +5 graus e 0,47.
+    drive_depth: 0.51
+    predistortion: true            # PreDistortion = Yes
   dcs_rx: &dcs_rx
     lo: {power: 1.0e-3, linewidth: 500.0e3}
     lo_frequency_offset: 500.0e6
@@ -19,11 +35,27 @@ defaults:
                  shot_noise: true, bandwidth_factor: 1.15,
                  filter_type: bessel, filter_order: 4}
     adc: {samples_per_symbol: 2, resolution_bits: 12}
-    optical_bandwidth: 70.0e9
+    optical_bandwidth: 70.0e9      # FilterOpt: gaussiana de ordem 3
+    optical_filter_order: 3
+    # DSP cego, como o do VPI (decisao do Gabriel em 2026-11-17): nada usa os simbolos
+    # transmitidos, so a medida. 7 coeficientes como o MIMO do VPI (NTaps = 7) e media de fase de
+    # 43 simbolos: o VPI tem NPreSymbols = 21 de cada lado, medido nas constelacoes
+    # (docs/replicacao_vpi_diario.md). Assim a SNR fica a -0,04..+0,14 dB da do VPI de 120 a 140
+    # km. O modo cego pede o ADC a 2 amostras por simbolo.
+    # Sem filtro casado separado: a cadeia do VPI nao tem um, quem filtra e o equalizador de 7
+    # coeficientes. Com matched_filter: true o ruido do receptor cai 1,7 dB
+    # (docs/comparacao_vpi.md, secao 4).
+    # Ate 2026-11-16 o cenario usava os simbolos conhecidos (mode: data_aided, phase_window: 21,
+    # block_length: 64). Nesse modo a janela de 43 nao serve: a nao linearidade passa 0,2 a 0,5
+    # dB da do VPI.
+    dsp: {mode: blind, matched_filter: false, equalizer_taps: 7, phase_window: 43}
 
 system:
   center_frequency: 193.7e12       # ou center_wavelength; o outro e derivado por c
   channel_spacing: 75.0e9
+  # WDM_MUX_N_1: gaussiana de ordem 3, 70 GHz, perda de insercao de 3 dB
+  mux: {insertion_loss_db: 3.0,
+        optical_filter: {bandwidth: 70.0e9, filter_type: supergaussian, filter_order: 3}}
   channels:
     # RandomNumberSeedX do VPI: 2, 0, 4, 6. Canal sob teste: index 2.
     - {index: 0, kind: dcs, modulation: 16QAM, pol: DP, symbol_rate: 59.84e9, seed: 2,
@@ -49,6 +81,7 @@ system:
           length: 125.0e3
           attenuation: 0.2e-3
           dispersion: 16.0e-6
+          dispersion_slope: 0.08e3       # DispersionSlope do VPI: 0,08 ps/(nm^2 km)
           n2: 2.6e-20
           effective_area: 80.0e-12
           birefringence: {pmd_coefficient_ps_sqrt_km: 0.1, correlation_length: 50.0}

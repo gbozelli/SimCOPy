@@ -25,9 +25,16 @@ class FiberKernelParams:
     pmd_coefficient: float = 0.0
     correlation_length: float = 50.0
     manakov: bool = True
+    beta3: float = 0.0                # s^3/m (Agrawal, Eq. 2.4.4)
 
-def _linear_half(Ax, Ay, omega, beta2, alpha_np, dz, dtau=0.0):
-    op = np.exp((-0.5 * alpha_np + 0.5j * beta2 * omega**2) * (dz / 2.0))
+def _linear_half(Ax, Ay, omega, beta2, alpha_np, dz, dtau=0.0, beta3=0.0):
+    phase = 0.5j * beta2 * omega**2
+    if beta3 != 0.0:
+        # Agrawal, Eq. 2.4.4: beta(w) tem o termo (beta3/6)*(dw)^3, com dw a frequencia optica
+        # em relacao a portadora. Na convencao do projeto (portadora exp(-i*w0*t)) o eixo da
+        # FFT e -dw: o termo cubico troca de sinal, o quadratico nao.
+        phase = phase - (1j / 6.0) * beta3 * omega**3
+    op = np.exp((-0.5 * alpha_np + phase) * (dz / 2.0))
     Ax_f = np.fft.fft(Ax) * op
     if Ay is None:
         return np.fft.ifft(Ax_f), None
@@ -36,12 +43,28 @@ def _linear_half(Ax, Ay, omega, beta2, alpha_np, dz, dtau=0.0):
     return np.fft.ifft(Ax_f), np.fft.ifft(Ay_f)
 
 def propagate(A, omega, p: FiberKernelParams, rng=None,
-              max_step=5e3, max_phase_deg=0.5, min_step=1.0):
-    """A: (n_pol, N) complexo. Devolve o campo apos p.length metros."""
+              max_step=5e3, max_phase_deg=0.5, min_step=1.0, positions=None):
+    """A: (n_pol, N) complexo. Devolve o campo apos p.length metros.
+
+    positions: distancias [m] em ordem crescente, de 0 a p.length, em que o campo tambem e
+    guardado (duvida 32, resposta de 2026-11-16). Com elas a funcao devolve (campo final, lista
+    com o campo em cada posicao), no mesmo laco, sem propagar de novo. O passo e encurtado para
+    cair em cada posicao, entao a sequencia de passos (e o sorteio da PMD) nao e a mesma de uma
+    chamada sem `positions`.
+    """
     A = np.array(A, dtype=complex, copy=True)
     vec = A.shape[0] == 2
     Ax = A[0]
     Ay = A[1] if vec else None
+    pending, snapshots = [], []
+    if positions is not None:
+        pending = [float(v) for v in positions]
+        if any(b < a for a, b in zip(pending, pending[1:])) or \
+                (pending and (pending[0] < 0.0 or pending[-1] > p.length + 1e-9)):
+            raise ValueError("positions: use distancias crescentes entre 0 e o comprimento da fibra")
+        while pending and pending[0] <= 1e-9:          # posicao 0: o campo de entrada
+            snapshots.append(A.copy())
+            pending.pop(0)
     nl_factor = MANAKOV_FACTOR if p.manakov else 1.0
     max_phase = np.deg2rad(max_phase_deg)
     z = 0.0
@@ -53,9 +76,11 @@ def propagate(A, omega, p: FiberKernelParams, rng=None,
         # enquanto couber. Antes, max(min_step, ...) fazia a fibra ficar mais
         # longa do que a pedida quando L nao era multiplo do passo.
         dz = min(max(dz, min_step), p.length - z)
+        if pending:
+            dz = min(dz, pending[0] - z)
 
         dtau = bir.dgd_for_step(p.pmd_coefficient, dz, p.correlation_length) if vec else 0.0
-        Ax, Ay = _linear_half(Ax, Ay, omega, p.beta2, p.alpha_np, dz, dtau)
+        Ax, Ay = _linear_half(Ax, Ay, omega, p.beta2, p.alpha_np, dz, dtau, p.beta3)
 
         # Comprimento efetivo do passo. A intensidade aqui e a do ponto medio
         # (apos meio passo linear), integrar exp(-alpha*z) exatamente no passo da
@@ -69,10 +94,14 @@ def propagate(A, omega, p: FiberKernelParams, rng=None,
         if vec:
             Ay = Ay * nl
 
-        Ax, Ay = _linear_half(Ax, Ay, omega, p.beta2, p.alpha_np, dz)
+        Ax, Ay = _linear_half(Ax, Ay, omega, p.beta2, p.alpha_np, dz, 0.0, p.beta3)
 
         if vec and rng is not None and p.pmd_coefficient >= 0:
             if bir.sections_crossed(z, z + dz, p.correlation_length) > 0:
                 Ax, Ay = bir.apply_rotation(Ax, Ay, bir.random_su2(rng))
         z += dz
-    return np.vstack([Ax, Ay]) if vec else Ax[None, :]
+        while pending and z >= pending[0] - 1e-9:
+            snapshots.append(np.vstack([Ax, Ay]) if vec else Ax[None, :].copy())
+            pending.pop(0)
+    out = np.vstack([Ax, Ay]) if vec else Ax[None, :]
+    return (out, snapshots) if positions is not None else out

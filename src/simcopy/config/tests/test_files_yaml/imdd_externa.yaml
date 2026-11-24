@@ -1,0 +1,29 @@
+# Canal IMDD com modulacao externa (CW + MZM), driver eletrico e filtro optico.
+# Valores diferentes dos padroes, para o teste perceber uma chave ignorada.
+
+system:
+  center_wavelength: 1550.0e-9
+  channels:
+    - index: 2
+      kind: imdd
+      modulation: PAM4
+      symbol_rate: 10.0e9
+      seed: 5678
+      launch_power: 1.0e-3
+      tx:
+        rolloff: 0.3
+        driver: {filter_type: butterworth, filter_order: 5, bandwidth_factor: 0.8}
+        frontend:
+          scheme: external
+          drive_amplitude: 0.2
+          laser: {power_dbm: 3.0, linewidth: 100.0e3}
+          mzm: {vpi: 3.14, vbias: 1.57}
+      rx:
+        photodiode: {responsivity: 0.9, dark_current: 1.0e-9}
+        adc: {samples_per_symbol: 4, resolution_bits: 8}
+        optical_filter: {bandwidth: 40.0e9, filter_type: rectangular}
+  link:
+    spans:
+      - fiber: {length: 20.0e3}
+
+simulation: {samples_per_symbol: 16, n_symbols: 1024}

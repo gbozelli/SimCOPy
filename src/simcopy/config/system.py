@@ -25,12 +25,13 @@ class Modulation:
 
 OOK   = Modulation("OOK", 1)
 PAM4  = Modulation("PAM4", 2)
+BPSK  = Modulation("BPSK", 1)        # aula: "coerente digital, inicialmente BPSK" (duvida 53)
 QPSK  = Modulation("QPSK", 2)
 QAM16 = Modulation("16QAM", 4)
 QAM32 = Modulation("32QAM", 5)
 QAM64 = Modulation("64QAM", 6)
 IMDD_FORMATS = {"OOK": OOK, "PAM4": PAM4}
-DCS_FORMATS = {"QPSK": QPSK, "16QAM": QAM16, "32QAM": QAM32, "64QAM": QAM64}
+DCS_FORMATS = {"BPSK": BPSK, "QPSK": QPSK, "16QAM": QAM16, "32QAM": QAM32, "64QAM": QAM64}
 
 @dataclass(frozen=True)
 class CWLaserConfig:
@@ -80,7 +81,10 @@ class IQImpairments:
 @dataclass(frozen=True)
 class PhotodiodeConfig:
     responsivity: float = 1.0                    # A/W
-    thermal_noise_density: float = 10e-12        # A/sqrt(Hz), parametro direto
+    # A/sqrt(Hz), densidade unilateral: sigma_T^2 = i_n^2 * banda. Padrao do Agrawal (duvida 26,
+    # resposta de 2026-11-16): Eq. 4.4.9, sigma_T^2 = (4*k_B*T/R_L)*F_n*banda, com R_L = 1 kOhm,
+    # F_n = 2 e T = 300 K, o que da 5,76 pA/sqrt(Hz). O VPI usa 10 pA/sqrt(Hz) (nos exemplos).
+    thermal_noise_density: float = 5.76e-12
     dark_current: float = 0.0
     shot_noise: bool = True
     bandwidth_factor: float = 1.15               # banda = fator * symbol_rate (C-22)
@@ -89,8 +93,12 @@ class PhotodiodeConfig:
 
 @dataclass(frozen=True)
 class ADCConfig:
+    """Conversor analogico-digital (kernels/adc.py). resolution_bits = 0: so amostra, sem
+    quantizar. full_scale_rms: fundo de escala em multiplos do valor rms de cada componente (o
+    `Range = 1.0` do VPI nao diz a escala: duvida 65)."""
     samples_per_symbol: int = 2
     resolution_bits: int = 12
+    full_scale_rms: float = 4.0
 
 @dataclass(frozen=True)
 class ElectricalFilterConfig:
@@ -156,6 +164,76 @@ class CoherentTransmitter:
     mzm: MZMConfig = field(default_factory=MZMConfig)
     iq: IQImpairments = field(default_factory=IQImpairments)
     rolloff: float = 0.18
+    # Acionamento do modulador IQ (docs/sistema_coerente.md, secao 2). drive_depth: excursao do
+    # campo de cada MZM nos niveis externos da constelacao (1 = de -1 a 1, o MZM inteiro). O valor
+    # nao tem fonte (o VPI so tem Renormalize = On): duvida 56. predistortion: arcsin do VPI
+    # (PreDistortion = Yes, decisao M6 de 2026-10-22).
+    drive_depth: float = 1.0
+    predistortion: bool = True
+    # Pulso do transmissor: cosseno levantado inteiro (professor, `DAC_Nyquist`) ou a raiz dele
+    # (VPI, `NyquistResponse = squareRootRaisedCosine`), que pede o filtro casado no receptor.
+    pulse: Literal["raised_cosine", "root_raised_cosine"] = "raised_cosine"
+
+    def __post_init__(self):
+        if not 0.0 < self.drive_depth <= 1.0:
+            raise ConfigError(f"tx.drive_depth = {self.drive_depth}: a excursao do campo vai de 0 "
+                              f"(exclusivo) a 1 (o MZM inteiro, de -1 a 1).")
+        if self.pulse not in ("raised_cosine", "root_raised_cosine"):
+            raise ConfigError(f"tx.pulse = {self.pulse!r}; use 'raised_cosine' ou "
+                              f"'root_raised_cosine'.")
+
+@dataclass(frozen=True)
+class DSPConfig:
+    """Processamento digital do receptor coerente (kernels/dsp.py; docs/sistema_coerente.md,
+    secoes 11 e 12).
+
+    mode = "data_aided": a fase, a polarizacao e o equalizador usam os simbolos transmitidos
+    conhecidos (decisao registrada no pacote: receptor "data-aided" antes do DSP cego).
+    mode = "blind": nada usa os simbolos. O sinal passa pelo ADC (rx.adc) e pelo receptor cego:
+    espaco de Stokes, equalizador adaptativo (modulo constante e dirigido por raio), desvio de
+    frequencia, busca cega de fase e ajuste dirigido por decisao. So a medida usa os dados, para
+    saber a polarizacao, o atraso e o giro de cada saida.
+
+    equalizer_taps: coeficientes do equalizador, a 2 amostras por simbolo (7 no MIMO do VPI).
+    phase_window: simbolos da media movel da fase. O VPI tem `NPreSymbols = 21` simbolos de cada
+    lado: janela de 43, medida nas constelacoes do VPI (docs/replicacao_vpi_diario.md). No modo
+    cego, 21 simbolos deixam a busca cega de fase saltar 90 graus abaixo de ~13 dB de SNR.
+    block_length: simbolos de cada bloco da estimativa inicial de fase e polarizacao (so com os
+    simbolos conhecidos).
+    step_size, cma_iterations, rde_iterations: equalizador adaptativo cego. O passo vale para
+    sinais de potencia unitaria, e as iteracoes sao passagens pelo bloco inteiro. A etapa
+    dirigida por raio (rde_iterations) vem desligada: com 13 dB de SNR ela atrapalhou a
+    convergencia de uma polarizacao (medido em 2026-11-16), e o ajuste por decisao a dispensa.
+    dd_iterations: ajustes dirigidos por decisao depois da primeira recuperacao de portadora.
+    test_angles: angulos da busca cega de fase (64 em `NbTestAngles` do VPI)."""
+    cd_compensation: bool = True
+    # Estagio cego de desvio de frequencia (quarta potencia), antes do filtro casado. Desligado
+    # por padrao: a medida estima o desvio com os simbolos conhecidos, e a raia da quarta
+    # potencia do 16QAM e fraca (kernels/dsp.py, `timing_and_frequency`).
+    frequency_offset: bool = False
+    matched_filter: bool = True         # so com tx.pulse = "root_raised_cosine"
+    equalizer_taps: int = 7
+    phase_window: int = 21
+    block_length: int = 64
+    mode: Literal["data_aided", "blind"] = "data_aided"
+    step_size: float = 1e-3
+    cma_iterations: int = 4
+    rde_iterations: int = 0
+    dd_iterations: int = 4
+    test_angles: int = 64
+    stokes_demux: bool = True
+
+    def __post_init__(self):
+        if self.mode not in ("data_aided", "blind"):
+            raise ConfigError(f"rx.dsp.mode = {self.mode!r}; use 'data_aided' ou 'blind'.")
+        if self.equalizer_taps < 1 or self.equalizer_taps % 2 == 0:
+            raise ConfigError(f"rx.dsp.equalizer_taps = {self.equalizer_taps}: use um impar.")
+        if self.phase_window < 1 or self.block_length < 8:
+            raise ConfigError("rx.dsp: phase_window >= 1 e block_length >= 8.")
+        if self.step_size <= 0 or self.test_angles < 2:
+            raise ConfigError("rx.dsp: step_size > 0 e test_angles >= 2.")
+        if min(self.cma_iterations, self.rde_iterations, self.dd_iterations) < 0:
+            raise ConfigError("rx.dsp: cma_iterations, rde_iterations e dd_iterations >= 0.")
 
 @dataclass(frozen=True)
 class CoherentReceiver:
@@ -164,13 +242,24 @@ class CoherentReceiver:
     photodiode: PhotodiodeConfig = field(default_factory=PhotodiodeConfig)
     adc: ADCConfig = field(default_factory=ADCConfig)
     optical_bandwidth: float = 70e9
+    # "free": laser proprio (largura de linha e desvio de frequencia do oscilador local).
+    # "tx_laser": copia do laser do transmissor, homodino ideal (duvida 54, 2026-11-14).
+    lo_source: Literal["free", "tx_laser"] = "free"
+    # Filtro optico do canal, antes do receptor, quando ha mais de um canal: supergaussiano de
+    # banda optical_bandwidth e esta ordem (VPI, `FilterOpt`: gaussiana de ordem 3, 70 GHz).
+    optical_filter_order: int = 3
+    dsp: DSPConfig | None = None         # None = sem DSP (uma polarizacao, sem fibra)
+
+    def __post_init__(self):
+        if self.lo_source not in ("free", "tx_laser"):
+            raise ConfigError(f"rx.lo_source = {self.lo_source!r}; use 'free' ou 'tx_laser'.")
 
 @dataclass(frozen=True)
 class IMDDChannel:
     index: int
     symbol_rate: float
     seed: int
-    modulation: Modulation = PAM4
+    modulation: Modulation = OOK         # duvida 51 (2026-11-16): OOK e o padrao, PAM4 e bonus
     launch_power: float | None = None
     tx: IMDDTransmitter = field(default_factory=IMDDTransmitter)
     rx: IMDDReceiver = field(default_factory=IMDDReceiver)
@@ -224,6 +313,10 @@ class FiberConfig:
     n2: float = 2.6e-20                  # m^2/W
     effective_area: float = 80e-12       # m^2
     birefringence: BirefringenceConfig = field(default_factory=BirefringenceConfig)
+    # Inclinacao da dispersao S = dD/dlambda [s/m^3] no centro da banda (Agrawal, Eq. 2.3.13).
+    # 0,08 ps/(nm^2 km) = 0.08e3 s/m^3 na fibra do VPI. Com o padrao 0, beta3 nao e zero: sobra
+    # o termo 2*D/lambda da Eq. 2.3.13. None desliga beta3 de vez (o comportamento anterior).
+    dispersion_slope: float | None = None
 
 @dataclass(frozen=True)
 class AmplifierConfig:

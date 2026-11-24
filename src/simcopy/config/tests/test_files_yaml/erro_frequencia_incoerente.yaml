@@ -1,0 +1,12 @@
+# Deve dar ConfigError: 193.7 THz corresponde a 1547.7 nm, nao a 1550 nm.
+
+system:
+  center_frequency: 193.7e12
+  center_wavelength: 1550.0e-9
+  channels:
+    - {index: 0, kind: dcs, modulation: 16QAM, symbol_rate: 59.84e9, seed: 0}
+  link:
+    spans:
+      - fiber: {length: 80.0e3}
+
+simulation: {samples_per_symbol: 16, n_symbols: 1024}

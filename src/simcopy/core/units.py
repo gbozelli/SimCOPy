@@ -22,6 +22,12 @@ def beta2_from_dispersion(D, wavelength):
     """D [s/m^2] -> beta2 [s^2/m]. Convencao beta2 = -D*lambda^2/(2*pi*c)."""
     return -D * wavelength**2 / (2.0 * np.pi * C_LIGHT)
 
+def beta3_from_dispersion(D, slope, wavelength):
+    """D [s/m^2] e S = dD/dlambda [s/m^3] -> beta3 [s^3/m]. Agrawal, Eq. 2.3.13:
+    S = (2*pi*c/lambda^2)^2*beta3 + (4*pi*c/lambda^3)*beta2. Com beta2 = -D*lambda^2/(2*pi*c),
+    beta3 = (S + 2*D/lambda)*[lambda^2/(2*pi*c)]^2."""
+    return (slope + 2.0 * D / wavelength) * (wavelength**2 / (2.0 * np.pi * C_LIGHT)) ** 2
+
 def gamma_from_n2(n2, effective_area, wavelength):
     """gamma [1/(W*m)] = 2*pi*n2/(lambda*Aeff)."""
     return 2.0 * np.pi * n2 / (wavelength * effective_area)

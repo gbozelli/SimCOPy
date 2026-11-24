@@ -352,3 +352,73 @@ essa combinação em vez de supor.
 - Fibra compensadora dentro do trecho na configuração (dúvida 52) e PAM4 (dúvida 51).
 - Regra de banda ocupada que enxergue o chirp do laser direto (`docs/mapa_arquitetura.md`, 5.10).
 - Sensibilidade (BER contra potência recebida), com `launch_power` ou um atenuador.
+
+---
+
+## 11. PAM4 (2026-11-15)
+
+Pedido do Gabriel. O IMDD passa a aceitar `modulation: PAM4` (2 bits por símbolo), com modulação
+externa ou direta. Exemplo: `examples/imdd_pam4_mzm.yaml`.
+
+### 11.1 Transmissor
+
+**Níveis** (`kernels/electrical.py`, `pam_drive_levels`). Quatro níveis elétricos igualmente
+espaçados em [0, 1]: 0, 1/3, 2/3 e 1. Os dois bits de cada símbolo escolhem o nível pelo código de
+Gray refletido, o mesmo de um eixo do 16QAM (`kernels/mapping.py`): 00, 01, 11, 10, do mais baixo
+ao mais alto. Assim um erro para o nível vizinho troca um bit só. **[Sem fonte no Agrawal nem no
+professor: é o código de Gray usual, o mesmo que o `QAM_dem` do professor usa por eixo.]** O
+`NRZDriver` faz o resto como no OOK (NRZ e filtro de Bessel).
+
+**Níveis de potência com o MZM.** A transmissão do MZM é um cosseno ao quadrado, então níveis
+elétricos iguais não dão níveis de potência iguais. Com a excursão inteira (`drive_amplitude:
+0.25`, do nulo ao pico) os níveis de potência saem em 0, 0,25, 0,75 e 1: o olho do meio é o dobro
+dos outros dois. Com metade da excursão (0,125, o valor do exemplo) saem em 0,15, 0,37, 0,63 e
+0,85: olhos quase iguais, e o nível mais baixo não chega a zero (extinção de 7,7 dB). Não há
+pré-distorção dos níveis.
+
+### 11.2 Medida (`kernels/decision.py`, `measure_pam`)
+
+Cada olho, entre dois níveis vizinhos, é tratado como o olho do OOK:
+
+- limiar ótimo de cada olho pela Eq. 4.6.6 do Agrawal
+- fator Q de cada olho pela Eq. 4.6.11: $Q_i = (I_{i+1} - I_i)/(\sigma_{i+1} + \sigma_i)$
+- decisão pelos três limiares, e contagem de erros de símbolo e de bit
+
+A BER pelos fatores Q, com ruído gaussiano em cada nível e código de Gray:
+
+$$\mathrm{SER} = \frac{1}{M}\sum_i \mathrm{erfc}\!\left(\frac{Q_i}{\sqrt 2}\right), \qquad
+\mathrm{BER} = \frac{\mathrm{SER}}{\log_2 M}$$
+
+Com $M = 2$ volta a Eq. 4.6.10 do Agrawal. **[Dedução: a generalização para $M$ níveis não está no
+Agrawal.]**
+
+`PAMMeasurement` tem `q` (o do pior olho), `ber_q`, `ber_counted`, `errors` e `n_bits`, com os
+mesmos nomes de `QMeasurement`, mais `eye_q`, `levels`, `sigmas`, `thresholds` e `ser`. Por isso
+`sweep`, `plot_sweep` e a CLI servem aos dois formatos. O `plot_eye` mostra os quatro níveis e os
+três limiares.
+
+**Instante de decisão.** Diferente do OOK: primeiro o atraso de maior correlação entre a corrente
+e a sequência de níveis, procurado na janela inteira, e depois o instante, a até um símbolo dele,
+que maximiza o Q do pior olho. A procura na janela inteira cobre o atraso de um canal WDM fora do
+centro da banda, que é o ponto 1 de `docs/revisao_2026-11-14.md`. A medida do OOK continua como
+estava, com esse defeito.
+
+### 11.3 Verificações (2026-11-15)
+
+- **OOK intacto.** Os três exemplos OOK dão os mesmos números de antes.
+- **Exemplo** (10 GBd, 10 km, 5 dBm no receptor): Q dos três olhos = 71, 69 e 44, sem erros.
+- **BER contada contra a BER pelos fatores Q**, baixando a potência de lançamento, com $2^{15}$
+  símbolos:
+
+| P [dBm] | Q dos três olhos | BER por Q | BER contada |
+|---|---|---|---|
+| −18 | 2,04 / 2,35 / 2,02 | 1,290e-2 | 1,260e-2 (825 erros) |
+| −19 | 1,63 / 1,88 / 1,61 | 3,389e-2 | 3,338e-2 (2186) |
+| −20 | 1,30 / 1,50 / 1,28 | 6,605e-2 | 6,554e-2 (4292) |
+| −21 | 1,03 / 1,19 / 1,02 | 1,053e-1 | 1,060e-1 (6942) |
+
+### 11.4 O que não entra
+
+- Pré-distorção dos níveis, para igualar os olhos com a excursão inteira do MZM.
+- Equalização no receptor (FFE, DFE), que os sistemas PAM4 reais usam.
+- MI e GMI para o IMDD.

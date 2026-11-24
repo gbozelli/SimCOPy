@@ -1,0 +1,11 @@
+# Deve dar ConfigError: "rolof" esta escrito errado no tx do canal IMDD.
+
+system:
+  channels:
+    - {index: 0, kind: imdd, modulation: OOK, symbol_rate: 10.0e9, seed: 1,
+       tx: {rolof: 0.3}}
+  link:
+    spans:
+      - fiber: {length: 20.0e3}
+
+simulation: {samples_per_symbol: 16, n_symbols: 1024}
