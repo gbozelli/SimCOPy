@@ -1,0 +1,11 @@
+# Deve dar ConfigError: a potencia do laser foi dada em W e em dBm.
+
+system:
+  channels:
+    - {index: 0, kind: dcs, modulation: 16QAM, symbol_rate: 59.84e9, seed: 0,
+       tx: {laser: {power: 1.0e-3, power_dbm: 0.0}}}
+  link:
+    spans:
+      - fiber: {length: 80.0e3}
+
+simulation: {samples_per_symbol: 16, n_symbols: 1024}
